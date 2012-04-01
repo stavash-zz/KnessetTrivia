@@ -1,0 +1,313 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC251528A60600110F7E /* UIKit.framework */; };
+		1F62FC281528A60600110F7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC271528A60600110F7E /* Foundation.framework */; };
+		1F62FC2A1528A60600110F7E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC291528A60600110F7E /* CoreGraphics.framework */; };
+		1F62FC301528A60600110F7E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC2E1528A60600110F7E /* InfoPlist.strings */; };
+		1F62FC321528A60600110F7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC311528A60600110F7E /* main.m */; };
+		1F62FC361528A60600110F7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC351528A60600110F7E /* AppDelegate.m */; };
+		1F62FC391528A60600110F7E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC381528A60600110F7E /* FirstViewController.m */; };
+		1F62FC3B1528A60600110F7E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC3A1528A60600110F7E /* first.png */; };
+		1F62FC3D1528A60600110F7E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC3C1528A60600110F7E /* first@2x.png */; };
+		1F62FC401528A60600110F7E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC3F1528A60600110F7E /* SecondViewController.m */; };
+		1F62FC421528A60600110F7E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC411528A60600110F7E /* second.png */; };
+		1F62FC441528A60600110F7E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC431528A60600110F7E /* second@2x.png */; };
+		1F62FC471528A60600110F7E /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC451528A60600110F7E /* FirstViewController.xib */; };
+		1F62FC4A1528A60600110F7E /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC481528A60600110F7E /* SecondViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F62FC251528A60600110F7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1F62FC271528A60600110F7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1F62FC291528A60600110F7E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1F62FC2D1528A60600110F7E /* KnessetTrivia-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KnessetTrivia-Info.plist"; sourceTree = "<group>"; };
+		1F62FC2F1528A60600110F7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1F62FC311528A60600110F7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1F62FC331528A60600110F7E /* KnessetTrivia-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KnessetTrivia-Prefix.pch"; sourceTree = "<group>"; };
+		1F62FC341528A60600110F7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1F62FC351528A60600110F7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1F62FC371528A60600110F7E /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		1F62FC381528A60600110F7E /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		1F62FC3A1528A60600110F7E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		1F62FC3C1528A60600110F7E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		1F62FC3E1528A60600110F7E /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		1F62FC3F1528A60600110F7E /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		1F62FC411528A60600110F7E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		1F62FC431528A60600110F7E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		1F62FC461528A60600110F7E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
+		1F62FC491528A60600110F7E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F62FC1E1528A60600110F7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */,
+				1F62FC281528A60600110F7E /* Foundation.framework in Frameworks */,
+				1F62FC2A1528A60600110F7E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F62FC161528A60500110F7E = {
+			isa = PBXGroup;
+			children = (
+				1F62FC2B1528A60600110F7E /* KnessetTrivia */,
+				1F62FC241528A60600110F7E /* Frameworks */,
+				1F62FC221528A60600110F7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1F62FC221528A60600110F7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F62FC211528A60600110F7E /* KnessetTrivia.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F62FC241528A60600110F7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F62FC251528A60600110F7E /* UIKit.framework */,
+				1F62FC271528A60600110F7E /* Foundation.framework */,
+				1F62FC291528A60600110F7E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1F62FC2B1528A60600110F7E /* KnessetTrivia */ = {
+			isa = PBXGroup;
+			children = (
+				1F62FC341528A60600110F7E /* AppDelegate.h */,
+				1F62FC351528A60600110F7E /* AppDelegate.m */,
+				1F62FC371528A60600110F7E /* FirstViewController.h */,
+				1F62FC381528A60600110F7E /* FirstViewController.m */,
+				1F62FC3A1528A60600110F7E /* first.png */,
+				1F62FC3C1528A60600110F7E /* first@2x.png */,
+				1F62FC3E1528A60600110F7E /* SecondViewController.h */,
+				1F62FC3F1528A60600110F7E /* SecondViewController.m */,
+				1F62FC411528A60600110F7E /* second.png */,
+				1F62FC431528A60600110F7E /* second@2x.png */,
+				1F62FC451528A60600110F7E /* FirstViewController.xib */,
+				1F62FC481528A60600110F7E /* SecondViewController.xib */,
+				1F62FC2C1528A60600110F7E /* Supporting Files */,
+			);
+			path = KnessetTrivia;
+			sourceTree = "<group>";
+		};
+		1F62FC2C1528A60600110F7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F62FC2D1528A60600110F7E /* KnessetTrivia-Info.plist */,
+				1F62FC2E1528A60600110F7E /* InfoPlist.strings */,
+				1F62FC311528A60600110F7E /* main.m */,
+				1F62FC331528A60600110F7E /* KnessetTrivia-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F62FC201528A60600110F7E /* KnessetTrivia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F62FC4D1528A60600110F7E /* Build configuration list for PBXNativeTarget "KnessetTrivia" */;
+			buildPhases = (
+				1F62FC1D1528A60600110F7E /* Sources */,
+				1F62FC1E1528A60600110F7E /* Frameworks */,
+				1F62FC1F1528A60600110F7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KnessetTrivia;
+			productName = KnessetTrivia;
+			productReference = 1F62FC211528A60600110F7E /* KnessetTrivia.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F62FC181528A60500110F7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 1F62FC1B1528A60500110F7E /* Build configuration list for PBXProject "KnessetTrivia" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1F62FC161528A60500110F7E;
+			productRefGroup = 1F62FC221528A60600110F7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F62FC201528A60600110F7E /* KnessetTrivia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F62FC1F1528A60600110F7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F62FC301528A60600110F7E /* InfoPlist.strings in Resources */,
+				1F62FC3B1528A60600110F7E /* first.png in Resources */,
+				1F62FC3D1528A60600110F7E /* first@2x.png in Resources */,
+				1F62FC421528A60600110F7E /* second.png in Resources */,
+				1F62FC441528A60600110F7E /* second@2x.png in Resources */,
+				1F62FC471528A60600110F7E /* FirstViewController.xib in Resources */,
+				1F62FC4A1528A60600110F7E /* SecondViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F62FC1D1528A60600110F7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F62FC321528A60600110F7E /* main.m in Sources */,
+				1F62FC361528A60600110F7E /* AppDelegate.m in Sources */,
+				1F62FC391528A60600110F7E /* FirstViewController.m in Sources */,
+				1F62FC401528A60600110F7E /* SecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1F62FC2E1528A60600110F7E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F62FC2F1528A60600110F7E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1F62FC451528A60600110F7E /* FirstViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F62FC461528A60600110F7E /* en */,
+			);
+			name = FirstViewController.xib;
+			sourceTree = "<group>";
+		};
+		1F62FC481528A60600110F7E /* SecondViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F62FC491528A60600110F7E /* en */,
+			);
+			name = SecondViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1F62FC4B1528A60600110F7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1F62FC4C1528A60600110F7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F62FC4E1528A60600110F7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KnessetTrivia/KnessetTrivia-Prefix.pch";
+				INFOPLIST_FILE = "KnessetTrivia/KnessetTrivia-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1F62FC4F1528A60600110F7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KnessetTrivia/KnessetTrivia-Prefix.pch";
+				INFOPLIST_FILE = "KnessetTrivia/KnessetTrivia-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F62FC1B1528A60500110F7E /* Build configuration list for PBXProject "KnessetTrivia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F62FC4B1528A60600110F7E /* Debug */,
+				1F62FC4C1528A60600110F7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F62FC4D1528A60600110F7E /* Build configuration list for PBXNativeTarget "KnessetTrivia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F62FC4E1528A60600110F7E /* Debug */,
+				1F62FC4F1528A60600110F7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1F62FC181528A60500110F7E /* Project object */;
+}
