@@ -9,6 +9,7 @@
 #import "MemberCell.h"
 #import "KTMember.h"
 #import "KTLink.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MemberCell ()
 
@@ -31,8 +32,19 @@
 - (void)viewDidLoad
 {
     [aiv startAnimating];
+    
+    CALayer *l1 = [imgView layer];
+    [l1 setMasksToBounds:YES];
+    [l1 setCornerRadius:10.0];
+    
+    CALayer *l2 = [self.view layer];
+    [l2 setMasksToBounds:YES];
+    [l2 setCornerRadius:10.0];
+    
     [self performSelectorInBackground:@selector(loadImage) withObject:nil];
+    
     nameLabel.text = self.member.name;   
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -57,11 +69,11 @@
     //Load image
     UIImage *memberImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.member.imageUrl]]];
     imgView.image = memberImg;
-
-    //Correct frame
-//    CGRect imgFrame = imgView.frame;
-//    imgFrame.size = memberImg.size;
-//    imgView.frame = imgFrame;
+   
+    //Animate in
+    [UIView beginAnimations:@"" context:nil];
+    imgView.alpha = 1;
+    [UIView commitAnimations];
 
     [aiv stopAnimating];
     
@@ -95,5 +107,20 @@
     [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
     [actionsheet release];
 }
+
+#pragma mark - Public
+- (void) showCorrectIndication {
+    [UIView beginAnimations:@"" context:nil];
+    self.view.backgroundColor = [UIColor greenColor];
+    [UIView commitAnimations];
+}
+
+- (void) showWrongIndication {
+    [UIView beginAnimations:@"" context:nil];
+    self.view.backgroundColor = [UIColor redColor];
+    [UIView commitAnimations];
+    
+}
+
 
 @end

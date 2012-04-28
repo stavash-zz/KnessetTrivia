@@ -70,6 +70,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"טריוויה";
+        self.tabBarItem.image = [UIImage imageNamed:@"TriviaTab"];
         correctIndex = -1;
     }
     return self;
@@ -140,6 +142,7 @@
     if (self.optionsArr) {
         return [self.optionsArr objectAtIndex:correctIndex];
     }
+    return nil;
 }
 
 - (NSArray *)getFourRandomMembers {
@@ -187,6 +190,9 @@
 
 - (BOOL)checkCorrectnessOfPosition:(CellPosition)pos {
     KTMember *correctMember = [self getCorrectMember];
+    if (!correctMember) {
+        return NO;
+    }
     switch (pos) {
         case kCellPositionTopLeft:
             return (correctMember.memberId == topLeftMemberCell.member.memberId);
@@ -207,32 +213,33 @@
 
 - (void) topLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopLeft]) {
-        NSLog(@"Correct!");
+        [self.topLeftMemberCell showCorrectIndication];
     } else {
-        NSLog(@"Wrong!");
+        [self.topLeftMemberCell showWrongIndication];
     }
 }
 
 - (void) topRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopRight]) {
-        NSLog(@"Correct!");
+        [self.topRightMemberCell showCorrectIndication];
     } else {
-        NSLog(@"Wrong!");
+        [self.topRightMemberCell showWrongIndication];
     }
 }
 
 - (void) bottomLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomLeft]) {
-        NSLog(@"Correct!");
+        [self.bottomLeftMemberCell showCorrectIndication];
     } else {
-        NSLog(@"Wrong!");
-    }}
+        [self.bottomLeftMemberCell showWrongIndication];
+    }
+}
 
 - (void) bottomRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomRight]) {
-        NSLog(@"Correct!");
+        [self.bottomRightMemberCell showCorrectIndication];
     } else {
-        NSLog(@"Wrong!");
+        [self.bottomRightMemberCell showWrongIndication];
     }
 }
 

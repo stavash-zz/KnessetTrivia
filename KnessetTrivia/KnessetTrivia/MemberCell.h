@@ -19,4 +19,7 @@
 
 @property (nonatomic, retain) KTMember *member;
 
+- (void) showCorrectIndication;
+- (void) showWrongIndication;
+
 @end
