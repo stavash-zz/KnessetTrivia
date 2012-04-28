@@ -10,7 +10,7 @@
 
 #import "FirstViewController.h"
 
-#import "SecondViewController.h"
+#import "ImageTriviaViewController.h"
 
 @implementation AppDelegate
 
@@ -29,7 +29,7 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UIViewController *viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil] autorelease];
-    UIViewController *viewController2 = [[[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil] autorelease];
+    UIViewController *viewController2 = [[[ImageTriviaViewController alloc] initWithNibName:@"ImageTriviaViewController" bundle:nil] autorelease];
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
     self.window.rootViewController = self.tabBarController;

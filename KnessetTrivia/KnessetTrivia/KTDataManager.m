@@ -85,4 +85,15 @@ static KTDataManager *manager = nil;
     return nil;
 }
 
+- (NSArray *)getAllMemberNames {
+    if (self.members) {
+        NSMutableArray *namesArr = [[[NSMutableArray alloc] init] autorelease];
+        for (KTMember *member in self.members) {
+            [namesArr addObject:member.name];
+        }
+        return namesArr;
+    }
+    return nil;
+}
+
 @end

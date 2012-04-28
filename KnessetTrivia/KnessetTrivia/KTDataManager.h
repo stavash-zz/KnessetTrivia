@@ -20,6 +20,7 @@
 
 - (void) initializeMembers;
 - (KTMember *)getMemberWithId:(int)memberId;
+- (NSArray *)getAllMemberNames;
 
 @end
 

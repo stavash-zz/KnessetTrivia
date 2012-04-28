@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F17FF26154C571F008F9575 /* ImageTriviaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */; };
+		1F17FF27154C571F008F9575 /* ImageTriviaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */; };
 		1F5FE22E154B486300633DF5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22C154B486300633DF5 /* Default.png */; };
 		1F5FE22F154B486300633DF5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22D154B486300633DF5 /* Default@2x.png */; };
 		1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC251528A60600110F7E /* UIKit.framework */; };
@@ -49,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F17FF23154C571F008F9575 /* ImageTriviaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTriviaViewController.h; sourceTree = "<group>"; };
+		1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTriviaViewController.m; sourceTree = "<group>"; };
+		1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTriviaViewController.xib; sourceTree = "<group>"; };
 		1F5FE22C154B486300633DF5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Artwork/Default.png; sourceTree = "<group>"; };
 		1F5FE22D154B486300633DF5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Artwork/Default@2x.png"; sourceTree = "<group>"; };
 		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +301,9 @@
 				1F692189154B3917001AD57F /* MemberCell.h */,
 				1F69218A154B3917001AD57F /* MemberCell.m */,
 				1F69218B154B3917001AD57F /* MemberCell.xib */,
+				1F17FF23154C571F008F9575 /* ImageTriviaViewController.h */,
+				1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */,
+				1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -363,6 +371,7 @@
 				1F5FE22F154B486300633DF5 /* Default@2x.png in Resources */,
 				1F684AC4154BE39B00AD64FD /* Icon.png in Resources */,
 				1F684AC5154BE39B00AD64FD /* Icon@2x.png in Resources */,
+				1F17FF27154C571F008F9575 /* ImageTriviaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +405,7 @@
 				1F692170154B2DF7001AD57F /* KTParser.m in Sources */,
 				1F692174154B34F5001AD57F /* KTDataManager.m in Sources */,
 				1F69218C154B3917001AD57F /* MemberCell.m in Sources */,
+				1F17FF26154C571F008F9575 /* ImageTriviaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
