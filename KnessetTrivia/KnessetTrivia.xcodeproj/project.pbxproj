@@ -15,6 +15,8 @@
 		1F17FF31154C797C008F9575 /* TriviaTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF2F154C797C008F9575 /* TriviaTab@2x.png */; };
 		1F17FF34154C7AF6008F9575 /* AboutTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF32154C7AF6008F9575 /* AboutTab.png */; };
 		1F17FF35154C7AF6008F9575 /* AboutTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF33154C7AF6008F9575 /* AboutTab@2x.png */; };
+		1F17FF39154C7DA7008F9575 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17FF37154C7DA7008F9575 /* AboutViewController.m */; };
+		1F17FF3A154C7DA7008F9575 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF38154C7DA7008F9575 /* AboutViewController.xib */; };
 		1F5FE22E154B486300633DF5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22C154B486300633DF5 /* Default.png */; };
 		1F5FE22F154B486300633DF5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22D154B486300633DF5 /* Default@2x.png */; };
 		1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC251528A60600110F7E /* UIKit.framework */; };
@@ -66,6 +68,9 @@
 		1F17FF2F154C797C008F9575 /* TriviaTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TriviaTab@2x.png"; path = "Artwork/TriviaTab@2x.png"; sourceTree = "<group>"; };
 		1F17FF32154C7AF6008F9575 /* AboutTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AboutTab.png; path = Artwork/AboutTab.png; sourceTree = "<group>"; };
 		1F17FF33154C7AF6008F9575 /* AboutTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AboutTab@2x.png"; path = "Artwork/AboutTab@2x.png"; sourceTree = "<group>"; };
+		1F17FF36154C7DA6008F9575 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		1F17FF37154C7DA7008F9575 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		1F17FF38154C7DA7008F9575 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		1F5FE22C154B486300633DF5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Artwork/Default.png; sourceTree = "<group>"; };
 		1F5FE22D154B486300633DF5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Artwork/Default@2x.png"; sourceTree = "<group>"; };
 		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +173,21 @@
 			name = Tabs;
 			sourceTree = "<group>";
 		};
+		1F17FF3B154C7F9F008F9575 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				1F69213A154AD213001AD57F /* KTMember.h */,
+				1F69213B154AD213001AD57F /* KTMember.m */,
+				1F692164154AEFD6001AD57F /* KTLink.h */,
+				1F692165154AEFD6001AD57F /* KTLink.m */,
+				1F692167154B2A3B001AD57F /* KTCommitteeLink.h */,
+				1F692168154B2A3B001AD57F /* KTCommitteeLink.m */,
+				1F69216A154B2C10001AD57F /* KTBillLink.h */,
+				1F69216B154B2C10001AD57F /* KTBillLink.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
 		1F5FE228154B484200633DF5 /* Artwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,15 +284,8 @@
 		1F692139154AD1F5001AD57F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F17FF3B154C7F9F008F9575 /* Objects */,
 				1F69216D154B2DD6001AD57F /* Parser */,
-				1F69213A154AD213001AD57F /* KTMember.h */,
-				1F69213B154AD213001AD57F /* KTMember.m */,
-				1F692164154AEFD6001AD57F /* KTLink.h */,
-				1F692165154AEFD6001AD57F /* KTLink.m */,
-				1F692167154B2A3B001AD57F /* KTCommitteeLink.h */,
-				1F692168154B2A3B001AD57F /* KTCommitteeLink.m */,
-				1F69216A154B2C10001AD57F /* KTBillLink.h */,
-				1F69216B154B2C10001AD57F /* KTBillLink.m */,
 				1F692172154B34F5001AD57F /* KTDataManager.h */,
 				1F692173154B34F5001AD57F /* KTDataManager.m */,
 			);
@@ -338,6 +351,9 @@
 				1F17FF23154C571F008F9575 /* ImageTriviaViewController.h */,
 				1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */,
 				1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */,
+				1F17FF36154C7DA6008F9575 /* AboutViewController.h */,
+				1F17FF37154C7DA7008F9575 /* AboutViewController.m */,
+				1F17FF38154C7DA7008F9575 /* AboutViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -412,6 +428,7 @@
 				1F17FF31154C797C008F9575 /* TriviaTab@2x.png in Resources */,
 				1F17FF34154C7AF6008F9575 /* AboutTab.png in Resources */,
 				1F17FF35154C7AF6008F9575 /* AboutTab@2x.png in Resources */,
+				1F17FF3A154C7DA7008F9575 /* AboutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +463,7 @@
 				1F692174154B34F5001AD57F /* KTDataManager.m in Sources */,
 				1F69218C154B3917001AD57F /* MemberCell.m in Sources */,
 				1F17FF26154C571F008F9575 /* ImageTriviaViewController.m in Sources */,
+				1F17FF39154C7DA7008F9575 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

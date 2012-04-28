@@ -48,7 +48,7 @@ static KTDataManager *manager = nil;
     [super dealloc];
 }
 
-#pragma mark - Default
+#pragma mark - Public
 
 - (void) initializeMembers {
     NSData *memberData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"member" ofType:@"txt"]];
@@ -94,6 +94,21 @@ static KTDataManager *manager = nil;
         return namesArr;
     }
     return nil;
+}
+
+- (UIImage *)savedImageForId:(int)imageId {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
+    UIImage *img = [UIImage imageWithContentsOfFile:filePath];
+    return img;
+}
+
+- (void) saveImageToDocuments:(UIImage *)image withId:(int)imageId {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
+        [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
 }
 
 @end

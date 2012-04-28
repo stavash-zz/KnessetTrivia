@@ -21,6 +21,8 @@
 - (void) initializeMembers;
 - (KTMember *)getMemberWithId:(int)memberId;
 - (NSArray *)getAllMemberNames;
+- (UIImage *)savedImageForId:(int)imageId;
+- (void) saveImageToDocuments:(UIImage *)image withId:(int)imageId;
 
 @end
 

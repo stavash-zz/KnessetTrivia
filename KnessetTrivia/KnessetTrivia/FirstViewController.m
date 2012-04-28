@@ -22,15 +22,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"אודות";
-        self.tabBarItem.image = [UIImage imageNamed:@"AboutTab"];
     }
     return self;
 }
 							
 - (void)viewDidLoad
 {
-    [[KTDataManager sharedManager] initializeMembers];
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }

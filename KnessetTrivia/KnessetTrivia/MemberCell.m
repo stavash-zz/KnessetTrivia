@@ -9,6 +9,7 @@
 #import "MemberCell.h"
 #import "KTMember.h"
 #import "KTLink.h"
+#import "KTDataManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface MemberCell ()
@@ -63,19 +64,30 @@
 
 #pragma mark - Async Image
 
-- (void) loadImage {
-    NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
-    
-    //Load image
-    UIImage *memberImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.member.imageUrl]]];
-    imgView.image = memberImg;
-   
+- (void) completeImageLoading:(UIImage *)img {
+    imgView.image = img;
+
     //Animate in
     [UIView beginAnimations:@"" context:nil];
     imgView.alpha = 1;
     [UIView commitAnimations];
 
     [aiv stopAnimating];
+
+}
+
+- (void) loadImage {
+    NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
+    
+    //Load image
+    UIImage *memberImg = [[KTDataManager sharedManager] savedImageForId:self.member.memberId];
+    if (!memberImg) {
+    memberImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.member.imageUrl]]];
+        [[KTDataManager sharedManager] saveImageToDocuments:memberImg withId:self.member.memberId];
+    }
+    
+    //Perform UI actions on main thread
+    [self performSelectorOnMainThread:@selector(completeImageLoading:) withObject:memberImg waitUntilDone:YES];
     
     [autoreleasePool release];
 }
