@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class KTMember;
+
 @interface KTDataManager : NSObject {
     NSArray *members;
 }
@@ -17,6 +19,7 @@
 + (KTDataManager *) sharedManager;
 
 - (void) initializeMembers;
+- (KTMember *)getMemberWithId:(int)memberId;
 
 @end
 

@@ -9,6 +9,7 @@
 #import "KTDataManager.h"
 #import "SBJsonParser.h"
 #import "KTParser.h"
+#import "KTMember.h"
 
 @implementation KTDataManager
 @synthesize members;
@@ -70,6 +71,18 @@ static KTDataManager *manager = nil;
     
     [jsonParser release], jsonParser = nil;
 
+}
+
+- (KTMember *)getMemberWithId:(int)memberId {
+    if (self.members) {
+        for (KTMember *member in self.members) {
+            if (member.memberId == memberId) {
+                return member;
+            }
+        }
+    }
+    NSLog(@"Couldn't find member with id %d",memberId);
+    return nil;
 }
 
 @end
