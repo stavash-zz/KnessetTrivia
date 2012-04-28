@@ -17,6 +17,7 @@
 		1F17FF35154C7AF6008F9575 /* AboutTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF33154C7AF6008F9575 /* AboutTab@2x.png */; };
 		1F17FF39154C7DA7008F9575 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17FF37154C7DA7008F9575 /* AboutViewController.m */; };
 		1F17FF3A154C7DA7008F9575 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF38154C7DA7008F9575 /* AboutViewController.xib */; };
+		1F4E9F13154C8EB60032D354 /* KTParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E9F12154C8EB60032D354 /* KTParty.m */; };
 		1F5FE22E154B486300633DF5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22C154B486300633DF5 /* Default.png */; };
 		1F5FE22F154B486300633DF5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22D154B486300633DF5 /* Default@2x.png */; };
 		1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC251528A60600110F7E /* UIKit.framework */; };
@@ -53,7 +54,7 @@
 		1F692169154B2A3B001AD57F /* KTCommitteeLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F692168154B2A3B001AD57F /* KTCommitteeLink.m */; };
 		1F69216C154B2C10001AD57F /* KTBillLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F69216B154B2C10001AD57F /* KTBillLink.m */; };
 		1F692170154B2DF7001AD57F /* KTParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F69216F154B2DF7001AD57F /* KTParser.m */; };
-		1F692174154B34F5001AD57F /* KTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F692173154B34F5001AD57F /* KTDataManager.m */; };
+		1F692174154B34F5001AD57F /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F692173154B34F5001AD57F /* DataManager.m */; };
 		1F69218C154B3917001AD57F /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F69218A154B3917001AD57F /* MemberCell.m */; };
 		1F69218D154B3917001AD57F /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F69218B154B3917001AD57F /* MemberCell.xib */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,8 @@
 		1F17FF36154C7DA6008F9575 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		1F17FF37154C7DA7008F9575 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		1F17FF38154C7DA7008F9575 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		1F4E9F11154C8EB60032D354 /* KTParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTParty.h; sourceTree = "<group>"; };
+		1F4E9F12154C8EB60032D354 /* KTParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTParty.m; sourceTree = "<group>"; };
 		1F5FE22C154B486300633DF5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Artwork/Default.png; sourceTree = "<group>"; };
 		1F5FE22D154B486300633DF5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Artwork/Default@2x.png"; sourceTree = "<group>"; };
 		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,8 +135,8 @@
 		1F69216E154B2DF7001AD57F /* KTParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTParser.h; sourceTree = "<group>"; };
 		1F69216F154B2DF7001AD57F /* KTParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTParser.m; sourceTree = "<group>"; };
 		1F692171154B2F94001AD57F /* KTParserStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTParserStrings.h; sourceTree = "<group>"; };
-		1F692172154B34F5001AD57F /* KTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTDataManager.h; sourceTree = "<group>"; };
-		1F692173154B34F5001AD57F /* KTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTDataManager.m; sourceTree = "<group>"; };
+		1F692172154B34F5001AD57F /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DataManager.h; sourceTree = "<group>"; };
+		1F692173154B34F5001AD57F /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		1F692189154B3917001AD57F /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		1F69218A154B3917001AD57F /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
 		1F69218B154B3917001AD57F /* MemberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				1F692168154B2A3B001AD57F /* KTCommitteeLink.m */,
 				1F69216A154B2C10001AD57F /* KTBillLink.h */,
 				1F69216B154B2C10001AD57F /* KTBillLink.m */,
+				1F4E9F11154C8EB60032D354 /* KTParty.h */,
+				1F4E9F12154C8EB60032D354 /* KTParty.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -286,8 +291,8 @@
 			children = (
 				1F17FF3B154C7F9F008F9575 /* Objects */,
 				1F69216D154B2DD6001AD57F /* Parser */,
-				1F692172154B34F5001AD57F /* KTDataManager.h */,
-				1F692173154B34F5001AD57F /* KTDataManager.m */,
+				1F692172154B34F5001AD57F /* DataManager.h */,
+				1F692173154B34F5001AD57F /* DataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -460,10 +465,11 @@
 				1F692169154B2A3B001AD57F /* KTCommitteeLink.m in Sources */,
 				1F69216C154B2C10001AD57F /* KTBillLink.m in Sources */,
 				1F692170154B2DF7001AD57F /* KTParser.m in Sources */,
-				1F692174154B34F5001AD57F /* KTDataManager.m in Sources */,
+				1F692174154B34F5001AD57F /* DataManager.m in Sources */,
 				1F69218C154B3917001AD57F /* MemberCell.m in Sources */,
 				1F17FF26154C571F008F9575 /* ImageTriviaViewController.m in Sources */,
 				1F17FF39154C7DA7008F9575 /* AboutViewController.m in Sources */,
+				1F4E9F13154C8EB60032D354 /* KTParty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -165,6 +165,7 @@
         [membersArr addObject:member];
         [member release];
     }
+    [generalDateFormatter release];
     return [NSArray arrayWithArray:membersArr];
 }
 

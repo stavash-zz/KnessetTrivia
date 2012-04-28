@@ -7,7 +7,7 @@
 //
 
 #import "FirstViewController.h"
-#import "KTDataManager.h"
+#import "DataManager.h"
 #import "KTMember.h"
 #import "MemberCell.h"
 
@@ -51,7 +51,7 @@
         [self.myMemberCell.view removeFromSuperview];
         self.myMemberCell = nil;
     }
-    KTMember *member = [[KTDataManager sharedManager].members objectAtIndex:indexPath.row];
+    KTMember *member = [[DataManager sharedManager].members objectAtIndex:indexPath.row];
     MemberCell *memberCell = [[MemberCell alloc] init];
     memberCell.member = member;
     CGRect cellFrame = memberCell.view.frame;
@@ -65,10 +65,10 @@
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KTMember *member = [[KTDataManager sharedManager].members objectAtIndex:indexPath.row];
+    KTMember *member = [[DataManager sharedManager].members objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier"];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"] autorelease];
     }
     cell.textLabel.text = member.name;
     return cell;
@@ -79,7 +79,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[KTDataManager sharedManager].members count];
+    return [[DataManager sharedManager].members count];
 }
 
 @end

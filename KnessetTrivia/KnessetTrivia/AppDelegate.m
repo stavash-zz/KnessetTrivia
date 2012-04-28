@@ -10,7 +10,7 @@
 
 #import "AboutViewController.h"
 #import "ImageTriviaViewController.h"
-#import "KTDataManager.h"
+#import "DataManager.h"
 
 @implementation AppDelegate
 
@@ -34,7 +34,7 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
     self.window.rootViewController = self.tabBarController;
     
-    [[KTDataManager sharedManager] initializeMembers]; //TODO: transfer to game manager
+    [[DataManager sharedManager] initializeMembers]; //TODO: transfer to game manager
     
     [self.window makeKeyAndVisible];
     return YES;

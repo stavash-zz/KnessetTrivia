@@ -9,7 +9,7 @@
 #import "MemberCell.h"
 #import "KTMember.h"
 #import "KTLink.h"
-#import "KTDataManager.h"
+#import "DataManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface MemberCell ()
@@ -80,10 +80,10 @@
     NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
     
     //Load image
-    UIImage *memberImg = [[KTDataManager sharedManager] savedImageForId:self.member.memberId];
+    UIImage *memberImg = [[DataManager sharedManager] savedImageForId:self.member.memberId];
     if (!memberImg) {
     memberImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.member.imageUrl]]];
-        [[KTDataManager sharedManager] saveImageToDocuments:memberImg withId:self.member.memberId];
+        [[DataManager sharedManager] saveImageToDocuments:memberImg withId:self.member.memberId];
     }
     
     //Perform UI actions on main thread

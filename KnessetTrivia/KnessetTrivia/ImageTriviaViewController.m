@@ -7,9 +7,12 @@
 //
 
 #import "ImageTriviaViewController.h"
-#import "KTDataManager.h"
+#import "DataManager.h"
 #import "KTMember.h"
 #import "MemberCell.h"
+
+#define kImageTriviaNextQuestionDelay 0.4
+
 @interface ImageTriviaViewController ()
 
 @end
@@ -77,7 +80,27 @@
     return self;
 }
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) loadNextQuestion {
+    
+    //clean up
+    if (self.topLeftMemberCell) {
+        [self.topLeftMemberCell.view removeFromSuperview];
+    }
+    if (self.topRightMemberCell) {
+        [self.topRightMemberCell.view removeFromSuperview];
+    }
+    if (self.bottomRightMemberCell) {
+        [self.bottomLeftMemberCell.view removeFromSuperview];
+    }
+    if (self.bottomRightMemberCell) {
+        [self.bottomRightMemberCell.view removeFromSuperview];
+    }
+    self.topLeftMemberCell = nil;
+    self.topRightMemberCell = nil;
+    self.bottomLeftMemberCell = nil;
+    self.bottomRightMemberCell = nil;
+    
+    //Populate question
     self.optionsArr = [self getFourRandomMembers];
     if (!self.optionsArr) {
         return;
@@ -89,17 +112,15 @@
     [self setCell:kCellPositionTopRight withMember:[self.optionsArr objectAtIndex:1]];
     [self setCell:kCellPositionBottomLeft withMember:[self.optionsArr objectAtIndex:2]];
     [self setCell:kCellPositionBottomRight withMember:[self.optionsArr objectAtIndex:3]];
+
+}
+
+- (void) viewDidAppear:(BOOL)animated {    
+    [self loadNextQuestion];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
-    [self.topLeftMemberCell.view removeFromSuperview];
-    [self.topRightMemberCell.view removeFromSuperview];
-    [self.bottomLeftMemberCell.view removeFromSuperview];
-    [self.bottomRightMemberCell.view removeFromSuperview];
-    self.topLeftMemberCell = nil;
-    self.topRightMemberCell = nil;
-    self.bottomLeftMemberCell = nil;
-    self.bottomRightMemberCell = nil;
+
 }
 
 - (void)viewDidLoad
@@ -146,8 +167,8 @@
 }
 
 - (NSArray *)getFourRandomMembers {
-    if ([KTDataManager sharedManager].members) {
-        int memberCount = [[KTDataManager sharedManager].members count];
+    if ([DataManager sharedManager].members) {
+        int memberCount = [[DataManager sharedManager].members count];
         if (memberCount > 3) {
             int index1,index2,index3,index4,randIndex;
             NSMutableArray *randomArr = [[[NSMutableArray alloc] init] autorelease];            
@@ -173,10 +194,10 @@
             [remainingOptionsArr removeObjectAtIndex:randIndex];
             
             //Add members from indexes
-            [randomArr addObject:[[KTDataManager sharedManager].members objectAtIndex:index1]];
-            [randomArr addObject:[[KTDataManager sharedManager].members objectAtIndex:index2]];
-            [randomArr addObject:[[KTDataManager sharedManager].members objectAtIndex:index3]];
-            [randomArr addObject:[[KTDataManager sharedManager].members objectAtIndex:index4]];
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index1]];
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index2]];
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index3]];
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index4]];
             
             return randomArr;
         } else {
@@ -214,6 +235,7 @@
 - (void) topLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopLeft]) {
         [self.topLeftMemberCell showCorrectIndication];
+        [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
         [self.topLeftMemberCell showWrongIndication];
     }
@@ -222,6 +244,7 @@
 - (void) topRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopRight]) {
         [self.topRightMemberCell showCorrectIndication];
+        [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
         [self.topRightMemberCell showWrongIndication];
     }
@@ -230,6 +253,7 @@
 - (void) bottomLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomLeft]) {
         [self.bottomLeftMemberCell showCorrectIndication];
+        [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
         [self.bottomLeftMemberCell showWrongIndication];
     }
@@ -238,6 +262,7 @@
 - (void) bottomRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomRight]) {
         [self.bottomRightMemberCell showCorrectIndication];
+        [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
         [self.bottomRightMemberCell showWrongIndication];
     }
