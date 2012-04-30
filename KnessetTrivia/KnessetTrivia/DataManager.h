@@ -12,18 +12,29 @@
 
 @interface DataManager : NSObject {
     NSArray *members;
+    int score;
 }
 
 @property (nonatomic,retain) NSArray *members;
 
+//General
 + (DataManager *) sharedManager;
-
 - (void) initializeMembers;
+
+//Queries
 - (KTMember *)getMemberWithId:(int)memberId;
 - (NSArray *)getAllMemberNames;
+- (NSArray *)getAllParties;
+
+//Score
+- (void)updateCorrectImageAnswer;
+- (void)updateWrongImageAnswer;
+- (int) getCurrentScore;
+
+//Caching
 - (UIImage *)savedImageForId:(int)imageId;
 - (void) saveImageToDocuments:(UIImage *)image withId:(int)imageId;
-- (NSArray *)getAllParties;
+
 
 @end
 

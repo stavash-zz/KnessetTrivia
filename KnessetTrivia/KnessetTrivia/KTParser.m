@@ -14,6 +14,9 @@
 #import "KTLink.h"
 #import "KTCommitteeLink.h"
 #import "KTBillLink.h"
+#import "KTBill.h"
+#import "KTComitteeMeetings.h"
+#import "KTCommitteeMeeting.h"
 
 @implementation KTParser
 
@@ -152,7 +155,7 @@
         if (startDateStr != [NSNull null]) {
             [member setStartDate:[generalDateFormatter dateFromString:(NSString *)startDateStr]];
         }
-        
+    
         [member setUrl:[memberDict objectForKey:kParserKeyUrl]];
         [member setVotesCount:[[memberDict objectForKey:kParserKeyVotesCount] intValue]];
         [member setVotesPerMonth:[[memberDict objectForKey:kParserKeyVotesPerMonth] floatValue]];
@@ -168,5 +171,85 @@
     [generalDateFormatter release];
     return [NSArray arrayWithArray:membersArr];
 }
+
++ (KTCommitteeMeeting *)parseCommitteeMeetingFromTree:(NSDictionary *)committeeMeetingTree {
+    NSDateFormatter *generalDateFormatter = [[NSDateFormatter alloc] init];
+    generalDateFormatter.dateFormat = kParserGeneralDateFormat; 
+    generalDateFormatter.timeZone = [NSTimeZone timeZoneWithName:kParserGeneralDateTimezoneName];
+
+    KTCommitteeMeeting *meeting = [[[KTCommitteeMeeting alloc] init] autorelease];
+    [meeting setCommitteeMeetingId:[[committeeMeetingTree objectForKey:@"id"]intValue]];
+    [meeting setDate:[generalDateFormatter dateFromString:[committeeMeetingTree objectForKey:@"date"]]];
+    [meeting setDescription:[committeeMeetingTree objectForKey:@"description"]];
+    
+    [generalDateFormatter release];
+    return meeting;
+}
+
++ (KTComitteeMeetings *)parseCommitteeMeetingsFromTree:(NSDictionary *)committeeMeetingsTree {
+    KTComitteeMeetings *committeeMeetings = [[[KTComitteeMeetings alloc] init] autorelease];
+    
+    NSMutableArray *allMeetingsArr = [[NSMutableArray alloc] init];
+    NSArray *allArr = [committeeMeetingsTree objectForKey:@"all"];
+    for (NSDictionary *committeeMeetingDict in allArr) {
+        KTCommitteeMeeting *meeting = [KTParser parseCommitteeMeetingFromTree:committeeMeetingDict];
+        [allMeetingsArr addObject:meeting];
+    }
+    committeeMeetings.all = [NSArray arrayWithArray:allMeetingsArr];
+    [allMeetingsArr release];
+    
+    NSMutableArray *firstMeetingsArr = [[NSMutableArray alloc] init];
+    NSArray *firstArr = [committeeMeetingsTree objectForKey:@"first"];
+    for (NSDictionary *committeeMeetingDict in firstArr) {
+        KTCommitteeMeeting *meeting = [KTParser parseCommitteeMeetingFromTree:committeeMeetingDict];
+        [firstMeetingsArr addObject:meeting];
+    }
+    committeeMeetings.first = [NSArray arrayWithArray:firstMeetingsArr];
+    [firstMeetingsArr release];
+    
+    NSMutableArray *secondMeetingsArr = [[NSMutableArray alloc] init];
+    NSArray *secondArr = [committeeMeetingsTree objectForKey:@"second"];
+    for (NSDictionary *committeeMeetingDict in secondArr) {
+        KTCommitteeMeeting *meeting = [KTParser parseCommitteeMeetingFromTree:committeeMeetingDict];
+        [secondMeetingsArr addObject:meeting];
+    }
+    committeeMeetings.second = [NSArray arrayWithArray:secondMeetingsArr];
+    [secondMeetingsArr release];
+
+    return committeeMeetings;
+}
+
++ (NSArray *)parseBillsFromTree:(NSArray *)billsTree {
+    NSDateFormatter *generalDateFormatter = [[NSDateFormatter alloc] init];
+    generalDateFormatter.dateFormat = kParserGeneralDateFormat; 
+    generalDateFormatter.timeZone = [NSTimeZone timeZoneWithName:kParserGeneralDateTimezoneName];
+    
+    NSMutableArray *billsArr = [[[NSMutableArray alloc] init] autorelease];
+    for (NSDictionary *billDict in billsTree) {
+        KTBill *bill = [[KTBill alloc] init];
+
+        [bill setBillTitle:[billDict objectForKey:@"bill_title"]];
+        [bill setComitteeMeetings:[KTParser parseCommitteeMeetingsFromTree:[billDict objectForKey:@"committee_meetings"]]];
+        [bill setPopularName:[billDict objectForKey:@"popular_name"]];
+//        [bill setProposals]
+//        [bill setProposingMks]
+        
+        id stageDateStr = [billDict objectForKey:@"stage_date"];
+        if (stageDateStr != [NSNull null]) {
+            [bill setStageDate:[generalDateFormatter dateFromString:(NSString *)stageDateStr]];
+        }
+        
+        [bill setStageText:[billDict objectForKey:@"stage_text"]];
+//        [bill setTags];
+        [bill setUrl:[billDict objectForKey:@"url"]];
+//        [bill setVotes];
+        
+        [billsArr addObject:bill];
+        [bill release];
+    }
+    [generalDateFormatter release];
+    return [NSArray arrayWithArray:billsArr];
+}
+
 
 @end

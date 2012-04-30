@@ -10,6 +10,7 @@
 #import "KTMember.h"
 #import "KTLink.h"
 #import "DataManager.h"
+#import "SoundEngine.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface MemberCell ()
@@ -125,6 +126,7 @@
     [UIView beginAnimations:@"" context:nil];
     self.view.backgroundColor = [UIColor greenColor];
     [UIView commitAnimations];
+    [[SoundEngine sharedSoundEngine] play:kSoundCodeCorrectAnswer];
 }
 
 - (void) showWrongIndication {

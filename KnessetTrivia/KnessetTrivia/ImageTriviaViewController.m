@@ -81,7 +81,7 @@
 }
 
 - (void) loadNextQuestion {
-    
+        
     //clean up
     if (self.topLeftMemberCell) {
         [self.topLeftMemberCell.view removeFromSuperview];
@@ -159,6 +159,10 @@
 
 #pragma mark - Helper methods
 
+- (void) updateScoreLabel {
+    scoreLabel.text = [NSString stringWithFormat:@"ניקוד: %d",[[DataManager sharedManager] getCurrentScore]];
+}
+
 - (KTMember *)getCorrectMember {
     if (self.optionsArr) {
         return [self.optionsArr objectAtIndex:correctIndex];
@@ -167,6 +171,7 @@
 }
 
 - (NSArray *)getFourRandomMembers {
+    
     if ([DataManager sharedManager].members) {
         int memberCount = [[DataManager sharedManager].members count];
         if (memberCount > 3) {
@@ -235,37 +240,50 @@
 - (void) topLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopLeft]) {
         [self.topLeftMemberCell showCorrectIndication];
+        [[DataManager sharedManager] updateCorrectImageAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
+        
     } else {
+        [[DataManager sharedManager] updateWrongImageAnswer];
         [self.topLeftMemberCell showWrongIndication];
     }
+    [self updateScoreLabel];
 }
 
 - (void) topRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopRight]) {
         [self.topRightMemberCell showCorrectIndication];
+        [[DataManager sharedManager] updateCorrectImageAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
+        [[DataManager sharedManager] updateWrongImageAnswer];
         [self.topRightMemberCell showWrongIndication];
     }
+    [self updateScoreLabel];
 }
 
 - (void) bottomLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomLeft]) {
         [self.bottomLeftMemberCell showCorrectIndication];
+        [[DataManager sharedManager] updateCorrectImageAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
+        [[DataManager sharedManager] updateWrongImageAnswer];
         [self.bottomLeftMemberCell showWrongIndication];
     }
+    [self updateScoreLabel];
 }
 
 - (void) bottomRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomRight]) {
         [self.bottomRightMemberCell showCorrectIndication];
+        [[DataManager sharedManager] updateCorrectImageAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
+        [[DataManager sharedManager] updateWrongImageAnswer];
         [self.bottomRightMemberCell showWrongIndication];
     }
+    [self updateScoreLabel];
 }
 
 

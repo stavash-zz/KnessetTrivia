@@ -11,6 +11,9 @@
 #import "KTParser.h"
 #import "KTMember.h"
 
+#define kDataManagerScoreForCorrectImageAnswer 9
+#define kDataManagerPenaltyForWrongImageAnswer 10
+
 @implementation DataManager
 @synthesize members;
 
@@ -39,7 +42,7 @@ static DataManager *manager = nil;
 - (id) init {
     self=[super init];
 	if(self) {
-        
+        score = 0;
 	}
 	return self;
 }
@@ -116,6 +119,23 @@ static DataManager *manager = nil;
     }
     return nil;
 }
+
+#pragma mark - Scrore
+- (void)updateCorrectImageAnswer {
+    score += kDataManagerScoreForCorrectImageAnswer;
+    NSLog(@"scrore: %d",score);
+}
+
+- (void) updateWrongImageAnswer {
+    score -= kDataManagerPenaltyForWrongImageAnswer;
+    NSLog(@"scrore: %d",score);
+}
+
+- (int) getCurrentScore {
+    return score;
+}
+
+#pragma mark - Image Caching
 
 - (UIImage *)savedImageForId:(int)imageId {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

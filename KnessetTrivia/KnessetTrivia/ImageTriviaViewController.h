@@ -18,11 +18,15 @@ typedef enum {
 @interface ImageTriviaViewController : UIViewController {
     int correctIndex;
     NSArray *optionsArr;
+
     IBOutlet UILabel *questionLabel;
+    IBOutlet UILabel *scoreLabel;
+
     IBOutlet UIView *topLeftView;
     IBOutlet UIView *topRightView;
     IBOutlet UIView *bottomLeftView;
     IBOutlet UIView *bottomRightView;
+
     MemberCell *topLeftMemberCell;
     MemberCell *topRightMemberCell;
     MemberCell *bottomLeftMemberCell;
