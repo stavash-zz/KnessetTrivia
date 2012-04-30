@@ -17,7 +17,14 @@
 		1F17FF35154C7AF6008F9575 /* AboutTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF33154C7AF6008F9575 /* AboutTab@2x.png */; };
 		1F17FF39154C7DA7008F9575 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17FF37154C7DA7008F9575 /* AboutViewController.m */; };
 		1F17FF3A154C7DA7008F9575 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF38154C7DA7008F9575 /* AboutViewController.xib */; };
-		1F4E9F13154C8EB60032D354 /* KTParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E9F12154C8EB60032D354 /* KTParty.m */; };
+		1F18A1F9154D49FD00D94946 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18A1F7154D49FD00D94946 /* SoundEngine.m */; };
+		1F18A1FC154D4C6200D94946 /* KTBill.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18A1FB154D4C6200D94946 /* KTBill.m */; };
+		1F18A1FF154D4F6700D94946 /* KTComitteeMeetings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18A1FE154D4F6700D94946 /* KTComitteeMeetings.m */; };
+		1F18A202154D506300D94946 /* KTCommitteeMeeting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18A201154D506300D94946 /* KTCommitteeMeeting.m */; };
+		1F18A208154D559900D94946 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18A207154D559900D94946 /* CoreAudio.framework */; };
+		1F18A20A154D55BF00D94946 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18A209154D55BF00D94946 /* AVFoundation.framework */; };
+		1F18A20C154D55C300D94946 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18A20B154D55C300D94946 /* AudioToolbox.framework */; };
+		1F18A20E154D56EC00D94946 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F18A20D154D56EC00D94946 /* correct.mp3 */; };
 		1F5FE22E154B486300633DF5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22C154B486300633DF5 /* Default.png */; };
 		1F5FE22F154B486300633DF5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22D154B486300633DF5 /* Default@2x.png */; };
 		1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC251528A60600110F7E /* UIKit.framework */; };
@@ -72,8 +79,19 @@
 		1F17FF36154C7DA6008F9575 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		1F17FF37154C7DA7008F9575 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		1F17FF38154C7DA7008F9575 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
-		1F4E9F11154C8EB60032D354 /* KTParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTParty.h; sourceTree = "<group>"; };
-		1F4E9F12154C8EB60032D354 /* KTParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTParty.m; sourceTree = "<group>"; };
+		1F18A1F6154D49FD00D94946 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
+		1F18A1F7154D49FD00D94946 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
+		1F18A1F8154D49FD00D94946 /* SoundFilenames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundFilenames.h; sourceTree = "<group>"; };
+		1F18A1FA154D4C6200D94946 /* KTBill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTBill.h; sourceTree = "<group>"; };
+		1F18A1FB154D4C6200D94946 /* KTBill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTBill.m; sourceTree = "<group>"; };
+		1F18A1FD154D4F6700D94946 /* KTComitteeMeetings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTComitteeMeetings.h; sourceTree = "<group>"; };
+		1F18A1FE154D4F6700D94946 /* KTComitteeMeetings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTComitteeMeetings.m; sourceTree = "<group>"; };
+		1F18A200154D506300D94946 /* KTCommitteeMeeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCommitteeMeeting.h; sourceTree = "<group>"; };
+		1F18A201154D506300D94946 /* KTCommitteeMeeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCommitteeMeeting.m; sourceTree = "<group>"; };
+		1F18A207154D559900D94946 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		1F18A209154D55BF00D94946 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1F18A20B154D55C300D94946 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1F18A20D154D56EC00D94946 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = Audio/correct.mp3; sourceTree = "<group>"; };
 		1F5FE22C154B486300633DF5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Artwork/Default.png; sourceTree = "<group>"; };
 		1F5FE22D154B486300633DF5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Artwork/Default@2x.png"; sourceTree = "<group>"; };
 		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +153,7 @@
 		1F69216E154B2DF7001AD57F /* KTParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTParser.h; sourceTree = "<group>"; };
 		1F69216F154B2DF7001AD57F /* KTParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTParser.m; sourceTree = "<group>"; };
 		1F692171154B2F94001AD57F /* KTParserStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTParserStrings.h; sourceTree = "<group>"; };
-		1F692172154B34F5001AD57F /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DataManager.h; sourceTree = "<group>"; };
+		1F692172154B34F5001AD57F /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		1F692173154B34F5001AD57F /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		1F692189154B3917001AD57F /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		1F69218A154B3917001AD57F /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
@@ -147,6 +165,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F18A20C154D55C300D94946 /* AudioToolbox.framework in Frameworks */,
+				1F18A20A154D55BF00D94946 /* AVFoundation.framework in Frameworks */,
+				1F18A208154D559900D94946 /* CoreAudio.framework in Frameworks */,
 				1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */,
 				1F62FC281528A60600110F7E /* Foundation.framework in Frameworks */,
 				1F62FC2A1528A60600110F7E /* CoreGraphics.framework in Frameworks */,
@@ -179,6 +200,7 @@
 		1F17FF3B154C7F9F008F9575 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				1F18A203154D53C700D94946 /* Bill */,
 				1F69213A154AD213001AD57F /* KTMember.h */,
 				1F69213B154AD213001AD57F /* KTMember.m */,
 				1F692164154AEFD6001AD57F /* KTLink.h */,
@@ -187,10 +209,39 @@
 				1F692168154B2A3B001AD57F /* KTCommitteeLink.m */,
 				1F69216A154B2C10001AD57F /* KTBillLink.h */,
 				1F69216B154B2C10001AD57F /* KTBillLink.m */,
-				1F4E9F11154C8EB60032D354 /* KTParty.h */,
-				1F4E9F12154C8EB60032D354 /* KTParty.m */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		1F18A1F4154D49F100D94946 /* SoundEngine */ = {
+			isa = PBXGroup;
+			children = (
+				1F18A1F6154D49FD00D94946 /* SoundEngine.h */,
+				1F18A1F7154D49FD00D94946 /* SoundEngine.m */,
+				1F18A1F8154D49FD00D94946 /* SoundFilenames.h */,
+			);
+			name = SoundEngine;
+			sourceTree = "<group>";
+		};
+		1F18A203154D53C700D94946 /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				1F18A1FA154D4C6200D94946 /* KTBill.h */,
+				1F18A1FB154D4C6200D94946 /* KTBill.m */,
+				1F18A1FD154D4F6700D94946 /* KTComitteeMeetings.h */,
+				1F18A1FE154D4F6700D94946 /* KTComitteeMeetings.m */,
+				1F18A200154D506300D94946 /* KTCommitteeMeeting.h */,
+				1F18A201154D506300D94946 /* KTCommitteeMeeting.m */,
+			);
+			name = Bill;
+			sourceTree = "<group>";
+		};
+		1F18A204154D551200D94946 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				1F18A20D154D56EC00D94946 /* correct.mp3 */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 		1F5FE228154B484200633DF5 /* Artwork */ = {
@@ -217,6 +268,9 @@
 		1F62FC161528A60500110F7E = {
 			isa = PBXGroup;
 			children = (
+				1F18A20B154D55C300D94946 /* AudioToolbox.framework */,
+				1F18A209154D55BF00D94946 /* AVFoundation.framework */,
+				1F18A207154D559900D94946 /* CoreAudio.framework */,
 				1F692136154AD0E4001AD57F /* Resources */,
 				1F62FC2B1528A60600110F7E /* KnessetTrivia */,
 				1F62FC241528A60600110F7E /* Frameworks */,
@@ -245,6 +299,8 @@
 		1F62FC2B1528A60600110F7E /* KnessetTrivia */ = {
 			isa = PBXGroup;
 			children = (
+				1F18A204154D551200D94946 /* Audio */,
+				1F18A1F4154D49F100D94946 /* SoundEngine */,
 				1F5FE228154B484200633DF5 /* Artwork */,
 				1F69213D154AD7CC001AD57F /* External */,
 				1F692188154B3896001AD57F /* Controller */,
@@ -434,6 +490,7 @@
 				1F17FF34154C7AF6008F9575 /* AboutTab.png in Resources */,
 				1F17FF35154C7AF6008F9575 /* AboutTab@2x.png in Resources */,
 				1F17FF3A154C7DA7008F9575 /* AboutViewController.xib in Resources */,
+				1F18A20E154D56EC00D94946 /* correct.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,7 +526,10 @@
 				1F69218C154B3917001AD57F /* MemberCell.m in Sources */,
 				1F17FF26154C571F008F9575 /* ImageTriviaViewController.m in Sources */,
 				1F17FF39154C7DA7008F9575 /* AboutViewController.m in Sources */,
-				1F4E9F13154C8EB60032D354 /* KTParty.m in Sources */,
+				1F18A1F9154D49FD00D94946 /* SoundEngine.m in Sources */,
+				1F18A1FC154D4C6200D94946 /* KTBill.m in Sources */,
+				1F18A1FF154D4F6700D94946 /* KTComitteeMeetings.m in Sources */,
+				1F18A202154D506300D94946 /* KTCommitteeMeeting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
