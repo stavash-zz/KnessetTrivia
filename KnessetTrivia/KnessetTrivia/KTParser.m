@@ -219,6 +219,53 @@
     return committeeMeetings;
 }
 
++ (NSArray *)parseProposingMKsFromTree:(NSArray *)proposingMKsTree {
+    NSMutableArray *proposingMKIDs = [[[NSMutableArray alloc] init] autorelease];
+    
+    for (NSDictionary *proposingMK in proposingMKsTree) {
+        NSString *mkIdAsStr = [proposingMK objectForKey:@"id"];
+        int mkId = [mkIdAsStr intValue];
+        NSNumber *mkIdAsNum = [NSNumber numberWithInt:mkId];
+        [proposingMKIDs addObject:mkIdAsNum];
+    }
+    return [NSArray arrayWithArray:proposingMKIDs];;
+}
+
++ (void)parseVoteFromTree:(NSDictionary *)votesTree toDict:(NSMutableDictionary *)votedict fromkey:(NSString *)votekey {
+    id object = [votesTree objectForKey:votekey];
+    if (object != [NSNull null]) {
+        NSDictionary *objDict = (NSDictionary *)object;
+        NSString *voteIdAsStr = [objDict objectForKey:@"id"];
+        int voteId = [voteIdAsStr intValue];
+        NSNumber *voteIdAsNum = [NSNumber numberWithInt:voteId];
+        [votedict setValue:voteIdAsNum forKey:votekey];
+    }
+}
+
++ (void)parsePreVoteFromTree:(NSDictionary *)votesTree toDict:(NSMutableDictionary *)votedict fromkey:(NSString *)votekey {
+    id object = [votesTree objectForKey:votekey];
+    if (object != [NSNull null]) {
+        NSArray *objArr = (NSArray *)object;
+        if ([objArr count] > 0) {
+            NSString *voteIdAsStr = [[objArr objectAtIndex:0] objectForKey:@"id"];
+            int voteId = [voteIdAsStr intValue];
+            NSNumber *voteIdAsNum = [NSNumber numberWithInt:voteId];
+            [votedict setValue:voteIdAsNum forKey:votekey];
+        }
+    }
+}
+
++ (NSDictionary *)parseVotesFromTree:(NSDictionary *)votesTree    {
+    NSMutableDictionary *votes =[[[NSMutableDictionary alloc] init] autorelease];
+    
+    [KTParser parsePreVoteFromTree:votesTree toDict:votes fromkey:@"pre"];
+    [KTParser parseVoteFromTree:votesTree toDict:votes fromkey:@"first"];
+    [KTParser parseVoteFromTree:votesTree toDict:votes fromkey:@"approval"];
+    
+    return [NSDictionary dictionaryWithDictionary:(votes)];
+
+}
+
 + (NSArray *)parseBillsFromTree:(NSArray *)billsTree {
     NSDateFormatter *generalDateFormatter = [[NSDateFormatter alloc] init];
     generalDateFormatter.dateFormat = kParserGeneralDateFormat; 
@@ -231,8 +278,7 @@
         [bill setBillTitle:[billDict objectForKey:@"bill_title"]];
         [bill setComitteeMeetings:[KTParser parseCommitteeMeetingsFromTree:[billDict objectForKey:@"committee_meetings"]]];
         [bill setPopularName:[billDict objectForKey:@"popular_name"]];
-//        [bill setProposals]
-//        [bill setProposingMks]
+        [bill setProposingMks:[KTParser parseProposingMKsFromTree:[billDict objectForKey:@"proposing_mks"]]];
         
         id stageDateStr = [billDict objectForKey:@"stage_date"];
         if (stageDateStr != [NSNull null]) {
@@ -240,9 +286,8 @@
         }
         
         [bill setStageText:[billDict objectForKey:@"stage_text"]];
-//        [bill setTags];
         [bill setUrl:[billDict objectForKey:@"url"]];
-//        [bill setVotes];
+        [bill setVotes:[KTParser parseVotesFromTree:[billDict objectForKey:kParserKeyVotes]]];
         
         [billsArr addObject:bill];
         [bill release];

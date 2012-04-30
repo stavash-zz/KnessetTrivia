@@ -9,7 +9,7 @@
 #import "KTBill.h"
 
 @implementation KTBill
-@synthesize billTitle,comitteeMeetings,proposals,popularName,proposingMks,stageDate,stageText,tags,url,votes;
+@synthesize billTitle,comitteeMeetings,proposals,popularName,stageDate,stageText,url,votes,proposingMks;
 
 - (id) init {
     self = [super init];
@@ -27,7 +27,6 @@
     self.proposingMks = nil;
     self.stageDate = nil;
     self.stageText = nil;
-    self.tags = nil;
     self.url = nil;
     self.votes = nil;
     [super dealloc];

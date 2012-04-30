@@ -10,12 +10,14 @@
 #import "SBJsonParser.h"
 #import "KTParser.h"
 #import "KTMember.h"
+#import "KTBill.h"
 
 #define kDataManagerScoreForCorrectImageAnswer 9
 #define kDataManagerPenaltyForWrongImageAnswer 10
 
 @implementation DataManager
 @synthesize members;
+@synthesize bills;
 
 static DataManager *manager = nil;
 
@@ -55,6 +57,7 @@ static DataManager *manager = nil;
 
 - (void) initializeMembers {
     NSData *memberData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"member" ofType:@"txt"]];
+    
     NSString *jsonString = [[NSString alloc] initWithData:memberData encoding:NSUTF8StringEncoding];
     
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
@@ -71,6 +74,27 @@ static DataManager *manager = nil;
     [jsonParser release], jsonParser = nil;
     [jsonString release], jsonString = nil;
 
+}
+
+- (void) initializeBills {
+    NSData *billsData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"bills" ofType:@"txt"]];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:billsData encoding:NSUTF8StringEncoding];
+    
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSError *error = nil;
+    NSArray *jsonObjects = (NSArray *)[jsonParser objectWithString:jsonString error:&error];
+    if ([error localizedDescription]) {
+        NSLog(@"Members parsing failed with error: %@",[error localizedDescription]);
+    } else {
+        NSLog(@"Members parsed successfuly");
+    }
+    
+    self.bills = [KTParser parseBillsFromTree:jsonObjects];
+    
+    [jsonParser release], jsonParser = nil;
+    [jsonString release], jsonString = nil;
+    
 }
 
 - (KTMember *)getMemberWithId:(int)memberId {
@@ -120,15 +144,15 @@ static DataManager *manager = nil;
     return nil;
 }
 
-#pragma mark - Scrore
+#pragma mark - Score
 - (void)updateCorrectImageAnswer {
     score += kDataManagerScoreForCorrectImageAnswer;
-    NSLog(@"scrore: %d",score);
+    NSLog(@"score: %d",score);
 }
 
 - (void) updateWrongImageAnswer {
     score -= kDataManagerPenaltyForWrongImageAnswer;
-    NSLog(@"scrore: %d",score);
+    NSLog(@"score: %d",score);
 }
 
 - (int) getCurrentScore {

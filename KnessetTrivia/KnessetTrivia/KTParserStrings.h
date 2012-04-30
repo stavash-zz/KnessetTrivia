@@ -48,6 +48,9 @@
 #define kParserKeyVotesPerMonth @"votes_per_month"
 #define kParserKeyYearOfAliyah @"year_of_aliyah"
 
+//Bill keys
+#define kParserKeyVotes @"votes"
+
 //Gender keys
 #define kParserKeyGenderMale @"זכר"
 #define kParserKeyGenderFemale @"נקבה"

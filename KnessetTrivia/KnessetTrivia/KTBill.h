@@ -18,7 +18,6 @@
     NSArray *proposingMks;
     NSDate *stageDate;
     NSString *stageText;
-    NSArray *tags;
     NSString *url;
     NSDictionary *votes;
 }
@@ -30,7 +29,6 @@
 @property (nonatomic, retain) NSArray *proposingMks;
 @property (nonatomic, retain) NSDate *stageDate;
 @property (nonatomic, retain) NSString *stageText;
-@property (nonatomic, retain) NSArray *tags;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSDictionary *votes;
 

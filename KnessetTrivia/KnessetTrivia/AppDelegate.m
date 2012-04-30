@@ -35,7 +35,7 @@
     self.window.rootViewController = self.tabBarController;
     
     [[DataManager sharedManager] initializeMembers]; //TODO: transfer to game manager
-    
+    [[DataManager sharedManager]  initializeBills];
     [self.window makeKeyAndVisible];
     return YES;
 }

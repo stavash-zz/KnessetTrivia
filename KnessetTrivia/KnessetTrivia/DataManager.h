@@ -12,14 +12,18 @@
 
 @interface DataManager : NSObject {
     NSArray *members;
+    NSArray *bills;
     int score;
 }
 
 @property (nonatomic,retain) NSArray *members;
+@property (nonatomic,retain) NSArray *bills;
+
 
 //General
 + (DataManager *) sharedManager;
 - (void) initializeMembers;
+- (void) initializeBills;
 
 //Queries
 - (KTMember *)getMemberWithId:(int)memberId;

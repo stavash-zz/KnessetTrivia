@@ -25,6 +25,7 @@
 		1F18A20A154D55BF00D94946 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18A209154D55BF00D94946 /* AVFoundation.framework */; };
 		1F18A20C154D55C300D94946 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18A20B154D55C300D94946 /* AudioToolbox.framework */; };
 		1F18A20E154D56EC00D94946 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F18A20D154D56EC00D94946 /* correct.mp3 */; };
+		1F18A213154EF0FE00D94946 /* bills.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1F18A212154EF0FE00D94946 /* bills.txt */; };
 		1F5FE22E154B486300633DF5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22C154B486300633DF5 /* Default.png */; };
 		1F5FE22F154B486300633DF5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22D154B486300633DF5 /* Default@2x.png */; };
 		1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC251528A60600110F7E /* UIKit.framework */; };
@@ -92,6 +93,7 @@
 		1F18A209154D55BF00D94946 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1F18A20B154D55C300D94946 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1F18A20D154D56EC00D94946 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = Audio/correct.mp3; sourceTree = "<group>"; };
+		1F18A212154EF0FE00D94946 /* bills.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bills.txt; sourceTree = "<group>"; };
 		1F5FE22C154B486300633DF5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Artwork/Default.png; sourceTree = "<group>"; };
 		1F5FE22D154B486300633DF5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Artwork/Default@2x.png"; sourceTree = "<group>"; };
 		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				1F692137154AD0E4001AD57F /* member.txt */,
+				1F18A212154EF0FE00D94946 /* bills.txt */,
 			);
 			name = Resources;
 			path = KnessetTrivia/Resources;
@@ -491,6 +494,7 @@
 				1F17FF35154C7AF6008F9575 /* AboutTab@2x.png in Resources */,
 				1F17FF3A154C7DA7008F9575 /* AboutViewController.xib in Resources */,
 				1F18A20E154D56EC00D94946 /* correct.mp3 in Resources */,
+				1F18A213154EF0FE00D94946 /* bills.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
