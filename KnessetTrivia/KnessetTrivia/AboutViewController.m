@@ -48,8 +48,7 @@
 }
 
 - (IBAction)goToYedaPressed:(id)sender {
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/us/app/knst-ptwhh/id475096101?mt=8&uo=4"]]; 
-       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://yeda.us/"]]; 
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://yeda.us/"]]; 
 }
 
 

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class MemberCell;
+@class MemberCellViewController;
 
 @interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-    MemberCell *myMemberCell;
+    MemberCellViewController *myMemberCell;
 }
 
-@property (nonatomic, retain) MemberCell *myMemberCell;
+@property (nonatomic, retain) MemberCellViewController *myMemberCell;
 @end

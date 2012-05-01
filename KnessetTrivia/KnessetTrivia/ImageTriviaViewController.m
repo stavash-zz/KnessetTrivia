@@ -9,7 +9,7 @@
 #import "ImageTriviaViewController.h"
 #import "DataManager.h"
 #import "KTMember.h"
-#import "MemberCell.h"
+#import "MemberCellViewController.h"
 
 #define kImageTriviaNextQuestionDelay 0.4
 
@@ -24,46 +24,47 @@
 #pragma mark - Cell setters
 
 - (void) setCell:(CellPosition)pos withMember:(KTMember *)member {
+    MemberCellViewController *cellVC = [[MemberCellViewController alloc] initWithNibName:@"MemberCellViewController" bundle:nil];
+    cellVC.member = member;
+
     switch (pos) {
         case kCellPositionTopLeft:
         {
-            MemberCell *topLeftCell = [[MemberCell alloc] initWithNibName:@"MemberCell" bundle:nil];
-            topLeftCell.member = member;
-            [topLeftView addSubview:topLeftCell.view];
-            self.topLeftMemberCell = topLeftCell;
-            [topLeftCell release];
-            
+            [topLeftView addSubview:cellVC.view];
+            self.topLeftMemberCell = cellVC;            
         }
             break;
         case kCellPositionTopRight:
         {
-            MemberCell *topRightCell = [[MemberCell alloc] initWithNibName:@"MemberCell" bundle:nil];
-            topRightCell.member = member;
-            [topRightView addSubview:topRightCell.view];
-            self.topRightMemberCell = topRightCell;
-            [topRightCell release];
+            [topRightView addSubview:cellVC.view];
+            self.topRightMemberCell = cellVC;
         }
             break;
         case kCellPositionBottomLeft:
         {
-            MemberCell *bottomLeftCell = [[MemberCell alloc] initWithNibName:@"MemberCell" bundle:nil];
-            bottomLeftCell.member = member;
-            [bottomLeftView addSubview:bottomLeftCell.view];
-            self.bottomLeftMemberCell = bottomLeftCell;
-            [bottomLeftCell release];
+            [bottomLeftView addSubview:cellVC.view];
+            self.bottomLeftMemberCell = cellVC;
         }
             break;
         case kCellPositionBottomRight:
         {
-            MemberCell *bottomRightCell = [[MemberCell alloc] initWithNibName:@"MemberCell" bundle:nil];
-            bottomRightCell.member = member;
-            [bottomRightView addSubview:bottomRightCell.view];
-            self.bottomRightMemberCell = bottomRightCell;
-            [bottomRightCell release];
+            [bottomRightView addSubview:cellVC.view];
+            self.bottomRightMemberCell = cellVC;
         }
             break;
         default:
             break;
+    }
+    [cellVC release];
+
+}
+
+#pragma mark UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIButton class]]) {
+        return NO;
+    } else {
+        return YES;
     }
 }
 
@@ -73,8 +74,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"טריוויה";
-        self.tabBarItem.image = [UIImage imageNamed:@"TriviaTab"];
         correctIndex = -1;
     }
     return self;
@@ -101,10 +100,11 @@
     self.bottomRightMemberCell = nil;
     
     //Populate question
-    self.optionsArr = [self getFourRandomMembers];
+    self.optionsArr = [[DataManager sharedManager] getFourRandomMembers];
     if (!self.optionsArr) {
         return;
     }
+    
     correctIndex = arc4random() % 4;
     KTMember *correctMember = [self.optionsArr objectAtIndex:correctIndex];
     questionLabel.text = [NSString stringWithFormat:@"זהה את %@",correctMember.name];
@@ -112,11 +112,16 @@
     [self setCell:kCellPositionTopRight withMember:[self.optionsArr objectAtIndex:1]];
     [self setCell:kCellPositionBottomLeft withMember:[self.optionsArr objectAtIndex:2]];
     [self setCell:kCellPositionBottomRight withMember:[self.optionsArr objectAtIndex:3]];
+    
+    [self hideAllInfoButtons];
 
+    [UIView beginAnimations:@"" context:nil];
+    helpButton.alpha = 1;
+    [UIView commitAnimations];
 }
 
 - (void) viewDidAppear:(BOOL)animated {    
-    [self loadNextQuestion];
+//    [self loadNextQuestion];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -126,20 +131,26 @@
 - (void)viewDidLoad
 {
     UITapGestureRecognizer *tapGR1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(topLeftViewTapped)];
+    tapGR1.delegate = self;
     [topLeftView addGestureRecognizer:tapGR1];
     [tapGR1 release];
 
     UITapGestureRecognizer *tapGR2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(topRightViewTapped)];
+    tapGR2.delegate = self;
     [topRightView addGestureRecognizer:tapGR2];
     [tapGR2 release];
     
     UITapGestureRecognizer *tapGR3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bottomLeftViewTapped)];
+    tapGR3.delegate = self;
     [bottomLeftView addGestureRecognizer:tapGR3];
     [tapGR3 release];
     
     UITapGestureRecognizer *tapGR4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bottomRightViewTapped)];
+    tapGR4.delegate = self;
     [bottomRightView addGestureRecognizer:tapGR4];
     [tapGR4 release];
+    
+    [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:0.5];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -159,10 +170,6 @@
 
 #pragma mark - Helper methods
 
-- (void) updateScoreLabel {
-    scoreLabel.text = [NSString stringWithFormat:@"ניקוד: %d",[[DataManager sharedManager] getCurrentScore]];
-}
-
 - (KTMember *)getCorrectMember {
     if (self.optionsArr) {
         return [self.optionsArr objectAtIndex:correctIndex];
@@ -170,46 +177,36 @@
     return nil;
 }
 
-- (NSArray *)getFourRandomMembers {
-    
-    if ([DataManager sharedManager].members) {
-        int memberCount = [[DataManager sharedManager].members count];
-        if (memberCount > 3) {
-            int index1,index2,index3,index4,randIndex;
-            NSMutableArray *randomArr = [[[NSMutableArray alloc] init] autorelease];            
-            
-            NSMutableArray *remainingOptionsArr = [[NSMutableArray alloc] init];
-            for (int i = 0; i < memberCount; i++) {
-                NSNumber *num = [NSNumber numberWithInt:i];
-                [remainingOptionsArr addObject:num];
-            }
-            
-            //Get random indexes
-            randIndex = arc4random() % [remainingOptionsArr count];
-            index1 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
-            [remainingOptionsArr removeObjectAtIndex:randIndex];
-            randIndex = arc4random() % [remainingOptionsArr count];
-            index2 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
-            [remainingOptionsArr removeObjectAtIndex:randIndex];
-            randIndex = arc4random() % [remainingOptionsArr count];
-            index3 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
-            [remainingOptionsArr removeObjectAtIndex:randIndex];
-            randIndex = arc4random() % [remainingOptionsArr count];
-            index4 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
-            [remainingOptionsArr removeObjectAtIndex:randIndex];
-            
-            //Add members from indexes
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index1]];
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index2]];
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index3]];
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index4]];
-            
-            return randomArr;
+- (void) changeInfoToVisible:(BOOL)visible {
+    NSArray *cellArr = [NSArray arrayWithObjects:self.topLeftMemberCell,self.topRightMemberCell,self.bottomLeftMemberCell,self.bottomRightMemberCell, nil];
+    for (MemberCellViewController *memberCell in cellArr) {
+        if (visible) {
+            [memberCell showInfoButton];
         } else {
-            NSLog(@"Error - Not enough members!");
+            [memberCell hideInfoButton];
         }
     }
-    return nil;
+        
+}
+
+- (void) showAllInfoButtons {
+    [self changeInfoToVisible:YES];
+}
+
+- (void) hideAllInfoButtons {
+    [self changeInfoToVisible:NO];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)helpPressed:(id)sender{
+    [self showAllInfoButtons];
+    
+    [UIView beginAnimations:@"" context:nil];
+    helpButton.alpha = 0;
+    [UIView commitAnimations];
+    
+    [[DataManager sharedManager] updateHelpRequested];
 }
 
 #pragma mark - Gesture handlers
@@ -240,50 +237,46 @@
 - (void) topLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopLeft]) {
         [self.topLeftMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectImageAnswer];
+        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
         
     } else {
-        [[DataManager sharedManager] updateWrongImageAnswer];
+        [[DataManager sharedManager] updateWrongAnswer];
         [self.topLeftMemberCell showWrongIndication];
     }
-    [self updateScoreLabel];
 }
 
 - (void) topRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopRight]) {
         [self.topRightMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectImageAnswer];
+        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
-        [[DataManager sharedManager] updateWrongImageAnswer];
+        [[DataManager sharedManager] updateWrongAnswer];
         [self.topRightMemberCell showWrongIndication];
     }
-    [self updateScoreLabel];
 }
 
 - (void) bottomLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomLeft]) {
         [self.bottomLeftMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectImageAnswer];
+        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
-        [[DataManager sharedManager] updateWrongImageAnswer];
+        [[DataManager sharedManager] updateWrongAnswer];
         [self.bottomLeftMemberCell showWrongIndication];
     }
-    [self updateScoreLabel];
 }
 
 - (void) bottomRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomRight]) {
         [self.bottomRightMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectImageAnswer];
+        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
-        [[DataManager sharedManager] updateWrongImageAnswer];
+        [[DataManager sharedManager] updateWrongAnswer];
         [self.bottomRightMemberCell showWrongIndication];
     }
-    [self updateScoreLabel];
 }
 
 

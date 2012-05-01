@@ -14,6 +14,7 @@
 
 #define kDataManagerScoreForCorrectImageAnswer 9
 #define kDataManagerPenaltyForWrongImageAnswer 10
+#define kDataManaferPenaltyForHelp 5
 
 @implementation DataManager
 @synthesize members;
@@ -45,6 +46,7 @@ static DataManager *manager = nil;
     self=[super init];
 	if(self) {
         score = 0;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
 	}
 	return self;
 }
@@ -144,22 +146,105 @@ static DataManager *manager = nil;
     return nil;
 }
 
+- (NSArray *)getFourRandomMembers {
+    
+    if ([DataManager sharedManager].members) {
+        int memberCount = [[DataManager sharedManager].members count];
+        if (memberCount > 3) {
+            int index1,index2,index3,index4,randIndex;
+            NSMutableArray *randomArr = [[[NSMutableArray alloc] init] autorelease];            
+            
+            NSMutableArray *remainingOptionsArr = [[NSMutableArray alloc] init];
+            for (int i = 0; i < memberCount; i++) {
+                NSNumber *num = [NSNumber numberWithInt:i];
+                [remainingOptionsArr addObject:num];
+            }
+            
+            //Get random indexes
+            randIndex = arc4random() % [remainingOptionsArr count];
+            index1 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
+            [remainingOptionsArr removeObjectAtIndex:randIndex];
+            randIndex = arc4random() % [remainingOptionsArr count];
+            index2 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
+            [remainingOptionsArr removeObjectAtIndex:randIndex];
+            randIndex = arc4random() % [remainingOptionsArr count];
+            index3 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
+            [remainingOptionsArr removeObjectAtIndex:randIndex];
+            randIndex = arc4random() % [remainingOptionsArr count];
+            index4 = [[remainingOptionsArr objectAtIndex:randIndex] intValue];
+            [remainingOptionsArr removeObjectAtIndex:randIndex];
+            
+            //Add members from indexes
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index1]];
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index2]];
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index3]];
+            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index4]];
+            
+            return randomArr;
+        } else {
+            NSLog(@"Error - Not enough members!");
+        }
+    }
+    return nil;
+}
+
+- (KTMember *) getRandomMember {
+    int memberCount = [[DataManager sharedManager].members count];
+    int randIndex = arc4random() % memberCount;
+    return [[DataManager sharedManager].members objectAtIndex:randIndex];
+}
+
+- (int)getAgeForMember:(KTMember *)member {
+    NSDate* now = [NSDate date];
+    NSDateComponents* ageComponents = [[NSCalendar currentCalendar] 
+                                       components:NSYearCalendarUnit 
+                                       fromDate:member.dateOfBirth
+                                       toDate:now
+                                       options:0];
+    return [ageComponents year];;
+}
+
 #pragma mark - Score
-- (void)updateCorrectImageAnswer {
+- (void)updateCorrectAnswer {
     score += kDataManagerScoreForCorrectImageAnswer;
-    NSLog(@"score: %d",score);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
 }
 
-- (void) updateWrongImageAnswer {
+- (void) updateWrongAnswer {
     score -= kDataManagerPenaltyForWrongImageAnswer;
-    NSLog(@"score: %d",score);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
 }
 
-- (int) getCurrentScore {
-    return score;
+- (void)updateHelpRequested {
+    score -= kDataManaferPenaltyForHelp;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
+}
+
+- (NSString *) getCurrentScoreStr {
+    if (score < 0) {
+        return [NSString stringWithFormat:@"%d-",abs(score)];
+    } else {
+        return [NSString stringWithFormat:@"%d",score];
+    }
 }
 
 #pragma mark - Image Caching
+
+- (UIImage *)getImageForMemberId:(int)memberId {
+    UIImage *memberImg = [[DataManager sharedManager] savedImageForId:memberId];
+    if (memberImg) {
+        return memberImg;
+    } else {
+        KTMember *member = [[DataManager sharedManager] getMemberWithId:memberId];
+        if (member) {
+            memberImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:member.imageUrl]]];
+            [[DataManager sharedManager] saveImageToDocuments:memberImg withId:memberId];
+            return memberImg;
+        } else {
+            return nil;
+        }
+    }
+}
 
 - (UIImage *)savedImageForId:(int)imageId {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

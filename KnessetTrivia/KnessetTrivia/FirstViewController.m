@@ -9,7 +9,7 @@
 #import "FirstViewController.h"
 #import "DataManager.h"
 #import "KTMember.h"
-#import "MemberCell.h"
+#import "MemberCellViewController.h"
 
 @interface FirstViewController ()
 
@@ -52,7 +52,7 @@
         self.myMemberCell = nil;
     }
     KTMember *member = [[DataManager sharedManager].members objectAtIndex:indexPath.row];
-    MemberCell *memberCell = [[MemberCell alloc] init];
+    MemberCellViewController *memberCell = [[MemberCellViewController alloc] init];
     memberCell.member = member;
     CGRect cellFrame = memberCell.view.frame;
     memberCell.view.frame = CGRectMake((320-cellFrame.size.width)/2, (480-44-cellFrame.size.height)/2, cellFrame.size.width, cellFrame.size.height);

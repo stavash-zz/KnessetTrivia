@@ -7,36 +7,40 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GeneralTriviaViewController.h"
+
 typedef enum {
     kCellPositionTopLeft,
     kCellPositionTopRight,
     kCellPositionBottomLeft,
     kCellPositionBottomRight
 }CellPosition;
-@class MemberCell;
 
-@interface ImageTriviaViewController : UIViewController {
+@class MemberCellViewController;
+
+@interface ImageTriviaViewController : GeneralTriviaViewController <UIGestureRecognizerDelegate> {
     int correctIndex;
     NSArray *optionsArr;
 
     IBOutlet UILabel *questionLabel;
-    IBOutlet UILabel *scoreLabel;
 
     IBOutlet UIView *topLeftView;
     IBOutlet UIView *topRightView;
     IBOutlet UIView *bottomLeftView;
     IBOutlet UIView *bottomRightView;
+    
+    IBOutlet UIButton *helpButton;
 
-    MemberCell *topLeftMemberCell;
-    MemberCell *topRightMemberCell;
-    MemberCell *bottomLeftMemberCell;
-    MemberCell *bottomRightMemberCell;
+    MemberCellViewController *topLeftMemberCell;
+    MemberCellViewController *topRightMemberCell;
+    MemberCellViewController *bottomLeftMemberCell;
+    MemberCellViewController *bottomRightMemberCell;
 }
 
-@property (nonatomic, retain) MemberCell *topLeftMemberCell;
-@property (nonatomic, retain) MemberCell *topRightMemberCell;
-@property (nonatomic, retain) MemberCell *bottomLeftMemberCell;
-@property (nonatomic, retain) MemberCell *bottomRightMemberCell;
+@property (nonatomic, retain) MemberCellViewController *topLeftMemberCell;
+@property (nonatomic, retain) MemberCellViewController *topRightMemberCell;
+@property (nonatomic, retain) MemberCellViewController *bottomLeftMemberCell;
+@property (nonatomic, retain) MemberCellViewController *bottomRightMemberCell;
 @property (nonatomic, retain) NSArray *optionsArr;
 
 @end

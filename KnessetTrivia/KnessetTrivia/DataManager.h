@@ -29,13 +29,18 @@
 - (KTMember *)getMemberWithId:(int)memberId;
 - (NSArray *)getAllMemberNames;
 - (NSArray *)getAllParties;
+- (NSArray *)getFourRandomMembers;
+- (KTMember *) getRandomMember;
+- (int)getAgeForMember:(KTMember *)member;
 
 //Score
-- (void)updateCorrectImageAnswer;
-- (void)updateWrongImageAnswer;
-- (int) getCurrentScore;
+- (void)updateCorrectAnswer;
+- (void)updateWrongAnswer;
+- (void)updateHelpRequested;
+- (NSString *) getCurrentScoreStr;
 
 //Caching
+- (UIImage *)getImageForMemberId:(int)memberId;
 - (UIImage *)savedImageForId:(int)imageId;
 - (void) saveImageToDocuments:(UIImage *)image withId:(int)imageId;
 
