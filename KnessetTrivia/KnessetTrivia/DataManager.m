@@ -9,7 +9,6 @@
 #import "DataManager.h"
 #import "SBJsonParser.h"
 #import "KTParser.h"
-#import "KTMember.h"
 #import "KTBill.h"
 
 #define kDataManagerScoreForCorrectImageAnswer 9
@@ -111,6 +110,16 @@ static DataManager *manager = nil;
     return nil;
 }
 
+- (NSArray *)getMembersOfGender:(MemberGender)gender {
+    NSMutableArray *filteredArr = [[[NSMutableArray alloc] init] autorelease];
+    for (KTMember *member in self.members) {
+        if (member.gender == gender) {
+            [filteredArr addObject:member];
+        }
+    }
+    return filteredArr;
+}
+
 - (NSArray *)getAllMemberNames {
     if (self.members) {
         NSMutableArray *namesArr = [[[NSMutableArray alloc] init] autorelease];
@@ -146,10 +155,11 @@ static DataManager *manager = nil;
     return nil;
 }
 
-- (NSArray *)getFourRandomMembers {
+- (NSArray *)getFourRandomMembersOfGender:(MemberGender)gender {
     
     if ([DataManager sharedManager].members) {
-        int memberCount = [[DataManager sharedManager].members count];
+        NSArray *filteredMembers = [[DataManager sharedManager] getMembersOfGender:gender];
+        int memberCount = [filteredMembers count];
         if (memberCount > 3) {
             int index1,index2,index3,index4,randIndex;
             NSMutableArray *randomArr = [[[NSMutableArray alloc] init] autorelease];            
@@ -175,10 +185,10 @@ static DataManager *manager = nil;
             [remainingOptionsArr removeObjectAtIndex:randIndex];
             
             //Add members from indexes
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index1]];
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index2]];
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index3]];
-            [randomArr addObject:[[DataManager sharedManager].members objectAtIndex:index4]];
+            [randomArr addObject:[filteredMembers objectAtIndex:index1]];
+            [randomArr addObject:[filteredMembers objectAtIndex:index2]];
+            [randomArr addObject:[filteredMembers objectAtIndex:index3]];
+            [randomArr addObject:[filteredMembers objectAtIndex:index4]];
             
             return randomArr;
         } else {

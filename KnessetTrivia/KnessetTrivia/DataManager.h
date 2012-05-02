@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class KTMember;
+#import "KTMember.h"
 
 @interface DataManager : NSObject {
     NSArray *members;
@@ -27,11 +26,13 @@
 
 //Queries
 - (KTMember *)getMemberWithId:(int)memberId;
+- (NSArray *)getMembersOfGender:(MemberGender)gender;
 - (NSArray *)getAllMemberNames;
 - (NSArray *)getAllParties;
-- (NSArray *)getFourRandomMembers;
+- (NSArray *)getFourRandomMembersOfGender:(MemberGender)gender;
 - (KTMember *) getRandomMember;
 - (int)getAgeForMember:(KTMember *)member;
+
 
 //Score
 - (void)updateCorrectAnswer;

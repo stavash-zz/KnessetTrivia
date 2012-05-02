@@ -29,7 +29,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    UIViewController *viewController1 = [[[RightWrongTriviaViewController alloc] initWithNibName:@"RightWrongTriviaViewController" bundle:nil] autorelease];
+    UIViewController *viewController1 = [[[ImageTriviaViewController alloc] initWithNibName:@"ImageTriviaViewController" bundle:nil] autorelease];
     UIViewController *viewController2 = [[[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil] autorelease];
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];

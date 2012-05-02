@@ -12,6 +12,7 @@
 #import "MemberCellViewController.h"
 
 #define kImageTriviaNextQuestionDelay 0.4
+#define kImageTriviaFemaleRatioCoeff 10
 
 @interface ImageTriviaViewController ()
 
@@ -100,7 +101,12 @@
     self.bottomRightMemberCell = nil;
     
     //Populate question
-    self.optionsArr = [[DataManager sharedManager] getFourRandomMembers];
+    int randGender = arc4random() % kImageTriviaFemaleRatioCoeff;
+    if (randGender == 0) {
+        self.optionsArr = [[DataManager sharedManager] getFourRandomMembersOfGender:kGenderFemale];
+    } else {
+        self.optionsArr = [[DataManager sharedManager] getFourRandomMembersOfGender:kGenderMale];
+    }
     if (!self.optionsArr) {
         return;
     }
