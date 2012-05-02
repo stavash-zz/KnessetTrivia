@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GeneralTriviaViewController.h"
+#import "GeneralTriviaDelegateProtocol.h"
 
 typedef enum {
     kCellPositionTopLeft,
@@ -18,7 +19,10 @@ typedef enum {
 
 @class MemberCellViewController;
 
-@interface ImageTriviaViewController : GeneralTriviaViewController <UIGestureRecognizerDelegate> {
+@interface ImageTriviaViewController : UIViewController <UIGestureRecognizerDelegate> {
+
+    id <GeneralTriviaDelegate> delegate;
+    
     int correctIndex;
     NSArray *optionsArr;
 
@@ -36,6 +40,7 @@ typedef enum {
     MemberCellViewController *bottomLeftMemberCell;
     MemberCellViewController *bottomRightMemberCell;
 }
+@property (assign) id <GeneralTriviaDelegate> delegate;
 
 @property (nonatomic, retain) MemberCellViewController *topLeftMemberCell;
 @property (nonatomic, retain) MemberCellViewController *topRightMemberCell;

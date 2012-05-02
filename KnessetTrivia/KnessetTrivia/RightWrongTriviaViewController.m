@@ -10,6 +10,7 @@
 #import "KTMember.h"
 #import "DataManager.h"
 #import "MemberCellViewController.h"
+#import "ScoreManager.h"
 
 #define kRightWrongQuestionAgeOffset 4
 
@@ -19,7 +20,7 @@
 
 @implementation RightWrongTriviaViewController
 
-@synthesize currentMember,currentObject, cellVC;
+@synthesize currentMember,currentObject, cellVC, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +33,7 @@
 
 - (void)viewDidLoad
 {
-    [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(loadNewQuestion) withObject:nil afterDelay:0.1];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -70,10 +71,10 @@
 - (IBAction)rightPressed:(id)sender {
     BOOL result = [self validateAnswer:YES];
     if (result) {
-        [[DataManager sharedManager] updateCorrectAnswer];
+        [[ScoreManager sharedManager] updateCorrectAnswer];
         [self updateResult:YES];
     } else {
-        [[DataManager sharedManager] updateWrongAnswer];
+        [[ScoreManager sharedManager] updateWrongAnswer];
         [self updateResult:NO];
     }
 }
@@ -81,10 +82,10 @@
 - (IBAction)wrongPressed:(id)sender {
     BOOL result = [self validateAnswer:NO];
     if (result) {
-        [[DataManager sharedManager] updateCorrectAnswer];
+        [[ScoreManager sharedManager] updateCorrectAnswer];
         [self updateResult:YES];
     } else {
-        [[DataManager sharedManager] updateWrongAnswer];
+        [[ScoreManager sharedManager] updateWrongAnswer];
         [self updateResult:NO];
     }
 }
@@ -96,12 +97,16 @@
     helpButton.alpha = 0;
     [UIView commitAnimations];
 
-    [[DataManager sharedManager] updateHelpRequested];
+    [[ScoreManager sharedManager] updateHelpRequested];
 }
 
 #pragma mark - Question generation
 
 - (void) loadNextQuestion {
+    [self.delegate advanceToNextQuestion];
+}
+
+- (void) loadNewQuestion {
     //reset view
     self.view.userInteractionEnabled = YES;
     bgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.23];

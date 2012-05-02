@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : UIViewController
+@interface AboutViewController : UIViewController {
+    IBOutlet UILabel *highScoreLabel;
+    IBOutlet UIView *highScoreBg;
+}
 
 @end

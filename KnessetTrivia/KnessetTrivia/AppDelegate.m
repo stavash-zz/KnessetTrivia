@@ -12,6 +12,8 @@
 #import "ImageTriviaViewController.h"
 #import "RightWrongTriviaViewController.h"
 #import "DataManager.h"
+#import "ScoreManager.h"
+#import "GeneralTriviaViewController.h"
 
 @implementation AppDelegate
 
@@ -29,7 +31,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    UIViewController *viewController1 = [[[ImageTriviaViewController alloc] initWithNibName:@"ImageTriviaViewController" bundle:nil] autorelease];
+    UIViewController *viewController1 = [[[GeneralTriviaViewController alloc] init] autorelease];
     UIViewController *viewController2 = [[[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil] autorelease];
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
@@ -37,6 +39,7 @@
     
     [[DataManager sharedManager] initializeMembers]; //TODO: transfer to game manager
     [[DataManager sharedManager]  initializeBills];
+    [ScoreManager sharedManager];
     [self.window makeKeyAndVisible];
     return YES;
 }

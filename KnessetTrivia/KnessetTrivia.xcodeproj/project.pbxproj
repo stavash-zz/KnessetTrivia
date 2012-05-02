@@ -91,6 +91,9 @@
 		1F708527154FD88700D80EFF /* MemberCellFlipSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F708525154FD88700D80EFF /* MemberCellFlipSideViewController.m */; };
 		1F708528154FD88700D80EFF /* MemberCellFlipSideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F708526154FD88700D80EFF /* MemberCellFlipSideViewController.xib */; };
 		1F70852A155008CD00D80EFF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F708529155008CD00D80EFF /* MessageUI.framework */; };
+		1FF2CC9B1551CA2300A93B3D /* ScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2CC9A1551CA2300A93B3D /* ScoreManager.m */; };
+		1FF2CCA01551D52200A93B3D /* EndOfGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2CC9E1551D52200A93B3D /* EndOfGameViewController.m */; };
+		1FF2CCA11551D52200A93B3D /* EndOfGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FF2CC9F1551D52200A93B3D /* EndOfGameViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +218,12 @@
 		1F708525154FD88700D80EFF /* MemberCellFlipSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCellFlipSideViewController.m; sourceTree = "<group>"; };
 		1F708526154FD88700D80EFF /* MemberCellFlipSideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCellFlipSideViewController.xib; sourceTree = "<group>"; };
 		1F708529155008CD00D80EFF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		1FF2CC991551CA2300A93B3D /* ScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManager.h; sourceTree = "<group>"; };
+		1FF2CC9A1551CA2300A93B3D /* ScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreManager.m; sourceTree = "<group>"; };
+		1FF2CC9D1551D52200A93B3D /* EndOfGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfGameViewController.h; sourceTree = "<group>"; };
+		1FF2CC9E1551D52200A93B3D /* EndOfGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfGameViewController.m; sourceTree = "<group>"; };
+		1FF2CC9F1551D52200A93B3D /* EndOfGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndOfGameViewController.xib; sourceTree = "<group>"; };
+		1FF2CCA21551D9E700A93B3D /* GeneralTriviaDelegateProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneralTriviaDelegateProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -505,12 +514,16 @@
 			children = (
 				1F699C4715508D64005DFCAA /* GeneralTriviaViewController.h */,
 				1F699C4815508D64005DFCAA /* GeneralTriviaViewController.m */,
+				1FF2CCA21551D9E700A93B3D /* GeneralTriviaDelegateProtocol.h */,
 				1F17FF23154C571F008F9575 /* ImageTriviaViewController.h */,
 				1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */,
 				1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */,
 				1F699C4215507F73005DFCAA /* RightWrongTriviaViewController.h */,
 				1F699C4315507F73005DFCAA /* RightWrongTriviaViewController.m */,
 				1F699C4415507F73005DFCAA /* RightWrongTriviaViewController.xib */,
+				1FF2CC9D1551D52200A93B3D /* EndOfGameViewController.h */,
+				1FF2CC9E1551D52200A93B3D /* EndOfGameViewController.m */,
+				1FF2CC9F1551D52200A93B3D /* EndOfGameViewController.xib */,
 			);
 			name = Trivia;
 			sourceTree = "<group>";
@@ -543,6 +556,8 @@
 			children = (
 				1F692172154B34F5001AD57F /* DataManager.h */,
 				1F692173154B34F5001AD57F /* DataManager.m */,
+				1FF2CC991551CA2300A93B3D /* ScoreManager.h */,
+				1FF2CC9A1551CA2300A93B3D /* ScoreManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -642,6 +657,7 @@
 				1F699C4015506FF5005DFCAA /* help.png in Resources */,
 				1F699C4115506FF5005DFCAA /* help@2x.png in Resources */,
 				1F699C4615507F73005DFCAA /* RightWrongTriviaViewController.xib in Resources */,
+				1FF2CCA11551D52200A93B3D /* EndOfGameViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +700,8 @@
 				1F708527154FD88700D80EFF /* MemberCellFlipSideViewController.m in Sources */,
 				1F699C4515507F73005DFCAA /* RightWrongTriviaViewController.m in Sources */,
 				1F699C4915508D64005DFCAA /* GeneralTriviaViewController.m in Sources */,
+				1FF2CC9B1551CA2300A93B3D /* ScoreManager.m in Sources */,
+				1FF2CCA01551D52200A93B3D /* EndOfGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

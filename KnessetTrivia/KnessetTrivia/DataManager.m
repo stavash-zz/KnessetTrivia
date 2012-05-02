@@ -11,10 +11,6 @@
 #import "KTParser.h"
 #import "KTBill.h"
 
-#define kDataManagerScoreForCorrectImageAnswer 9
-#define kDataManagerPenaltyForWrongImageAnswer 10
-#define kDataManaferPenaltyForHelp 5
-
 @implementation DataManager
 @synthesize members;
 @synthesize bills;
@@ -44,8 +40,7 @@ static DataManager *manager = nil;
 - (id) init {
     self=[super init];
 	if(self) {
-        score = 0;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
+
 	}
 	return self;
 }
@@ -212,30 +207,6 @@ static DataManager *manager = nil;
                                        toDate:now
                                        options:0];
     return [ageComponents year];;
-}
-
-#pragma mark - Score
-- (void)updateCorrectAnswer {
-    score += kDataManagerScoreForCorrectImageAnswer;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
-}
-
-- (void) updateWrongAnswer {
-    score -= kDataManagerPenaltyForWrongImageAnswer;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
-}
-
-- (void)updateHelpRequested {
-    score -= kDataManaferPenaltyForHelp;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
-}
-
-- (NSString *) getCurrentScoreStr {
-    if (score < 0) {
-        return [NSString stringWithFormat:@"%d-",abs(score)];
-    } else {
-        return [NSString stringWithFormat:@"%d",score];
-    }
 }
 
 #pragma mark - Image Caching

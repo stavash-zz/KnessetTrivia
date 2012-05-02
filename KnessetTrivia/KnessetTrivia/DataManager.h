@@ -12,7 +12,6 @@
 @interface DataManager : NSObject {
     NSArray *members;
     NSArray *bills;
-    int score;
 }
 
 @property (nonatomic,retain) NSArray *members;
@@ -32,13 +31,6 @@
 - (NSArray *)getFourRandomMembersOfGender:(MemberGender)gender;
 - (KTMember *) getRandomMember;
 - (int)getAgeForMember:(KTMember *)member;
-
-
-//Score
-- (void)updateCorrectAnswer;
-- (void)updateWrongAnswer;
-- (void)updateHelpRequested;
-- (NSString *) getCurrentScoreStr;
 
 //Caching
 - (UIImage *)getImageForMemberId:(int)memberId;

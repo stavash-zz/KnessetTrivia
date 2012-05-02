@@ -19,7 +19,7 @@
 @end
 
 @implementation MemberCellViewController
-@synthesize member,infoButton,flipSideVC;
+@synthesize member,infoButton,flipSideVC,myResultState;
 
 #pragma mark - View Lifecycle
 
@@ -27,6 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.myResultState = kResultUnknown;
         // Custom initialization
     }
     return self;
@@ -133,6 +134,7 @@
 
 #pragma mark - Public
 - (void) showCorrectIndication {
+    self.myResultState = kResultCorrect;
     CGAffineTransform t = CGAffineTransformMakeScale(1.1, 1.1);
     [UIView beginAnimations:@"" context:nil];
     self.view.backgroundColor = [UIColor greenColor];
@@ -142,6 +144,7 @@
 }
 
 - (void) showWrongIndication {
+    self.myResultState = kResultWrong;
     CGAffineTransform t = CGAffineTransformMakeScale(0.9, 0.9);
     [UIView beginAnimations:@"" context:nil];
     self.view.backgroundColor = [UIColor redColor];

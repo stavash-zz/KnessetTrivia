@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GeneralTriviaViewController.h"
+#import "GeneralTriviaDelegateProtocol.h"
 
 typedef enum {
     kRightWrongQuestionTypeParty,
@@ -17,7 +18,8 @@ typedef enum {
 
 @class KTMember, MemberCellViewController;
 
-@interface RightWrongTriviaViewController : GeneralTriviaViewController {
+@interface RightWrongTriviaViewController : UIViewController {
+    id <GeneralTriviaDelegate> delegate;
     IBOutlet UILabel *questionLabel;
     IBOutlet UIView *bgView;
     IBOutlet UIButton *helpButton;
@@ -28,6 +30,8 @@ typedef enum {
     
     MemberCellViewController *cellVC;
 }
+
+@property (assign) id <GeneralTriviaDelegate> delegate;
 
 @property (nonatomic, retain) KTMember *currentMember;
 @property (nonatomic, retain) NSObject *currentObject;

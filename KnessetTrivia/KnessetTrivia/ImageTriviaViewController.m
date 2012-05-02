@@ -10,6 +10,7 @@
 #import "DataManager.h"
 #import "KTMember.h"
 #import "MemberCellViewController.h"
+#import "ScoreManager.h"
 
 #define kImageTriviaNextQuestionDelay 0.4
 #define kImageTriviaFemaleRatioCoeff 10
@@ -19,6 +20,7 @@
 @end
 
 @implementation ImageTriviaViewController
+@synthesize delegate;
 @synthesize topLeftMemberCell,topRightMemberCell,bottomLeftMemberCell,bottomRightMemberCell;
 @synthesize optionsArr;
 
@@ -81,6 +83,10 @@
 }
 
 - (void) loadNextQuestion {
+    [self.delegate advanceToNextQuestion];
+}
+
+- (void) loadNewQuestion {
         
     //clean up
     if (self.topLeftMemberCell) {
@@ -156,7 +162,7 @@
     [bottomRightView addGestureRecognizer:tapGR4];
     [tapGR4 release];
     
-    [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(loadNewQuestion) withObject:nil afterDelay:0.1];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -212,7 +218,7 @@
     helpButton.alpha = 0;
     [UIView commitAnimations];
     
-    [[DataManager sharedManager] updateHelpRequested];
+    [[ScoreManager sharedManager] updateHelpRequested];
 }
 
 #pragma mark - Gesture handlers
@@ -242,45 +248,61 @@
 
 - (void) topLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopLeft]) {
+        if (self.topLeftMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateCorrectAnswer];
+        }
         [self.topLeftMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
         
     } else {
-        [[DataManager sharedManager] updateWrongAnswer];
+        if (self.topLeftMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateWrongAnswer];
+        }
         [self.topLeftMemberCell showWrongIndication];
     }
 }
 
 - (void) topRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionTopRight]) {
+        if (self.topRightMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateCorrectAnswer];
+        }
         [self.topRightMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
-        [[DataManager sharedManager] updateWrongAnswer];
+        if (self.topRightMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateWrongAnswer];
+        }
         [self.topRightMemberCell showWrongIndication];
     }
 }
 
 - (void) bottomLeftViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomLeft]) {
+        if (self.bottomLeftMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateCorrectAnswer];
+        }
         [self.bottomLeftMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
-        [[DataManager sharedManager] updateWrongAnswer];
+        if (self.bottomLeftMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateWrongAnswer];
+        }
         [self.bottomLeftMemberCell showWrongIndication];
     }
 }
 
 - (void) bottomRightViewTapped {
     if ([self checkCorrectnessOfPosition:kCellPositionBottomRight]) {
+        if (self.bottomRightMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateCorrectAnswer];
+        }
         [self.bottomRightMemberCell showCorrectIndication];
-        [[DataManager sharedManager] updateCorrectAnswer];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
     } else {
-        [[DataManager sharedManager] updateWrongAnswer];
+        if (self.bottomRightMemberCell.myResultState == kResultUnknown) {
+            [[ScoreManager sharedManager] updateWrongAnswer];
+        }
         [self.bottomRightMemberCell showWrongIndication];
     }
 }
