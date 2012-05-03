@@ -11,15 +11,17 @@
 #import "RightWrongTriviaViewController.h"
 #import "DataManager.h"
 #import "ScoreManager.h"
+#import "NewGameViewController.h"
+#import "EndOfGameViewController.h"
 
-#define kGeneralTriviaSecondsToPlay 60.0
+#define kGeneralTriviaSecondsToPlay 5.0
 
 @interface GeneralTriviaViewController ()
 
 @end
 
 @implementation GeneralTriviaViewController
-@synthesize scoreLabel,timer,timeProgressView,endOfGameVC,currentTriviaController;
+@synthesize scoreLabel,timer,timeProgressView,endOfGameVC,currentTriviaController,newGameVC;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -88,6 +90,13 @@
         self.view.userInteractionEnabled = NO;
         [self.timer invalidate];
         
+        NewGameViewController *newGameViewCont = [[NewGameViewController alloc] initWithNibName:@"NewGameViewController" bundle:nil];
+        newGameViewCont.view.alpha = 0;
+        newGameViewCont.delegate = self;
+        [self.view addSubview:newGameViewCont.view];
+        self.newGameVC = newGameViewCont;
+        [newGameViewCont release];
+        
         [[ScoreManager sharedManager] challengeHighScore];
         EndOfGameViewController *endGameVC = [[EndOfGameViewController alloc] initWithNibName:@"EndOfGameViewController" bundle:nil];
         endGameVC.delegate = self;
@@ -96,10 +105,13 @@
         endGameVC.view.frame = CGRectMake(self.view.frame.size.width/2 - size.width/2, self.view.frame.size.height/2 - size.height/2, size.width, size.height);
         self.endOfGameVC = endGameVC;
         [[UIApplication sharedApplication].keyWindow addSubview:self.endOfGameVC.view];
+        
         [UIView beginAnimations:@"" context:nil];
         self.endOfGameVC.view.alpha = 1.0;
+        self.newGameVC.view.alpha = 1.0;
         [UIView commitAnimations];
         [endGameVC release];
+        
 
     } else {
         timeProgressView.progress = remainingSeconds/kGeneralTriviaSecondsToPlay;
@@ -148,6 +160,10 @@
     remainingSeconds = kGeneralTriviaSecondsToPlay;
     [self.timer fire];
     [self advanceToNextQuestion];
+}
+
+- (void) reEnableGeneralScreenRequested {
+    self.view.userInteractionEnabled = YES;
 }
 
 @end

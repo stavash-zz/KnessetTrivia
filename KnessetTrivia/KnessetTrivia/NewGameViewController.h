@@ -1,22 +1,17 @@
 //
-//  EndOfGameViewController.h
+//  NewGameViewController.h
 //  KnessetTrivia
 //
-//  Created by Stav Ashuri on 5/2/12.
+//  Created by Stav Ashuri on 5/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "GameFlowDelegateProtocol.h"
-
-@interface EndOfGameViewController : UIViewController {
+@interface NewGameViewController : UIViewController {
     id <GameFlowDelegate> delegate;
-    IBOutlet UILabel *scoreLabel;
-    IBOutlet UIView *scoreBgView;
 }
 
 @property (assign) id <GameFlowDelegate> delegate;
-
-- (IBAction)playAgainPressed:(id)sender;
 
 @end

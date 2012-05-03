@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EndOfGameViewController.h"
 #import "GeneralTriviaDelegateProtocol.h"
+#import "GameFlowDelegateProtocol.h"
+
+@class NewGameViewController, EndOfGameViewController;
 
 typedef enum{
     kTriviaTypeImage,
@@ -22,13 +24,16 @@ typedef enum{
     NSTimer *timer;
     float remainingSeconds;
     EndOfGameViewController *endOfGameVC;
+    NewGameViewController *newGameVC;
     UIViewController *currentTriviaController;
+    
 }
 
 @property (nonatomic, retain) UILabel *scoreLabel;
 @property (nonatomic, retain) UIProgressView *timeProgressView;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) EndOfGameViewController *endOfGameVC;
+@property (nonatomic, retain) NewGameViewController *newGameVC;
 @property (nonatomic, retain) UIViewController *currentTriviaController;
 
 
