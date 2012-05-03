@@ -17,6 +17,4 @@
 
 @property (assign) id <GameFlowDelegate> delegate;
 
-- (IBAction)playAgainPressed:(id)sender;
-
 @end

@@ -21,7 +21,8 @@
 @end
 
 @implementation GeneralTriviaViewController
-@synthesize scoreLabel,timer,timeProgressView,endOfGameVC,currentTriviaController,newGameVC;
+@synthesize scoreLabel,timer,timeProgressView,endOfGameVC,currentTriviaController;
+@synthesize myNewGameVC;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -94,7 +95,7 @@
         newGameViewCont.view.alpha = 0;
         newGameViewCont.delegate = self;
         [self.view addSubview:newGameViewCont.view];
-        self.newGameVC = newGameViewCont;
+        self.myNewGameVC = newGameViewCont;
         [newGameViewCont release];
         
         [[ScoreManager sharedManager] challengeHighScore];
@@ -108,7 +109,7 @@
         
         [UIView beginAnimations:@"" context:nil];
         self.endOfGameVC.view.alpha = 1.0;
-        self.newGameVC.view.alpha = 1.0;
+        self.myNewGameVC.view.alpha = 1.0;
         [UIView commitAnimations];
         [endGameVC release];
         

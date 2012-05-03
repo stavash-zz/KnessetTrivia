@@ -24,7 +24,7 @@ typedef enum{
     NSTimer *timer;
     float remainingSeconds;
     EndOfGameViewController *endOfGameVC;
-    NewGameViewController *newGameVC;
+    NewGameViewController *myNewGameVC;
     UIViewController *currentTriviaController;
     
 }
@@ -33,7 +33,7 @@ typedef enum{
 @property (nonatomic, retain) UIProgressView *timeProgressView;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) EndOfGameViewController *endOfGameVC;
-@property (nonatomic, retain) NewGameViewController *newGameVC;
+@property (nonatomic, retain) NewGameViewController *myNewGameVC;
 @property (nonatomic, retain) UIViewController *currentTriviaController;
 
 
