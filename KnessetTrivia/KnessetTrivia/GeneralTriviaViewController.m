@@ -51,14 +51,14 @@
     [self.view addSubview:progressView];
     self.timeProgressView = progressView;
     [progressView release];
-
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeProgress) userInfo:nil repeats:YES];
-    remainingSeconds = kGeneralTriviaSecondsToPlay;
-    [self.timer fire];
-    
+//
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeProgress) userInfo:nil repeats:YES];
+//    remainingSeconds = kGeneralTriviaSecondsToPlay;
+//    [self.timer fire];
+//    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScoreLabel) name:@"scoreUpdatedNotification" object:nil];
         
-    [self advanceToNextQuestion];
+    [self showNewGameScreen];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -83,6 +83,38 @@
     scoreLabel.text = [NSString stringWithFormat:@"ניקוד: %@",[[ScoreManager sharedManager] getCurrentScoreStr]];
 }
 
+
+#pragma mark - Screen Handling
+
+- (void)showNewGameScreen {
+    NewGameViewController *newGameViewCont = [[NewGameViewController alloc] initWithNibName:@"NewGameViewController" bundle:nil];
+    newGameViewCont.view.alpha = 0;
+    newGameViewCont.delegate = self;
+    [self.view addSubview:newGameViewCont.view];
+    self.myNewGameVC = newGameViewCont;
+    [newGameViewCont release];
+    
+    [UIView beginAnimations:@"" context:nil];
+    self.myNewGameVC.view.alpha = 1.0;
+    [UIView commitAnimations];
+
+}
+
+- (void) showEndOfGamePopup {
+    EndOfGameViewController *endGameVC = [[EndOfGameViewController alloc] initWithNibName:@"EndOfGameViewController" bundle:nil];
+    endGameVC.delegate = self;
+    endGameVC.view.alpha = 0;
+    CGSize size = endGameVC.view.frame.size;
+    endGameVC.view.frame = CGRectMake(self.view.frame.size.width/2 - size.width/2, self.view.frame.size.height/2 - size.height/2, size.width, size.height);
+    self.endOfGameVC = endGameVC;
+    [[UIApplication sharedApplication].keyWindow addSubview:self.endOfGameVC.view];
+
+    [UIView beginAnimations:@"" context:nil];
+    self.endOfGameVC.view.alpha = 1.0;
+    [UIView commitAnimations];
+    [endGameVC release];
+}
+
 #pragma mark - Timed selectors
 
 - (void) updateTimeProgress {
@@ -90,30 +122,9 @@
     if (remainingSeconds <= 0.0) {
         self.view.userInteractionEnabled = NO;
         [self.timer invalidate];
-        
-        NewGameViewController *newGameViewCont = [[NewGameViewController alloc] initWithNibName:@"NewGameViewController" bundle:nil];
-        newGameViewCont.view.alpha = 0;
-        newGameViewCont.delegate = self;
-        [self.view addSubview:newGameViewCont.view];
-        self.myNewGameVC = newGameViewCont;
-        [newGameViewCont release];
-        
         [[ScoreManager sharedManager] challengeHighScore];
-        EndOfGameViewController *endGameVC = [[EndOfGameViewController alloc] initWithNibName:@"EndOfGameViewController" bundle:nil];
-        endGameVC.delegate = self;
-        endGameVC.view.alpha = 0;
-        CGSize size = endGameVC.view.frame.size;
-        endGameVC.view.frame = CGRectMake(self.view.frame.size.width/2 - size.width/2, self.view.frame.size.height/2 - size.height/2, size.width, size.height);
-        self.endOfGameVC = endGameVC;
-        [[UIApplication sharedApplication].keyWindow addSubview:self.endOfGameVC.view];
-        
-        [UIView beginAnimations:@"" context:nil];
-        self.endOfGameVC.view.alpha = 1.0;
-        self.myNewGameVC.view.alpha = 1.0;
-        [UIView commitAnimations];
-        [endGameVC release];
-        
-
+        [self showNewGameScreen];
+        [self showEndOfGamePopup];
     } else {
         timeProgressView.progress = remainingSeconds/kGeneralTriviaSecondsToPlay;
     }

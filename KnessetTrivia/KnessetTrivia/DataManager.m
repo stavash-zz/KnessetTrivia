@@ -218,6 +218,7 @@ static DataManager *manager = nil;
     } else {
         KTMember *member = [[DataManager sharedManager] getMemberWithId:memberId];
         if (member) {
+            NSLog(@"caching member %d locally",member.memberId);
             memberImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:member.imageUrl]]];
             [[DataManager sharedManager] saveImageToDocuments:memberImg withId:memberId];
             return memberImg;
@@ -242,4 +243,11 @@ static DataManager *manager = nil;
         [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
 }
 
+- (void) saveAllImagesLocally {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    for (KTMember *member in self.members) {
+        [self getImageForMemberId:member.memberId];
+    }
+    [pool release];
+}
 @end

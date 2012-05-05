@@ -34,6 +34,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] setAnalyticsTrackingNumber:kKnessetTriviaGoogleAnalyticsTrackingNumber];
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -46,6 +47,7 @@
     
     [[DataManager sharedManager] initializeMembers]; //TODO: transfer to game manager
     [[DataManager sharedManager]  initializeBills];
+    [[DataManager sharedManager] performSelectorInBackground:@selector(saveAllImagesLocally) withObject:nil];
     [ScoreManager sharedManager];
     [self.window makeKeyAndVisible];
     

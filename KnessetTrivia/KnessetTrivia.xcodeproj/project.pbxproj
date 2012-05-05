@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F07F3F21555B9AC00556806 /* popup_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F07F3F01555B9AC00556806 /* popup_bg.png */; };
+		1F07F3F31555B9AC00556806 /* popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F07F3F11555B9AC00556806 /* popup_bg@2x.png */; };
 		1F17FF26154C571F008F9575 /* ImageTriviaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */; };
 		1F17FF27154C571F008F9575 /* ImageTriviaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */; };
 		1F17FF2B154C7665008F9575 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF29154C7665008F9575 /* bg.png */; };
@@ -26,6 +28,10 @@
 		1F18A20C154D55C300D94946 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F18A20B154D55C300D94946 /* AudioToolbox.framework */; };
 		1F18A20E154D56EC00D94946 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F18A20D154D56EC00D94946 /* correct.mp3 */; };
 		1F18A213154EF0FE00D94946 /* bills.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1F18A212154EF0FE00D94946 /* bills.txt */; };
+		1F5CF2911555A9C1004AA873 /* general_button_bg_reg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5CF28F1555A9C1004AA873 /* general_button_bg_reg.png */; };
+		1F5CF2921555A9C1004AA873 /* general_button_bg_reg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5CF2901555A9C1004AA873 /* general_button_bg_reg@2x.png */; };
+		1F5CF2961555AA95004AA873 /* general_button_bg_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5CF2941555AA95004AA873 /* general_button_bg_sel.png */; };
+		1F5CF2971555AA95004AA873 /* general_button_bg_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5CF2951555AA95004AA873 /* general_button_bg_sel@2x.png */; };
 		1F5FE22E154B486300633DF5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22C154B486300633DF5 /* Default.png */; };
 		1F5FE22F154B486300633DF5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FE22D154B486300633DF5 /* Default@2x.png */; };
 		1F62FC261528A60600110F7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F62FC251528A60600110F7E /* UIKit.framework */; };
@@ -104,6 +110,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F07F3F01555B9AC00556806 /* popup_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = popup_bg.png; path = Artwork/popup_bg.png; sourceTree = "<group>"; };
+		1F07F3F11555B9AC00556806 /* popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "popup_bg@2x.png"; path = "Artwork/popup_bg@2x.png"; sourceTree = "<group>"; };
 		1F17FF23154C571F008F9575 /* ImageTriviaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTriviaViewController.h; sourceTree = "<group>"; };
 		1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTriviaViewController.m; sourceTree = "<group>"; };
 		1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTriviaViewController.xib; sourceTree = "<group>"; };
@@ -130,6 +138,10 @@
 		1F18A20B154D55C300D94946 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1F18A20D154D56EC00D94946 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = correct.mp3; path = Audio/correct.mp3; sourceTree = "<group>"; };
 		1F18A212154EF0FE00D94946 /* bills.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bills.txt; sourceTree = "<group>"; };
+		1F5CF28F1555A9C1004AA873 /* general_button_bg_reg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = general_button_bg_reg.png; path = Artwork/general_button_bg_reg.png; sourceTree = "<group>"; };
+		1F5CF2901555A9C1004AA873 /* general_button_bg_reg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "general_button_bg_reg@2x.png"; path = "Artwork/general_button_bg_reg@2x.png"; sourceTree = "<group>"; };
+		1F5CF2941555AA95004AA873 /* general_button_bg_sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = general_button_bg_sel.png; path = Artwork/general_button_bg_sel.png; sourceTree = "<group>"; };
+		1F5CF2951555AA95004AA873 /* general_button_bg_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "general_button_bg_sel@2x.png"; path = "Artwork/general_button_bg_sel@2x.png"; sourceTree = "<group>"; };
 		1F5FE22C154B486300633DF5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Artwork/Default.png; sourceTree = "<group>"; };
 		1F5FE22D154B486300633DF5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Artwork/Default@2x.png"; sourceTree = "<group>"; };
 		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +281,8 @@
 		1F17FF28154C760D008F9575 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				1F07F3F01555B9AC00556806 /* popup_bg.png */,
+				1F07F3F11555B9AC00556806 /* popup_bg@2x.png */,
 				1F17FF29154C7665008F9575 /* bg.png */,
 				1F17FF2A154C7665008F9575 /* bg@2x.png */,
 			);
@@ -510,6 +524,10 @@
 		1F699C181550140B005DFCAA /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				1F5CF2941555AA95004AA873 /* general_button_bg_sel.png */,
+				1F5CF2951555AA95004AA873 /* general_button_bg_sel@2x.png */,
+				1F5CF28F1555A9C1004AA873 /* general_button_bg_reg.png */,
+				1F5CF2901555A9C1004AA873 /* general_button_bg_reg@2x.png */,
 				1F699C3E15506FF5005DFCAA /* help.png */,
 				1F699C3F15506FF5005DFCAA /* help@2x.png */,
 				1F699C1E155069D4005DFCAA /* delete.png */,
@@ -701,6 +719,12 @@
 				1F699C4615507F73005DFCAA /* RightWrongTriviaViewController.xib in Resources */,
 				1FF2CCA11551D52200A93B3D /* EndOfGameViewController.xib in Resources */,
 				1FCC68D715525F9C0099479A /* NewGameViewController.xib in Resources */,
+				1F5CF2911555A9C1004AA873 /* general_button_bg_reg.png in Resources */,
+				1F5CF2921555A9C1004AA873 /* general_button_bg_reg@2x.png in Resources */,
+				1F5CF2961555AA95004AA873 /* general_button_bg_sel.png in Resources */,
+				1F5CF2971555AA95004AA873 /* general_button_bg_sel@2x.png in Resources */,
+				1F07F3F21555B9AC00556806 /* popup_bg.png in Resources */,
+				1F07F3F31555B9AC00556806 /* popup_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

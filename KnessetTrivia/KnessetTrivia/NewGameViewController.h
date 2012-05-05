@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "GameFlowDelegateProtocol.h"
+
+typedef enum {
+    kStartPhrase1,
+    kStartPhrase2,
+    kStartPhrase3,
+    kStartPhrase4,
+    kStartPhrase5,
+    startPhraseCount
+}StartPhrase;
+
 @interface NewGameViewController : UIViewController {
     id <GameFlowDelegate> delegate;
+    IBOutlet UILabel *startPhraseLabel;
+    BOOL firstGameEver;
 }
 
 @property (assign) id <GameFlowDelegate> delegate;

@@ -8,6 +8,13 @@
 
 #import "NewGameViewController.h"
 
+#define kNewGameStartPhraseFirst @"לחץ כדי להתחיל במשחק"
+#define kNewGameStartPhrase1 @"מוכנים לעוד אחד?"
+#define kNewGameStartPhrase2 @"הגיע הזמן לשבור את השיא..."
+#define kNewGameStartPhrase3 @"חושבים שאתם מבינים בענייני כנסת?"
+#define kNewGameStartPhrase4 @"הפעם בלי טעויות..."
+#define kNewGameStartPhrase5 @"רוצים עוד קצת?"
+
 @interface NewGameViewController ()
 
 @end
@@ -26,6 +33,43 @@
 
 - (void)viewDidLoad
 {
+    NSString *startPhrase;
+    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstGameEver"];
+    
+    if (!num) {
+        firstGameEver = YES;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"firstGameEver"];
+    } else {
+        firstGameEver = NO;
+    }
+    
+    if (firstGameEver) {
+        startPhrase = kNewGameStartPhraseFirst;
+    } else {
+        StartPhrase randomPhrase = arc4random() % startPhraseCount;
+        switch (randomPhrase) {
+            case kStartPhrase1:
+                startPhrase = kNewGameStartPhrase1;
+                break;
+            case kStartPhrase2:
+                startPhrase = kNewGameStartPhrase2;
+                break;
+            case kStartPhrase3:
+                startPhrase = kNewGameStartPhrase3;
+                break;
+            case kStartPhrase4:
+                startPhrase = kNewGameStartPhrase4;
+                break;
+            case kStartPhrase5:
+                startPhrase = kNewGameStartPhrase5;
+                break;
+            default:
+                break;
+        }
+    }
+    startPhraseLabel.text = startPhrase;
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

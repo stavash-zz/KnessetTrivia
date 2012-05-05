@@ -36,7 +36,7 @@
 - (UIImage *)getImageForMemberId:(int)memberId;
 - (UIImage *)savedImageForId:(int)imageId;
 - (void) saveImageToDocuments:(UIImage *)image withId:(int)imageId;
-
+- (void) saveAllImagesLocally;
 
 @end
 
