@@ -3,15 +3,19 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 4/1/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//   
 //
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate> {
+    int secondsElapsed;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
+
+@property (nonatomic, retain) NSTimer *gameTimer;
 
 @end

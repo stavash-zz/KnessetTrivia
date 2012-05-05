@@ -3,7 +3,7 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 4/28/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//   
 //
 
 #import "ImageTriviaViewController.h"
@@ -11,6 +11,7 @@
 #import "KTMember.h"
 #import "MemberCellViewController.h"
 #import "ScoreManager.h"
+#import "GoogleAnalyticsLogger.h"
 
 #define kImageTriviaNextQuestionDelay 0.4
 #define kImageTriviaFemaleRatioCoeff 10
@@ -22,7 +23,7 @@
 @implementation ImageTriviaViewController
 @synthesize delegate;
 @synthesize topLeftMemberCell,topRightMemberCell,bottomLeftMemberCell,bottomRightMemberCell;
-@synthesize optionsArr;
+@synthesize optionsArr, gameTimer;
 
 #pragma mark - Cell setters
 
@@ -83,6 +84,14 @@
 }
 
 - (void) loadNextQuestion {
+    //Log to analytics
+    int topLeftId = topLeftMemberCell.member.memberId;
+    int topRightId = topRightMemberCell.member.memberId;
+    int bottomLeftId = bottomLeftMemberCell.member.memberId;
+    int bottomRightId = bottomRightMemberCell.member.memberId;
+    [[GoogleAnalyticsLogger sharedLogger] logSecondsToAnswerForImageTrivia:secondsElapsed topLeft:topLeftId topRight:topRightId bottomLeft:bottomLeftId bottomRight:bottomRightId tries:tries];
+
+    //Advance
     [self.delegate advanceToNextQuestion];
 }
 
@@ -126,14 +135,21 @@
     [self setCell:kCellPositionBottomRight withMember:[self.optionsArr objectAtIndex:3]];
     
     [self hideAllInfoButtons];
-
+    
+    //analytics setup
+    tries = 0;
+    secondsElapsed = 0;
+    self.gameTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(incrementSecondsElapsed) userInfo:nil repeats:YES];
+    [self.gameTimer fire];
+    [[NSRunLoop currentRunLoop] addTimer:self.gameTimer forMode:NSDefaultRunLoopMode];
+    
     [UIView beginAnimations:@"" context:nil];
     helpButton.alpha = 1;
     [UIView commitAnimations];
 }
 
 - (void) viewDidAppear:(BOOL)animated {    
-//    [self loadNextQuestion];
+
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -170,6 +186,13 @@
 
 - (void)viewDidUnload
 {
+    self.topLeftMemberCell = nil;
+    self.topRightMemberCell = nil;
+    self.bottomLeftMemberCell = nil;
+    self.bottomRightMemberCell = nil;
+    self.optionsArr = nil;
+    self.gameTimer = nil;
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -257,6 +280,7 @@
     } else {
         if (self.topLeftMemberCell.myResultState == kResultUnknown) {
             [[ScoreManager sharedManager] updateWrongAnswer];
+            tries++;
         }
         [self.topLeftMemberCell showWrongIndication];
     }
@@ -272,6 +296,7 @@
     } else {
         if (self.topRightMemberCell.myResultState == kResultUnknown) {
             [[ScoreManager sharedManager] updateWrongAnswer];
+            tries++;
         }
         [self.topRightMemberCell showWrongIndication];
     }
@@ -287,6 +312,7 @@
     } else {
         if (self.bottomLeftMemberCell.myResultState == kResultUnknown) {
             [[ScoreManager sharedManager] updateWrongAnswer];
+            tries++;
         }
         [self.bottomLeftMemberCell showWrongIndication];
     }
@@ -302,11 +328,15 @@
     } else {
         if (self.bottomRightMemberCell.myResultState == kResultUnknown) {
             [[ScoreManager sharedManager] updateWrongAnswer];
+            tries++;
         }
         [self.bottomRightMemberCell showWrongIndication];
     }
 }
 
-
+#pragma mark - Game Timer
+- (void) incrementSecondsElapsed {
+    secondsElapsed++;
+}
 
 @end

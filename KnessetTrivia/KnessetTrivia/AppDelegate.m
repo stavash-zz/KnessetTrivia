@@ -3,7 +3,7 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 4/1/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//   
 //
 
 #import "AppDelegate.h"
@@ -14,11 +14,16 @@
 #import "DataManager.h"
 #import "ScoreManager.h"
 #import "GeneralTriviaViewController.h"
+#import "GoogleAnalyticsManager.h"
+#import "GoogleAnalyticsLogger.h"
+
+#define kKnessetTriviaGoogleAnalyticsTrackingNumber @"UA-31452039-1"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+@synthesize gameTimer = _gameTimer;
 
 - (void)dealloc
 {
@@ -29,6 +34,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] setAnalyticsTrackingNumber:kKnessetTriviaGoogleAnalyticsTrackingNumber];
+
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UIViewController *viewController1 = [[[GeneralTriviaViewController alloc] init] autorelease];
@@ -41,11 +48,17 @@
     [[DataManager sharedManager]  initializeBills];
     [ScoreManager sharedManager];
     [self.window makeKeyAndVisible];
+    
+    secondsElapsed = 0;
+    self.gameTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(incrementSecondsElapsed) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.gameTimer forMode:NSDefaultRunLoopMode];
+    [self.gameTimer fire];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+    [self logSecondsElapsed];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
@@ -68,6 +81,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [self logSecondsElapsed];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
@@ -84,5 +98,17 @@
 {
 }
 */
+
+#pragma mark - Game Timer
+- (void) incrementSecondsElapsed {
+    secondsElapsed++;
+}
+
+- (void) logSecondsElapsed {
+    if (secondsElapsed > 0) {
+        [[GoogleAnalyticsLogger sharedLogger] logSecondsSpentInApplication:secondsElapsed];
+        secondsElapsed = 0;
+    }
+}
 
 @end

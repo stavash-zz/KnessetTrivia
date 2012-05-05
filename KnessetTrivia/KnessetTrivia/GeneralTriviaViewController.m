@@ -14,7 +14,7 @@
 #import "NewGameViewController.h"
 #import "EndOfGameViewController.h"
 
-#define kGeneralTriviaSecondsToPlay 5.0
+#define kGeneralTriviaSecondsToPlay 60.0
 
 @interface GeneralTriviaViewController ()
 

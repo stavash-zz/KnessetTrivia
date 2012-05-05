@@ -1,9 +1,8 @@
 //
 //  SoundEngine.m
-//  Spitch
+//  OpenKnesset
 //
-//  Created by Amir on 4/12/11.
-//  Copyright 2011 Zemingo. All rights reserved.
+//  Created by Stav Ashuri on 4/12/11.
 //
 
 #import "SoundEngine.h"

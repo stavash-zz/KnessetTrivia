@@ -3,7 +3,7 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 5/1/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//   
 //
 
 #import "RightWrongTriviaViewController.h"
@@ -11,6 +11,7 @@
 #import "DataManager.h"
 #import "MemberCellViewController.h"
 #import "ScoreManager.h"
+#import "GoogleAnalyticsLogger.h"
 
 #define kRightWrongQuestionAgeOffset 4
 
@@ -20,7 +21,7 @@
 
 @implementation RightWrongTriviaViewController
 
-@synthesize currentMember,currentObject, cellVC, delegate;
+@synthesize currentMember,currentObject, cellVC, delegate, gameTimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +44,7 @@
     self.currentMember = nil;
     self.currentObject = nil;
     self.cellVC = nil;
+    self.gameTimer = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -56,12 +58,18 @@
 #pragma mark - Animations
 
 - (void) updateResult:(BOOL)isCorrect {
+    //Show result indication
     self.view.userInteractionEnabled = NO;
     if (isCorrect) {
         [self.cellVC showCorrectIndication];
     } else {
         [self.cellVC showWrongIndication];
     }
+
+    //Log answer to analytics
+    [[GoogleAnalyticsLogger sharedLogger] logSecondsToAnswerForRightWrongTrivia:secondsElapsed forMemberId:self.currentMember.memberId questionType:currentQuestionType isCorrect:isCorrect];
+
+    //Advance
     [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:0.5];
 }
 
@@ -174,6 +182,11 @@
             break;
     }
     
+    secondsElapsed = 0;
+    self.gameTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(incrementSecondsElapsed) userInfo:nil repeats:YES];
+    [self.gameTimer fire];
+    [[NSRunLoop currentRunLoop] addTimer:self.gameTimer forMode:NSDefaultRunLoopMode];
+
 }
 
 #pragma mark - Answer validation
@@ -201,6 +214,10 @@
     return correct == trueAnswer;
 }
 
+#pragma mark - Game Timer
+- (void) incrementSecondsElapsed {
+    secondsElapsed++;
+}
 
 
 @end

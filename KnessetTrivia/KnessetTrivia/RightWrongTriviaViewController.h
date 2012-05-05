@@ -3,7 +3,7 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 5/1/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//   
 //
 
 #import <UIKit/UIKit.h>
@@ -29,13 +29,16 @@ typedef enum {
     NSObject *currentObject;
     
     MemberCellViewController *cellVC;
+    
+    int secondsElapsed;
+    NSTimer *gameTimer;
 }
 
 @property (assign) id <GeneralTriviaDelegate> delegate;
 
 @property (nonatomic, retain) KTMember *currentMember;
 @property (nonatomic, retain) NSObject *currentObject;
-
 @property (nonatomic, retain) MemberCellViewController *cellVC;
+@property (nonatomic, retain) NSTimer *gameTimer;
 
 @end

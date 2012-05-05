@@ -3,7 +3,7 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 5/1/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//   
 //
 
 #import "MemberCellFlipSideViewController.h"

@@ -3,7 +3,7 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 4/28/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//   
 //
 
 #import <UIKit/UIKit.h>
@@ -39,6 +39,10 @@ typedef enum {
     MemberCellViewController *topRightMemberCell;
     MemberCellViewController *bottomLeftMemberCell;
     MemberCellViewController *bottomRightMemberCell;
+    
+    int secondsElapsed;
+    int tries;
+    NSTimer *gameTimer;
 }
 @property (assign) id <GeneralTriviaDelegate> delegate;
 
@@ -47,5 +51,6 @@ typedef enum {
 @property (nonatomic, retain) MemberCellViewController *bottomLeftMemberCell;
 @property (nonatomic, retain) MemberCellViewController *bottomRightMemberCell;
 @property (nonatomic, retain) NSArray *optionsArr;
+@property (nonatomic, retain) NSTimer *gameTimer;
 
 @end
