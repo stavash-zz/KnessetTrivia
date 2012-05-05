@@ -28,5 +28,7 @@ enum SoundCodes
 + (SoundEngine *)sharedSoundEngine;
 
 - (void) play:(int)soundCode;
+- (void) setSoundON:(BOOL)newValue;
+- (BOOL) getSoundState;
 
 @end

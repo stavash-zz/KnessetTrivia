@@ -53,19 +53,17 @@ static SoundEngine *sharedSoundEngine = nil;
 
 
 #pragma mark -
-#pragma mark setter SoundON
+#pragma mark Sound getter/setter
 
 - (void) setSoundON:(BOOL)newValue
 {
-	if (newValue) 
-	{
-//		[self playBackgroundMusic:currentMusicCode];
-	} 
-	else
-	{
-//		[self pauseBackgroundMusic];
-	}
+    NSNumber *numBool = [NSNumber numberWithBool:newValue];
+    [[NSUserDefaults standardUserDefaults] setObject:numBool forKey:@"soundOn"];
 	soundON = newValue;
+}
+
+- (BOOL) getSoundState {
+    return soundON;
 }
 
 
@@ -77,7 +75,12 @@ static SoundEngine *sharedSoundEngine = nil;
     self = [super init];
 	if (self)
 	{
-		soundON = YES;
+        NSNumber *soundBool = [[NSUserDefaults standardUserDefaults] objectForKey:@"soundOn"];
+        if (soundBool) {
+            soundON = [soundBool boolValue];
+        } else {
+            soundON = YES;
+        }
 		
 		CFBundleRef mainBundle = CFBundleGetMainBundle ();
 		

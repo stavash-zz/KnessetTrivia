@@ -9,6 +9,7 @@
 #import "AboutViewController.h"
 #import "ScoreManager.h"
 #import "GoogleAnalyticsLogger.h"
+#import "SoundEngine.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface AboutViewController ()
@@ -29,6 +30,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [self updateHighScore];
+    [soundSwitch setOn:[[SoundEngine sharedSoundEngine] getSoundState] animated:YES];
 }
 
 - (void)viewDidLoad
@@ -70,6 +72,11 @@
 - (IBAction)goToYedaPressed:(id)sender {
     [[GoogleAnalyticsLogger sharedLogger] logSiteLinkPressed:kSiteLinkPublicKnowledge];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://yeda.us/"]]; 
+}
+
+- (IBAction)soundSwitchChanged:(id)sender {
+    UISwitch *sSwitch = (UISwitch *)sender;
+    [[SoundEngine sharedSoundEngine] setSoundON:sSwitch.on];
 }
 
 

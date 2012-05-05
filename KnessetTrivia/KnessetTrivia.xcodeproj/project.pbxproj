@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F07F3F21555B9AC00556806 /* popup_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F07F3F01555B9AC00556806 /* popup_bg.png */; };
 		1F07F3F31555B9AC00556806 /* popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F07F3F11555B9AC00556806 /* popup_bg@2x.png */; };
+		1F07F3F71555CF6100556806 /* sound_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F07F3F51555CF6100556806 /* sound_icon.png */; };
+		1F07F3F81555CF6100556806 /* sound_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F07F3F61555CF6100556806 /* sound_icon@2x.png */; };
 		1F17FF26154C571F008F9575 /* ImageTriviaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */; };
 		1F17FF27154C571F008F9575 /* ImageTriviaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */; };
 		1F17FF2B154C7665008F9575 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF29154C7665008F9575 /* bg.png */; };
@@ -112,6 +114,8 @@
 /* Begin PBXFileReference section */
 		1F07F3F01555B9AC00556806 /* popup_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = popup_bg.png; path = Artwork/popup_bg.png; sourceTree = "<group>"; };
 		1F07F3F11555B9AC00556806 /* popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "popup_bg@2x.png"; path = "Artwork/popup_bg@2x.png"; sourceTree = "<group>"; };
+		1F07F3F51555CF6100556806 /* sound_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound_icon.png; path = Artwork/sound_icon.png; sourceTree = "<group>"; };
+		1F07F3F61555CF6100556806 /* sound_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sound_icon@2x.png"; path = "Artwork/sound_icon@2x.png"; sourceTree = "<group>"; };
 		1F17FF23154C571F008F9575 /* ImageTriviaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTriviaViewController.h; sourceTree = "<group>"; };
 		1F17FF24154C571F008F9575 /* ImageTriviaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTriviaViewController.m; sourceTree = "<group>"; };
 		1F17FF25154C571F008F9575 /* ImageTriviaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTriviaViewController.xib; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 		1F17FF28154C760D008F9575 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				1F07F3F51555CF6100556806 /* sound_icon.png */,
+				1F07F3F61555CF6100556806 /* sound_icon@2x.png */,
 				1F07F3F01555B9AC00556806 /* popup_bg.png */,
 				1F07F3F11555B9AC00556806 /* popup_bg@2x.png */,
 				1F17FF29154C7665008F9575 /* bg.png */,
@@ -725,6 +731,8 @@
 				1F5CF2971555AA95004AA873 /* general_button_bg_sel@2x.png in Resources */,
 				1F07F3F21555B9AC00556806 /* popup_bg.png in Resources */,
 				1F07F3F31555B9AC00556806 /* popup_bg@2x.png in Resources */,
+				1F07F3F71555CF6100556806 /* sound_icon.png in Resources */,
+				1F07F3F81555CF6100556806 /* sound_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

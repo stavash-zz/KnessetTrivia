@@ -16,6 +16,7 @@
 #import "GeneralTriviaViewController.h"
 #import "GoogleAnalyticsManager.h"
 #import "GoogleAnalyticsLogger.h"
+#import "SoundEngine.h"
 
 #define kKnessetTriviaGoogleAnalyticsTrackingNumber @"UA-31452039-1"
 
@@ -49,6 +50,7 @@
     [[DataManager sharedManager]  initializeBills];
     [[DataManager sharedManager] performSelectorInBackground:@selector(saveAllImagesLocally) withObject:nil];
     [ScoreManager sharedManager];
+    [SoundEngine sharedSoundEngine];
     [self.window makeKeyAndVisible];
     
     [self initGameTimer];

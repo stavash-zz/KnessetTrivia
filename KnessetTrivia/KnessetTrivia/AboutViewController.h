@@ -11,6 +11,7 @@
 @interface AboutViewController : UIViewController {
     IBOutlet UILabel *highScoreLabel;
     IBOutlet UIView *highScoreBg;
+    IBOutlet UISwitch *soundSwitch;
 }
 
 @end
