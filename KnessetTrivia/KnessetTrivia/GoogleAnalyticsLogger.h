@@ -10,6 +10,11 @@
 #import "GoogleAnalyticsManager.h"
 #import "RightWrongTriviaViewController.h"
 
+typedef enum {
+    kSiteLinkOpenKnesset,
+    kSiteLinkPublicKnowledge
+}SiteLinkType;
+
 @interface GoogleAnalyticsLogger : NSObject
 
 + (GoogleAnalyticsLogger *)sharedLogger;
@@ -17,5 +22,6 @@
 - (void) logSecondsSpentInApplication:(int)seconds;
 - (void) logSecondsToAnswerForImageTrivia:(int)seconds topLeft:(int)topLeftMemberId topRight:(int)topRightMemberId bottomLeft:(int)bottomLeftMemberId bottomRight:(int)bottomRightMemberId tries:(int)numOfTries;
 - (void) logSecondsToAnswerForRightWrongTrivia:(int)seconds forMemberId:(int)memberId questionType:(RightWrongQuestionType)type isCorrect:(BOOL)correct;
+- (void) logSiteLinkPressed:(SiteLinkType)type;
 
 @end

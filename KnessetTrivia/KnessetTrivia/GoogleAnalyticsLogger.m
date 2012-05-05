@@ -11,6 +11,8 @@
 #define kGAEventCategoryGameplay @"Gameplay"
 #define kGAEventCateoryGeneral @"General"
 #define kGAEventNameSecondsElapsed @"SecondsElapsed"
+#define kGASiteNameOpenKnesset @"OpenKnesset"
+#define kGASiteNamePublicKnowledge @"PublicKnowledge"
 #define kGASecondsElapsedLabel @"SecondsElapsed"
 #define kGAQuestionNameParty @"Party"
 #define kGAQuestionNameAge   @"Age"
@@ -91,6 +93,21 @@ static GoogleAnalyticsLogger *sharedSingleton;
     NSString *eventName = [NSString stringWithFormat:@"%d-%@-%@",memberId,questionName,correctness];
 //    NSLog(@"GA LOGGING RIGHTWRONG %@ time:%d",eventName,seconds);
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryGameplay withEventName:eventName andLabel:kGASecondsElapsedLabel withValue:seconds];
+}
+
+- (void) logSiteLinkPressed:(SiteLinkType)type {
+    NSString *eventName;
+    switch (type) {
+        case kSiteLinkOpenKnesset:
+            eventName = kGASiteNameOpenKnesset;
+            break;
+        case kSiteLinkPublicKnowledge:
+            eventName = kGASiteNamePublicKnowledge;
+            break;
+        default:
+            break;
+    }
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCateoryGeneral withEventName:eventName];
 }
 
 @end

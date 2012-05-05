@@ -49,10 +49,7 @@
     [ScoreManager sharedManager];
     [self.window makeKeyAndVisible];
     
-    secondsElapsed = 0;
-    self.gameTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(incrementSecondsElapsed) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.gameTimer forMode:NSDefaultRunLoopMode];
-    [self.gameTimer fire];
+    [self initGameTimer];
     return YES;
 }
 
@@ -71,6 +68,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [self initGameTimer];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
@@ -100,6 +98,13 @@
 */
 
 #pragma mark - Game Timer
+- (void)initGameTimer {
+    secondsElapsed = 0;
+    self.gameTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(incrementSecondsElapsed) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.gameTimer forMode:NSDefaultRunLoopMode];
+    [self.gameTimer fire];
+
+}
 - (void) incrementSecondsElapsed {
     secondsElapsed++;
 }
@@ -109,6 +114,7 @@
         [[GoogleAnalyticsLogger sharedLogger] logSecondsSpentInApplication:secondsElapsed];
         secondsElapsed = 0;
     }
+    [self.gameTimer invalidate];
 }
 
 @end

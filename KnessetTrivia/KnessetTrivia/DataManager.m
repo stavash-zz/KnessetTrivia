@@ -81,9 +81,9 @@ static DataManager *manager = nil;
     NSError *error = nil;
     NSArray *jsonObjects = (NSArray *)[jsonParser objectWithString:jsonString error:&error];
     if ([error localizedDescription]) {
-        NSLog(@"Members parsing failed with error: %@",[error localizedDescription]);
+        NSLog(@"Bills parsing failed with error: %@",[error localizedDescription]);
     } else {
-        NSLog(@"Members parsed successfuly");
+        NSLog(@"Bills parsed successfuly");
     }
     
     self.bills = [KTParser parseBillsFromTree:jsonObjects];

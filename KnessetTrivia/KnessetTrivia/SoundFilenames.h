@@ -1,13 +1,3 @@
-/*
- *  SoundsNamesFiles.h
- *  MikMak
- *
- *  Created by Amir on 5/29/11.
- *  Copyright 2011 Zemingo. All rights reserved.
- *
- */
-
-
 #define CORRECT_ANSWER "correct"
 #define WRONG_ANSWER ""
 

@@ -8,6 +8,7 @@
 
 #import "AboutViewController.h"
 #import "ScoreManager.h"
+#import "GoogleAnalyticsLogger.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface AboutViewController ()
@@ -62,10 +63,12 @@
 
 #pragma mark - IBActions
 - (IBAction)goToOpenKnessetPressed:(id)sender {
+    [[GoogleAnalyticsLogger sharedLogger] logSiteLinkPressed:kSiteLinkOpenKnesset];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://oknesset.org/"]];
 }
 
 - (IBAction)goToYedaPressed:(id)sender {
+    [[GoogleAnalyticsLogger sharedLogger] logSiteLinkPressed:kSiteLinkPublicKnowledge];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://yeda.us/"]]; 
 }
 
