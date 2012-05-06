@@ -40,11 +40,13 @@ static SoundEngine *sharedSoundEngine = nil;
 		switch (soundCode)
 		{
 			case kSoundCodeCorrectAnswer:
-				AudioServicesPlaySystemSound (SoundCodeCorrectAnswer);
+				AudioServicesPlaySystemSound(SoundCodeCorrectAnswer);
 				break;
 			case kSoundCodeWrongAnswer:
-				AudioServicesPlaySystemSound (SoundCodeWrongAnswer);
+				AudioServicesPlaySystemSound(SoundCodeWrongAnswer);
 				break;
+            case kSoundCodeTimeIsUp:
+                AudioServicesPlaySystemSound(SoundCodeTimeIsUp);
 			default:
 				break;
 		}
@@ -87,8 +89,12 @@ static SoundEngine *sharedSoundEngine = nil;
 		CFURLRef soundFileURLRef  = CFBundleCopyResourceURL (mainBundle,	CFSTR (CORRECT_ANSWER), CFSTR (MP3_EXTENSION_), NULL);
 		AudioServicesCreateSystemSoundID (soundFileURLRef, &SoundCodeCorrectAnswer);
 		
-		 soundFileURLRef  = CFBundleCopyResourceURL (mainBundle,	CFSTR (WRONG_ANSWER), CFSTR (MP3_EXTENSION_), NULL);
+		soundFileURLRef  = CFBundleCopyResourceURL (mainBundle,	CFSTR (WRONG_ANSWER), CFSTR (WAV_EXTENSION_), NULL);
 		AudioServicesCreateSystemSoundID (soundFileURLRef, &SoundCodeWrongAnswer);
+        
+        soundFileURLRef  = CFBundleCopyResourceURL (mainBundle,	CFSTR (TIME_UP), CFSTR (WAV_EXTENSION_), NULL);
+		AudioServicesCreateSystemSoundID (soundFileURLRef, &SoundCodeTimeIsUp);
+        
 		        
 		currentMusicCode = -1;
 		

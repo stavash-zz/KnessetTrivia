@@ -104,6 +104,8 @@
 		1F933A2C15552C43004CC127 /* GoogleAnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F933A2B15552C43004CC127 /* GoogleAnalyticsManager.m */; };
 		1F933A2E15552D35004CC127 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F933A2D15552D35004CC127 /* libsqlite3.0.dylib */; };
 		1F933A3115553454004CC127 /* GoogleAnalyticsLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F933A3015553454004CC127 /* GoogleAnalyticsLogger.m */; };
+		1F9C9B371556709D00F0907D /* blop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1F9C9B351556709D00F0907D /* blop.wav */; };
+		1F9C9B381556709D00F0907D /* shipbell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1F9C9B361556709D00F0907D /* shipbell.wav */; };
 		1FCC68D615525F9C0099479A /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC68D415525F9B0099479A /* NewGameViewController.m */; };
 		1FCC68D715525F9C0099479A /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCC68D515525F9C0099479A /* NewGameViewController.xib */; };
 		1FF2CC9B1551CA2300A93B3D /* ScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2CC9A1551CA2300A93B3D /* ScoreManager.m */; };
@@ -249,6 +251,8 @@
 		1F933A2D15552D35004CC127 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		1F933A2F15553454004CC127 /* GoogleAnalyticsLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsLogger.h; sourceTree = "<group>"; };
 		1F933A3015553454004CC127 /* GoogleAnalyticsLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsLogger.m; sourceTree = "<group>"; };
+		1F9C9B351556709D00F0907D /* blop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = blop.wav; path = Audio/blop.wav; sourceTree = "<group>"; };
+		1F9C9B361556709D00F0907D /* shipbell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = shipbell.wav; path = Audio/shipbell.wav; sourceTree = "<group>"; };
 		1FCC68D315525F9B0099479A /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		1FCC68D415525F9B0099479A /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		1FCC68D515525F9C0099479A /* NewGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGameViewController.xib; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 		1F18A204154D551200D94946 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				1F9C9B351556709D00F0907D /* blop.wav */,
+				1F9C9B361556709D00F0907D /* shipbell.wav */,
 				1F18A20D154D56EC00D94946 /* correct.mp3 */,
 			);
 			name = Audio;
@@ -733,6 +739,8 @@
 				1F07F3F31555B9AC00556806 /* popup_bg@2x.png in Resources */,
 				1F07F3F71555CF6100556806 /* sound_icon.png in Resources */,
 				1F07F3F81555CF6100556806 /* sound_icon@2x.png in Resources */,
+				1F9C9B371556709D00F0907D /* blop.wav in Resources */,
+				1F9C9B381556709D00F0907D /* shipbell.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

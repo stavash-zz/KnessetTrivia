@@ -13,7 +13,8 @@
 enum SoundCodes
 {
     kSoundCodeCorrectAnswer,
-    kSoundCodeWrongAnswer
+    kSoundCodeWrongAnswer,
+    kSoundCodeTimeIsUp
 };
 
 @interface SoundEngine : NSObject <AVAudioPlayerDelegate>
@@ -23,6 +24,7 @@ enum SoundCodes
     
     SystemSoundID SoundCodeCorrectAnswer;
     SystemSoundID SoundCodeWrongAnswer;
+    SystemSoundID SoundCodeTimeIsUp;
 }
 
 + (SoundEngine *)sharedSoundEngine;

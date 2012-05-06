@@ -13,6 +13,7 @@
 #import "ScoreManager.h"
 #import "NewGameViewController.h"
 #import "EndOfGameViewController.h"
+#import "SoundEngine.h"
 
 #define kGeneralTriviaSecondsToPlay 60.0
 
@@ -113,6 +114,8 @@
     self.endOfGameVC.view.alpha = 1.0;
     [UIView commitAnimations];
     [endGameVC release];
+    
+    [[SoundEngine sharedSoundEngine] play:kSoundCodeTimeIsUp];
 }
 
 #pragma mark - Timed selectors

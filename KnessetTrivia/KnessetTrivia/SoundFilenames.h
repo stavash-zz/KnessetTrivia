@@ -1,5 +1,6 @@
 #define CORRECT_ANSWER "correct"
-#define WRONG_ANSWER ""
+#define WRONG_ANSWER "blop"
+#define TIME_UP "shipbell"
 
 #define MP3_EXTENSION @"mp3"
 #define MP3_EXTENSION_ "mp3"

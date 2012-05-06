@@ -150,6 +150,7 @@
     self.view.backgroundColor = [UIColor redColor];
     self.view.transform = t;
     [UIView commitAnimations];
+    [[SoundEngine sharedSoundEngine] play:kSoundCodeWrongAnswer];
     
 }
 
