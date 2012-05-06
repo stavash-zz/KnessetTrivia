@@ -59,9 +59,8 @@ static GoogleAnalyticsLogger *sharedSingleton;
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCateoryGeneral withEventName:kGAEventNameSecondsElapsed andLabel:kGASecondsElapsedLabel withValue:seconds];
 }
 
-- (void) logSecondsToAnswerForImageTrivia:(int)seconds topLeft:(int)topLeftMemberId topRight:(int)topRightMemberId bottomLeft:(int)bottomLeftMemberId bottomRight:(int)bottomRightMemberId tries:(int)numOfTries {
-    
-    NSString *eventName = [NSString stringWithFormat:@"%d-%d-%d-%d-%d",topLeftMemberId,topRightMemberId,bottomLeftMemberId,bottomRightMemberId,numOfTries];
+- (void) logSecondsToAnswerForImageTrivia:(int)seconds topLeft:(int)topLeftMemberId topRight:(int)topRightMemberId bottomLeft:(int)bottomLeftMemberId bottomRight:(int)bottomRightMemberId correctMemberId:(int)correctId tries:(int)numOfTries{    
+    NSString *eventName = [NSString stringWithFormat:@"%d-%d-%d-%d-(%d)-%d",topLeftMemberId,topRightMemberId,bottomLeftMemberId,bottomRightMemberId,correctId,numOfTries];
     
 //    NSLog(@"GA LOGGING IMAGE %@ time:%d",eventName,seconds);
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryGameplay withEventName:eventName andLabel:kGASecondsElapsedLabel withValue:seconds]; 

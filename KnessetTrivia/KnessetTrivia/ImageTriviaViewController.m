@@ -89,10 +89,15 @@
     int topRightId = topRightMemberCell.member.memberId;
     int bottomLeftId = bottomLeftMemberCell.member.memberId;
     int bottomRightId = bottomRightMemberCell.member.memberId;
-    [[GoogleAnalyticsLogger sharedLogger] logSecondsToAnswerForImageTrivia:secondsElapsed topLeft:topLeftId topRight:topRightId bottomLeft:bottomLeftId bottomRight:bottomRightId tries:tries];
+    int correctId = [self getCorrectMemberWithIndex:correctIndex].memberId;
+    [[GoogleAnalyticsLogger sharedLogger] logSecondsToAnswerForImageTrivia:secondsElapsed topLeft:topLeftId topRight:topRightId bottomLeft:bottomLeftId bottomRight:bottomRightId correctMemberId:correctId tries:tries];
 
     //Advance
     [self.delegate advanceToNextQuestion];
+}
+
+- (KTMember *)getCorrectMemberWithIndex:(int)index {
+    return [self.optionsArr objectAtIndex:index];
 }
 
 - (void) loadNewQuestion {
@@ -127,7 +132,7 @@
     }
     
     correctIndex = arc4random() % 4;
-    KTMember *correctMember = [self.optionsArr objectAtIndex:correctIndex];
+    KTMember *correctMember = [self getCorrectMemberWithIndex:correctIndex];
     questionLabel.text = [NSString stringWithFormat:@"זהה את %@",correctMember.name];
     [self setCell:kCellPositionTopLeft withMember:[self.optionsArr objectAtIndex:0]];
     [self setCell:kCellPositionTopRight withMember:[self.optionsArr objectAtIndex:1]];
