@@ -23,4 +23,5 @@
 - (NSString *) getCurrentScoreStr;
 - (void) challengeHighScore;
 - (int)getHighScore;
+- (BOOL)isCurrentScorePositive;
 @end

@@ -28,6 +28,7 @@
 - (NSArray *)getMembersOfGender:(MemberGender)gender;
 - (NSArray *)getAllMemberNames;
 - (NSArray *)getAllParties;
+- (NSArray *)getAllPlacesOfBirth;
 - (NSArray *)getFourRandomMembersOfGender:(MemberGender)gender;
 - (KTMember *) getRandomMember;
 - (int)getAgeForMember:(KTMember *)member;

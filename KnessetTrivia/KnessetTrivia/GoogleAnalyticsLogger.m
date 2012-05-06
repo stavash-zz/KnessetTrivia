@@ -14,8 +14,10 @@
 #define kGASiteNameOpenKnesset @"OpenKnesset"
 #define kGASiteNamePublicKnowledge @"PublicKnowledge"
 #define kGASecondsElapsedLabel @"SecondsElapsed"
+
 #define kGAQuestionNameParty @"Party"
 #define kGAQuestionNameAge   @"Age"
+#define kGAQuestionNamePlaceOfBirth @"PlaceOfBirth"
 
 @implementation GoogleAnalyticsLogger
 
@@ -78,6 +80,12 @@ static GoogleAnalyticsLogger *sharedSingleton;
         {
             questionName = kGAQuestionNameParty;
         }
+            break;
+        case kRightWrongQuestionTypePlaceOfBirth:
+        {
+            questionName = kGAQuestionNamePlaceOfBirth;
+        }
+            break;
         default:
             break;
     }

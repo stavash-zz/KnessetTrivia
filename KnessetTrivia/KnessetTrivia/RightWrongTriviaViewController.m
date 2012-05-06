@@ -110,6 +110,43 @@
 
 #pragma mark - Question generation
 
++ (NSString *)getQuestionReferenceForQuestionType:(RightWrongQuestionType)qType andGender:(MemberGender)gender {
+    switch (qType) {
+        case kRightWrongQuestionTypePlaceOfBirth:
+        {
+            if (gender == kGenderMale) {
+                return @"נולד ב";
+            } else if (gender == kGenderFemale) {
+                return @"נולדה ב";
+            }
+        }
+            break;
+        case kRightWrongQuestionTypeAge:
+        {
+            if (gender == kGenderMale) {
+                return @"הוא בן";
+            } else if (gender == kGenderFemale) {
+                return @"היא בת";
+            }
+            
+        }
+            break;
+        case kRightWrongQuestionTypeParty:
+        {
+            if (gender == kGenderMale) {
+                return @"הוא חבר";
+            } else if (gender == kGenderFemale) {
+                return @"היא חברה";
+            }
+            
+        }
+            break;
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (void) loadNextQuestion {
     [self.delegate advanceToNextQuestion];
 }
@@ -140,20 +177,16 @@
     [newCellVC release];
     
     //display question
+    NSString *question = nil;
+    NSString *questionReference = [RightWrongTriviaViewController getQuestionReferenceForQuestionType:currentQuestionType andGender:currentMember.gender];
     switch (currentQuestionType) {
         case kRightWrongQuestionTypeParty:
         {
             NSArray *parties = [[DataManager sharedManager] getAllParties];
             int randomPartyIndex = arc4random() % [parties count];
             NSString *party = [parties objectAtIndex:randomPartyIndex];
-            NSString *questionReference;
-            if (currentMember.gender == kGenderMale) {
-                questionReference = @"הוא חבר";
-            } else {
-                questionReference = @"היא חברה";
-            }
-            NSString *question = [NSString stringWithFormat:@"%@ %@ במפלגת %@",currentMember.name,questionReference,party];
-            questionLabel.text = question;
+
+            question = [NSString stringWithFormat:@"%@ %@ במפלגת %@",currentMember.name,questionReference,party];
             self.currentObject = party;
         }
             break;
@@ -165,23 +198,33 @@
                 int randomOffset = (arc4random() % kRightWrongQuestionAgeOffset*2)-kRightWrongQuestionAgeOffset;
                 age += randomOffset;
             }
-            NSString *questionReference;
-            if (currentMember.gender == kGenderMale) {
-                questionReference = @"הוא בן";
-            } else {
-                questionReference = @"היא בת";
-            }
 
-            NSString *question = [NSString stringWithFormat:@"%@ %@ %d",currentMember.name,questionReference,age];
-            questionLabel.text = question;
+            question = [NSString stringWithFormat:@"%@ %@ %d",currentMember.name,questionReference,age];
             self.currentObject = [NSNumber numberWithInt:age];
+        }
+            break;
+        case kRightWrongQuestionTypePlaceOfBirth:
+        {
+            BOOL falseAnswer = arc4random() % 2;
+            NSString *questionPob = nil;
+            if (falseAnswer) {
+                NSArray *places = [[DataManager sharedManager] getAllPlacesOfBirth];
+                int randomIndex = arc4random() % [places count];
+                questionPob = [places objectAtIndex:randomIndex];
+            } else {
+                questionPob = currentMember.placeOfBirth;
+            }
+                        
+            question = [NSString stringWithFormat:@"%@ %@%@",currentMember.name,questionReference,questionPob];
+            self.currentObject = questionPob;
         }
             break;
             
         default:
             break;
     }
-    
+    questionLabel.text = question;
+
     secondsElapsed = 0;
     self.gameTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(incrementSecondsElapsed) userInfo:nil repeats:YES];
     [self.gameTimer fire];
@@ -199,12 +242,18 @@
             NSNumber *currentObjectNum = (NSNumber *)self.currentObject;
             int age = [currentObjectNum intValue];
             correct = ([[DataManager sharedManager] getAgeForMember:currentMember] == age);
-            return correct == trueAnswer;
         }
+            break;
         case kRightWrongQuestionTypeParty:
         {
             NSString *currentObjectString = (NSString *)self.currentObject;
             correct = [currentObjectString isEqualToString:currentMember.party];
+        }
+            break;
+        case kRightWrongQuestionTypePlaceOfBirth:
+        {
+            NSString *currentObjectString = (NSString *)self.currentObject;
+            correct = [currentObjectString isEqualToString:currentMember.placeOfBirth];
         }
             break;
         default:

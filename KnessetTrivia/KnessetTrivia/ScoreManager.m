@@ -60,6 +60,7 @@ static ScoreManager *manager = nil;
 
 - (void)resetScore {
     score = 0;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
 }
 
 - (void)updateScoreChange {
@@ -88,10 +89,14 @@ static ScoreManager *manager = nil;
 
 - (NSString *) getCurrentScoreStr {
     if (score < 0) {
-        return [NSString stringWithFormat:@"%d-",abs(score)];
+        return [NSString stringWithFormat:@"-%d",abs(score)];
     } else {
         return [NSString stringWithFormat:@"%d",score];
     }
+}
+
+- (BOOL)isCurrentScorePositive {
+    return (score > 0);
 }
 
 #pragma mark - High Score

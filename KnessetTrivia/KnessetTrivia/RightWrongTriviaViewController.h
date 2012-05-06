@@ -13,6 +13,7 @@
 typedef enum {
     kRightWrongQuestionTypeParty,
     kRightWrongQuestionTypeAge,
+    kRightWrongQuestionTypePlaceOfBirth,
     questionOptionsCount
 }RightWrongQuestionType;
 

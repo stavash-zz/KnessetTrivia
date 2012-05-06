@@ -31,15 +31,17 @@
     if (self) {
         self.title = @"טריוויה";
         self.tabBarItem.image = [UIImage imageNamed:@"TriviaTab"];
-        // Custom initialization
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 286, 21)];
+    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 330, 30, 30)];
     [newLabel setBackgroundColor:[UIColor clearColor]];
+    [newLabel setMinimumFontSize:10.0];
+    [newLabel setAdjustsFontSizeToFitWidth:YES];
+    [newLabel setFont:[UIFont boldSystemFontOfSize:19.0]];
     [newLabel setTextAlignment:UITextAlignmentRight];
     self.scoreLabel = newLabel;
     [self.view addSubview:self.scoreLabel];
@@ -52,17 +54,12 @@
     [self.view addSubview:progressView];
     self.timeProgressView = progressView;
     [progressView release];
-//
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeProgress) userInfo:nil repeats:YES];
-//    remainingSeconds = kGeneralTriviaSecondsToPlay;
-//    [self.timer fire];
-//    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScoreLabel) name:@"scoreUpdatedNotification" object:nil];
         
     [self showNewGameScreen];
     
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
@@ -72,7 +69,6 @@
     self.timer = nil;
     self.timeProgressView = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -81,7 +77,12 @@
 }
 
 - (void) updateScoreLabel {
-    scoreLabel.text = [NSString stringWithFormat:@"ניקוד: %@",[[ScoreManager sharedManager] getCurrentScoreStr]];
+    scoreLabel.text = [[ScoreManager sharedManager] getCurrentScoreStr];
+    if ([[ScoreManager sharedManager] isCurrentScorePositive]) {
+        scoreLabel.textColor = [UIColor colorWithRed:10.0/255.0 green:158.0/255.0 blue:23.0/255.0 alpha:1.0];
+    } else {
+        scoreLabel.textColor = [UIColor colorWithRed:171.0/255.0 green:0.0 blue:8.0/255.0 alpha:1.0];
+    }
 }
 
 

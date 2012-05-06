@@ -150,6 +150,17 @@ static DataManager *manager = nil;
     return nil;
 }
 
+- (NSArray *)getAllPlacesOfBirth {
+    if (self.members) {
+        NSMutableSet *placesSet = [[[NSMutableSet alloc] init] autorelease];
+        for (KTMember *member in self.members) {
+            [placesSet addObject:member.placeOfBirth];
+        }
+        return [placesSet allObjects];
+    }
+    return nil;
+}
+
 - (NSArray *)getFourRandomMembersOfGender:(MemberGender)gender {
     
     if ([DataManager sharedManager].members) {
