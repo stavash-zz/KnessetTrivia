@@ -8,16 +8,15 @@
 
 #import "GoogleAnalyticsLogger.h"
 
-#define kGAEventCategoryGameplay @"Gameplay"
 #define kGAEventCateoryGeneral @"General"
-#define kGAEventNameSecondsElapsed @"SecondsElapsed"
-#define kGASiteNameOpenKnesset @"OpenKnesset"
-#define kGASiteNamePublicKnowledge @"PublicKnowledge"
-#define kGASecondsElapsedLabel @"SecondsElapsed"
-
-#define kGAQuestionNameParty @"Party"
-#define kGAQuestionNameAge   @"Age"
-#define kGAQuestionNamePlaceOfBirth @"PlaceOfBirth"
+#define kGAEventCategorySession @"Gameplay-Session"
+#define kGAEventCategoryMultipleChoice @"Gameplay-MultipleChoice"
+#define kGAEventCategoryParty @"Gameplay-Party"
+#define kGAEventCategoryAge @"Gameplay-Age"
+#define kGAEventCategoryRole @"Gameplay-Role"
+#define kGAEventCategoryPlaceOfBirth @"Gameplay-PlaceOfBirth"
+#define kGALabelSiteOpenKnesset @"LinkToOpenKnesset"
+#define kGALabelSitePublicKnowledge @"LinkToPublicKnowledge"
 
 @implementation GoogleAnalyticsLogger
 
@@ -57,33 +56,51 @@ static GoogleAnalyticsLogger *sharedSingleton;
 #pragma mark - Public
 
 - (void) logSecondsSpentInApplication:(int)seconds {
-//    NSLog(@"GA LOGGING TIME %d",seconds);
-    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCateoryGeneral withEventName:kGAEventNameSecondsElapsed andLabel:kGASecondsElapsedLabel withValue:seconds];
+    NSLog(@"GA LOGGING TIME SPENT IN APP %d",seconds);
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategorySession withEventName:[NSString stringWithFormat:@"%d",seconds]];
 }
 
-- (void) logSecondsToAnswerForImageTrivia:(int)seconds topLeft:(int)topLeftMemberId topRight:(int)topRightMemberId bottomLeft:(int)bottomLeftMemberId bottomRight:(int)bottomRightMemberId correctMemberId:(int)correctId tries:(int)numOfTries{    
-    NSString *eventName = [NSString stringWithFormat:@"%d-%d-%d-%d-(%d)-%d",topLeftMemberId,topRightMemberId,bottomLeftMemberId,bottomRightMemberId,correctId,numOfTries];
+- (void)logImageTriviaChoices:(NSArray *)wrongChoicesArray forMember:(int)memberId otherMembersDisplayed:(NSArray *)membersArray andTime:(int)seconds{
+    NSMutableString *eventStr = [NSMutableString string];
+    if (wrongChoicesArray) {
+        for (NSNumber *memberId in wrongChoicesArray) {
+            [eventStr appendFormat:@"%d-",[memberId intValue]];
+        }
+    }
+    [eventStr appendFormat:@"#"];
+    if (membersArray) {
+        for (NSNumber *memberIdNum in membersArray) {
+            if ([memberIdNum intValue]!=memberId) {
+                [eventStr appendFormat:@"-%d",[memberIdNum intValue]];
+            }
+        }
+    }
+//    NSLog(@"GA LOGGING IMAGE QUESTION FOR MEMBER %d: %@",memberId,eventStr);
     
-//    NSLog(@"GA LOGGING IMAGE %@ time:%d",eventName,seconds);
-    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryGameplay withEventName:eventName andLabel:kGASecondsElapsedLabel withValue:seconds]; 
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryMultipleChoice withEventName:[NSString stringWithFormat:@"%d",memberId] andLabel:eventStr withValue:seconds];
 }
 
-- (void) logSecondsToAnswerForRightWrongTrivia:(int)seconds forMemberId:(int)memberId questionType:(RightWrongQuestionType)type isCorrect:(BOOL)correct{
-    NSString *questionName;
+- (void)logRightWrongAnswerForMember:(int)memberId ofQuestionType:(RightWrongQuestionType)type isCorrect:(BOOL)correct answerDisplayed:(NSObject *)answer timeToAnswer:(int)seconds{
+    NSString *category = nil;
     switch (type) {
         case kRightWrongQuestionTypeAge:
         {
-            questionName = kGAQuestionNameAge;
+            category = kGAEventCategoryAge;
         }
             break;
         case kRightWrongQuestionTypeParty:
         {
-            questionName = kGAQuestionNameParty;
+            category = kGAEventCategoryParty;
         }
             break;
         case kRightWrongQuestionTypePlaceOfBirth:
         {
-            questionName = kGAQuestionNamePlaceOfBirth;
+            category = kGAEventCategoryPlaceOfBirth;
+        }
+            break;
+        case kRightWrongQuestionTypeRole:
+        {
+            category = kGAEventCategoryRole;
         }
             break;
         default:
@@ -96,20 +113,29 @@ static GoogleAnalyticsLogger *sharedSingleton;
     } else {
         correctness = @"Wrong";
     }
+
+    NSString *answerStr = nil;
+    if ([answer isKindOfClass:[NSString class]]) {
+        answerStr = [NSString stringWithString:(NSString *)answer];
+    } else if ([answer isKindOfClass:[NSNumber class]]) {
+        answerStr = [NSString stringWithFormat:@"%d",[(NSNumber *)answer intValue]];
+    }
     
-    NSString *eventName = [NSString stringWithFormat:@"%d-%@-%@",memberId,questionName,correctness];
-//    NSLog(@"GA LOGGING RIGHTWRONG %@ time:%d",eventName,seconds);
-    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryGameplay withEventName:eventName andLabel:kGASecondsElapsedLabel withValue:seconds];
+    NSString *eventStr = [NSString stringWithFormat:@"%@-%@",answerStr,correctness];
+    
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:@"%d",memberId] andLabel:eventStr withValue:seconds];
+    
+    NSLog(@"LOGGING %@ QUESTION FOR MEMBER %d: %@",category,memberId,eventStr);
 }
 
 - (void) logSiteLinkPressed:(SiteLinkType)type {
     NSString *eventName;
     switch (type) {
         case kSiteLinkOpenKnesset:
-            eventName = kGASiteNameOpenKnesset;
+            eventName = kGALabelSiteOpenKnesset;
             break;
         case kSiteLinkPublicKnowledge:
-            eventName = kGASiteNamePublicKnowledge;
+            eventName = kGALabelSitePublicKnowledge;
             break;
         default:
             break;

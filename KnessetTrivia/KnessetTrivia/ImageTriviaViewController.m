@@ -24,6 +24,7 @@
 @synthesize delegate;
 @synthesize topLeftMemberCell,topRightMemberCell,bottomLeftMemberCell,bottomRightMemberCell;
 @synthesize optionsArr, gameTimer;
+@synthesize choicesArr, otherChoicesArr;
 
 #pragma mark - Cell setters
 
@@ -85,12 +86,8 @@
 
 - (void) loadNextQuestion {
     //Log to analytics
-    int topLeftId = topLeftMemberCell.member.memberId;
-    int topRightId = topRightMemberCell.member.memberId;
-    int bottomLeftId = bottomLeftMemberCell.member.memberId;
-    int bottomRightId = bottomRightMemberCell.member.memberId;
-    int correctId = [self getCorrectMemberWithIndex:correctIndex].memberId;
-    [[GoogleAnalyticsLogger sharedLogger] logSecondsToAnswerForImageTrivia:secondsElapsed topLeft:topLeftId topRight:topRightId bottomLeft:bottomLeftId bottomRight:bottomRightId correctMemberId:correctId tries:tries];
+    int correctId = [self getCorrectMemberWithIndex:correctIndex].memberId;    
+    [[GoogleAnalyticsLogger sharedLogger] logImageTriviaChoices:self.choicesArr forMember:correctId otherMembersDisplayed:self.otherChoicesArr andTime:secondsElapsed];
 
     //Advance
     [self.delegate advanceToNextQuestion];
@@ -120,6 +117,9 @@
     self.bottomLeftMemberCell = nil;
     self.bottomRightMemberCell = nil;
     
+    [self.choicesArr removeAllObjects];
+    [self.otherChoicesArr removeAllObjects];
+    
     //Populate question
     int randGender = arc4random() % kImageTriviaFemaleRatioCoeff;
     if (randGender == 0) {
@@ -129,6 +129,10 @@
     }
     if (!self.optionsArr) {
         return;
+    }
+    
+    for (KTMember *member in self.optionsArr) {
+        [self.otherChoicesArr addObject:[NSNumber numberWithInt:member.memberId]];
     }
     
     correctIndex = arc4random() % 4;
@@ -185,6 +189,14 @@
     
     [self performSelector:@selector(loadNewQuestion) withObject:nil afterDelay:0.1];
     
+    NSMutableArray *arrForChoices = [[NSMutableArray alloc] init];
+    self.choicesArr = arrForChoices;
+    [arrForChoices release];
+    
+    NSMutableArray *arrForOtherChoices = [[NSMutableArray alloc] init];
+    self.otherChoicesArr = arrForOtherChoices;
+    [arrForOtherChoices release];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -197,6 +209,8 @@
     self.bottomRightMemberCell = nil;
     self.optionsArr = nil;
     self.gameTimer = nil;
+    self.choicesArr = nil;
+    self.otherChoicesArr = nil;
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -274,69 +288,59 @@
     }
 }
 
-- (void) topLeftViewTapped {
-    if ([self checkCorrectnessOfPosition:kCellPositionTopLeft]) {
-        if (self.topLeftMemberCell.myResultState == kResultUnknown) {
+- (void) handleSelectionOfCellPosition:(CellPosition)position {
+    MemberCellViewController *selectedMemberCell = nil;
+    switch (position) {
+        case kCellPositionTopLeft:
+            selectedMemberCell = self.topLeftMemberCell;
+            break;
+        case kCellPositionTopRight:
+            selectedMemberCell = self.topRightMemberCell;
+            break;
+        case kCellPositionBottomLeft:
+            selectedMemberCell = self.bottomLeftMemberCell;
+            break;
+        case kCellPositionBottomRight:
+            selectedMemberCell = self.bottomRightMemberCell;
+            break;
+        default:
+            break;
+    }
+    
+    if ([self checkCorrectnessOfPosition:position]) {
+        if (selectedMemberCell.myResultState == kResultUnknown) {
             [[ScoreManager sharedManager] updateCorrectAnswer];
         }
-        [self.topLeftMemberCell showCorrectIndication];
+        [selectedMemberCell showCorrectIndication];
         [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
         
     } else {
-        if (self.topLeftMemberCell.myResultState == kResultUnknown) {
+        if (selectedMemberCell.myResultState == kResultUnknown) {
             [[ScoreManager sharedManager] updateWrongAnswer];
             tries++;
         }
-        [self.topLeftMemberCell showWrongIndication];
+        [selectedMemberCell showWrongIndication];
+        NSNumber *wrongMemberId = [NSNumber numberWithInt:selectedMemberCell.member.memberId];
+        [self.choicesArr addObject:wrongMemberId];
+        [self.otherChoicesArr removeObject:wrongMemberId];
     }
+}
+
+
+- (void) topLeftViewTapped {
+    [self handleSelectionOfCellPosition:kCellPositionTopLeft];
 }
 
 - (void) topRightViewTapped {
-    if ([self checkCorrectnessOfPosition:kCellPositionTopRight]) {
-        if (self.topRightMemberCell.myResultState == kResultUnknown) {
-            [[ScoreManager sharedManager] updateCorrectAnswer];
-        }
-        [self.topRightMemberCell showCorrectIndication];
-        [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
-    } else {
-        if (self.topRightMemberCell.myResultState == kResultUnknown) {
-            [[ScoreManager sharedManager] updateWrongAnswer];
-            tries++;
-        }
-        [self.topRightMemberCell showWrongIndication];
-    }
+    [self handleSelectionOfCellPosition:kCellPositionTopRight];
 }
 
 - (void) bottomLeftViewTapped {
-    if ([self checkCorrectnessOfPosition:kCellPositionBottomLeft]) {
-        if (self.bottomLeftMemberCell.myResultState == kResultUnknown) {
-            [[ScoreManager sharedManager] updateCorrectAnswer];
-        }
-        [self.bottomLeftMemberCell showCorrectIndication];
-        [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
-    } else {
-        if (self.bottomLeftMemberCell.myResultState == kResultUnknown) {
-            [[ScoreManager sharedManager] updateWrongAnswer];
-            tries++;
-        }
-        [self.bottomLeftMemberCell showWrongIndication];
-    }
+    [self handleSelectionOfCellPosition:kCellPositionBottomLeft];
 }
 
 - (void) bottomRightViewTapped {
-    if ([self checkCorrectnessOfPosition:kCellPositionBottomRight]) {
-        if (self.bottomRightMemberCell.myResultState == kResultUnknown) {
-            [[ScoreManager sharedManager] updateCorrectAnswer];
-        }
-        [self.bottomRightMemberCell showCorrectIndication];
-        [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:kImageTriviaNextQuestionDelay];
-    } else {
-        if (self.bottomRightMemberCell.myResultState == kResultUnknown) {
-            [[ScoreManager sharedManager] updateWrongAnswer];
-            tries++;
-        }
-        [self.bottomRightMemberCell showWrongIndication];
-    }
+    [self handleSelectionOfCellPosition:kCellPositionBottomRight];
 }
 
 #pragma mark - Game Timer

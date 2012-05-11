@@ -67,7 +67,7 @@
     }
 
     //Log answer to analytics
-    [[GoogleAnalyticsLogger sharedLogger] logSecondsToAnswerForRightWrongTrivia:secondsElapsed forMemberId:self.currentMember.memberId questionType:currentQuestionType isCorrect:isCorrect];
+    [[GoogleAnalyticsLogger sharedLogger] logRightWrongAnswerForMember:currentMember.memberId ofQuestionType:currentQuestionType isCorrect:isCorrect answerDisplayed:currentObject timeToAnswer:secondsElapsed];
 
     //Advance
     [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:0.5];
