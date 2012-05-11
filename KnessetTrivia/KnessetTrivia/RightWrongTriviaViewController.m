@@ -175,7 +175,6 @@
     
     //generate question type and member
     currentQuestionType = arc4random() % questionOptionsCount;
-    currentQuestionType = kRightWrongQuestionTypeRole; //TEMP!!!
     currentMember = [[DataManager sharedManager] getRandomMember];
     
     //add image cell

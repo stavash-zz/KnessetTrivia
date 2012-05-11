@@ -42,14 +42,6 @@
 		1F62FC301528A60600110F7E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC2E1528A60600110F7E /* InfoPlist.strings */; };
 		1F62FC321528A60600110F7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC311528A60600110F7E /* main.m */; };
 		1F62FC361528A60600110F7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC351528A60600110F7E /* AppDelegate.m */; };
-		1F62FC391528A60600110F7E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC381528A60600110F7E /* FirstViewController.m */; };
-		1F62FC3B1528A60600110F7E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC3A1528A60600110F7E /* first.png */; };
-		1F62FC3D1528A60600110F7E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC3C1528A60600110F7E /* first@2x.png */; };
-		1F62FC401528A60600110F7E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F62FC3F1528A60600110F7E /* SecondViewController.m */; };
-		1F62FC421528A60600110F7E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC411528A60600110F7E /* second.png */; };
-		1F62FC441528A60600110F7E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC431528A60600110F7E /* second@2x.png */; };
-		1F62FC471528A60600110F7E /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC451528A60600110F7E /* FirstViewController.xib */; };
-		1F62FC4A1528A60600110F7E /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F62FC481528A60600110F7E /* SecondViewController.xib */; };
 		1F684AC4154BE39B00AD64FD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F684AC2154BE39B00AD64FD /* Icon.png */; };
 		1F684AC5154BE39B00AD64FD /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F684AC3154BE39B00AD64FD /* Icon@2x.png */; };
 		1F692138154AD0E4001AD57F /* member.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1F692137154AD0E4001AD57F /* member.txt */; };
@@ -160,16 +152,6 @@
 		1F62FC331528A60600110F7E /* KnessetTrivia-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KnessetTrivia-Prefix.pch"; sourceTree = "<group>"; };
 		1F62FC341528A60600110F7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1F62FC351528A60600110F7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1F62FC371528A60600110F7E /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		1F62FC381528A60600110F7E /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		1F62FC3A1528A60600110F7E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		1F62FC3C1528A60600110F7E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		1F62FC3E1528A60600110F7E /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		1F62FC3F1528A60600110F7E /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		1F62FC411528A60600110F7E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		1F62FC431528A60600110F7E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		1F62FC461528A60600110F7E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
-		1F62FC491528A60600110F7E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
 		1F684AC2154BE39B00AD64FD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Artwork/Icon.png; sourceTree = "<group>"; };
 		1F684AC3154BE39B00AD64FD /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Artwork/Icon@2x.png"; sourceTree = "<group>"; };
 		1F692137154AD0E4001AD57F /* member.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = member.txt; sourceTree = "<group>"; };
@@ -426,16 +408,6 @@
 				1F692139154AD1F5001AD57F /* Model */,
 				1F62FC341528A60600110F7E /* AppDelegate.h */,
 				1F62FC351528A60600110F7E /* AppDelegate.m */,
-				1F62FC371528A60600110F7E /* FirstViewController.h */,
-				1F62FC381528A60600110F7E /* FirstViewController.m */,
-				1F62FC3A1528A60600110F7E /* first.png */,
-				1F62FC3C1528A60600110F7E /* first@2x.png */,
-				1F62FC3E1528A60600110F7E /* SecondViewController.h */,
-				1F62FC3F1528A60600110F7E /* SecondViewController.m */,
-				1F62FC411528A60600110F7E /* second.png */,
-				1F62FC431528A60600110F7E /* second@2x.png */,
-				1F62FC451528A60600110F7E /* FirstViewController.xib */,
-				1F62FC481528A60600110F7E /* SecondViewController.xib */,
 				1F62FC2C1528A60600110F7E /* Supporting Files */,
 			);
 			path = KnessetTrivia;
@@ -685,12 +657,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F62FC301528A60600110F7E /* InfoPlist.strings in Resources */,
-				1F62FC3B1528A60600110F7E /* first.png in Resources */,
-				1F62FC3D1528A60600110F7E /* first@2x.png in Resources */,
-				1F62FC421528A60600110F7E /* second.png in Resources */,
-				1F62FC441528A60600110F7E /* second@2x.png in Resources */,
-				1F62FC471528A60600110F7E /* FirstViewController.xib in Resources */,
-				1F62FC4A1528A60600110F7E /* SecondViewController.xib in Resources */,
 				1F692138154AD0E4001AD57F /* member.txt in Resources */,
 				1F69218D154B3917001AD57F /* MemberCellViewController.xib in Resources */,
 				1F5FE22E154B486300633DF5 /* Default.png in Resources */,
@@ -753,8 +719,6 @@
 			files = (
 				1F62FC321528A60600110F7E /* main.m in Sources */,
 				1F62FC361528A60600110F7E /* AppDelegate.m in Sources */,
-				1F62FC391528A60600110F7E /* FirstViewController.m in Sources */,
-				1F62FC401528A60600110F7E /* SecondViewController.m in Sources */,
 				1F69213C154AD213001AD57F /* KTMember.m in Sources */,
 				1F692158154AD7DE001AD57F /* NSObject+SBJson.m in Sources */,
 				1F692159154AD7DE001AD57F /* SBJsonParser.m in Sources */,
@@ -800,22 +764,6 @@
 				1F62FC2F1528A60600110F7E /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1F62FC451528A60600110F7E /* FirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F62FC461528A60600110F7E /* en */,
-			);
-			name = FirstViewController.xib;
-			sourceTree = "<group>";
-		};
-		1F62FC481528A60600110F7E /* SecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F62FC491528A60600110F7E /* en */,
-			);
-			name = SecondViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
