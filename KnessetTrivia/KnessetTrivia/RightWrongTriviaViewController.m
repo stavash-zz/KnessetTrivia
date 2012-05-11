@@ -180,7 +180,7 @@
     //add image cell
     MemberCellViewController *newCellVC = [[MemberCellViewController alloc] initWithNibName:@"MemberCellViewController" bundle:nil];
     newCellVC.member = currentMember;
-    newCellVC.view.frame = CGRectMake(112, 140, 95, 140);
+    newCellVC.view.frame = CGRectMake(112, 170, 95, 140);
     [self.view addSubview:newCellVC.view];
     self.cellVC = newCellVC;
     [newCellVC release];
