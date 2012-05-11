@@ -81,7 +81,11 @@
         [member setBillsProposed:[[memberDict objectForKey:kParserKeyBillsProposed] intValue]];
         [member setCommitteeMeetingsPerMonth:[[memberDict objectForKey:kParserKeyCommitteeMeetingsPerMonth] floatValue]];
         [member setCommittees:[KTParser parseCommitteesArrayFromTree:[memberDict objectForKey:kParserKeyCommittees]]];
-        [member setCurrentRoleDescriptions:[memberDict objectForKey:kParserKeyCurrentRoleDescriptions]];
+        
+        id currentRoleDescriptionsStr = [memberDict objectForKey:kParserKeyCurrentRoleDescriptions];
+        if (currentRoleDescriptionsStr != [NSNull null]) {
+            [member setCurrentRoleDescriptions:currentRoleDescriptionsStr];
+        }
         
         id dateOfBirthStr = [memberDict objectForKey:kParserKeyDateOfBirth];
         if (dateOfBirthStr != [NSNull null]) {

@@ -14,6 +14,7 @@ typedef enum {
     kRightWrongQuestionTypeParty,
     kRightWrongQuestionTypeAge,
     kRightWrongQuestionTypePlaceOfBirth,
+    kRightWrongQuestionTypeRole,
     questionOptionsCount
 }RightWrongQuestionType;
 
@@ -41,5 +42,7 @@ typedef enum {
 @property (nonatomic, retain) NSObject *currentObject;
 @property (nonatomic, retain) MemberCellViewController *cellVC;
 @property (nonatomic, retain) NSTimer *gameTimer;
+
+- (IBAction)helpPressed:(id)sender;
 
 @end

@@ -22,8 +22,9 @@
 @end
 
 @implementation GeneralTriviaViewController
-@synthesize scoreLabel,timer,timeProgressView,endOfGameVC,currentTriviaController;
-@synthesize myNewGameVC;
+@synthesize scoreLabel,timeProgressView, helpBtn;
+@synthesize myNewGameVC,endOfGameVC,currentTriviaController;
+@synthesize timer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +38,7 @@
 
 - (void)viewDidLoad
 {
+    //Add score label
     UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 330, 30, 30)];
     [newLabel setBackgroundColor:[UIColor clearColor]];
     [newLabel setMinimumFontSize:10.0];
@@ -47,6 +49,7 @@
     [self.view addSubview:self.scoreLabel];
     [newLabel release];
     
+    //Add time progress
     UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     progressView.trackTintColor = [UIColor whiteColor];
     progressView.progress = 1.0;
@@ -54,6 +57,14 @@
     [self.view addSubview:progressView];
     self.timeProgressView = progressView;
     [progressView release];
+    
+    //Add help button
+    UIButton *newHelpBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 364, 32, 32)];
+    [newHelpBtn addTarget:self action:@selector(helpPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [newHelpBtn setImage:[UIImage imageNamed:@"help"] forState:UIControlStateNormal];
+    self.helpBtn = newHelpBtn;
+    [self.view addSubview:self.helpBtn];
+    [newHelpBtn release];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScoreLabel) name:@"scoreUpdatedNotification" object:nil];
         
@@ -68,6 +79,10 @@
     self.scoreLabel = nil;
     self.timer = nil;
     self.timeProgressView = nil;
+    self.helpBtn = nil;
+    self.myNewGameVC = nil;
+    self.endOfGameVC = nil;
+    self.currentTriviaController = nil;
     [super viewDidUnload];
 }
 
@@ -131,6 +146,20 @@
         [self showEndOfGamePopup];
     } else {
         timeProgressView.progress = remainingSeconds/kGeneralTriviaSecondsToPlay;
+    }
+}
+
+#pragma mark - IBActions
+
+- (IBAction)helpPressed:(id)sender {
+    if (self.currentTriviaController) {
+        if ([self.currentTriviaController isKindOfClass:[ImageTriviaViewController class]]) {
+            ImageTriviaViewController *triviaCont = (ImageTriviaViewController *)self.currentTriviaController;
+            [triviaCont helpPressed:sender];
+        } else if ([self.currentTriviaController isKindOfClass:[RightWrongTriviaViewController class]]){
+            RightWrongTriviaViewController *rwCont = (RightWrongTriviaViewController *)self.currentTriviaController;
+            [rwCont helpPressed:sender];
+        }
     }
 }
 

@@ -19,10 +19,16 @@ typedef enum{
 }TriviaType;
 
 @interface GeneralTriviaViewController : UIViewController <GameFlowDelegate,GeneralTriviaDelegate>{
+    //UI elements
     UILabel *scoreLabel;
     UIProgressView *timeProgressView;
+    UIButton *helpBtn;
+    
+    //game timer
     NSTimer *timer;
     float remainingSeconds;
+
+    //controllers
     EndOfGameViewController *endOfGameVC;
     NewGameViewController *myNewGameVC;
     UIViewController *currentTriviaController;
@@ -31,7 +37,10 @@ typedef enum{
 
 @property (nonatomic, retain) UILabel *scoreLabel;
 @property (nonatomic, retain) UIProgressView *timeProgressView;
+@property (nonatomic, retain) UIButton *helpBtn;
+
 @property (nonatomic, retain) NSTimer *timer;
+
 @property (nonatomic, retain) EndOfGameViewController *endOfGameVC;
 @property (nonatomic, retain) NewGameViewController *myNewGameVC;
 @property (nonatomic, retain) UIViewController *currentTriviaController;

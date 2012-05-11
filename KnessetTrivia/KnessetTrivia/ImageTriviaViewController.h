@@ -53,4 +53,6 @@ typedef enum {
 @property (nonatomic, retain) NSArray *optionsArr;
 @property (nonatomic, retain) NSTimer *gameTimer;
 
+- (IBAction)helpPressed:(id)sender;
+
 @end

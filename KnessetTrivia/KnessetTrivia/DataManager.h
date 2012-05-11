@@ -24,14 +24,15 @@
 - (void) initializeBills;
 
 //Queries
-- (KTMember *)getMemberWithId:(int)memberId;
-- (NSArray *)getMembersOfGender:(MemberGender)gender;
-- (NSArray *)getAllMemberNames;
-- (NSArray *)getAllParties;
-- (NSArray *)getAllPlacesOfBirth;
-- (NSArray *)getFourRandomMembersOfGender:(MemberGender)gender;
+- (KTMember *) getMemberWithId:(int)memberId;
+- (NSArray *) getMembersOfGender:(MemberGender)gender;
+- (NSArray *) getAllMemberNames;
+- (NSArray *) getAllParties;
+- (NSArray *) getAllPlacesOfBirth;
+- (NSArray *) getAllRoles;
+- (NSArray *) getFourRandomMembersOfGender:(MemberGender)gender;
 - (KTMember *) getRandomMember;
-- (int)getAgeForMember:(KTMember *)member;
+- (int) getAgeForMember:(KTMember *)member;
 
 //Caching
 - (UIImage *)getImageForMemberId:(int)memberId;

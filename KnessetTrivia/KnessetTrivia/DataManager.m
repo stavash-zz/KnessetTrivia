@@ -161,6 +161,20 @@ static DataManager *manager = nil;
     return nil;
 }
 
+- (NSArray *)getAllRoles {
+    if (self.members) {
+        NSMutableSet *rolesSet = [[[NSMutableSet alloc] init] autorelease];
+        for (KTMember *member in self.members) {
+            if (member.currentRoleDescriptions) {
+                [rolesSet addObject:member.currentRoleDescriptions];
+            }
+        }
+        return [rolesSet allObjects];
+    }
+    return nil;
+}
+
+
 - (NSArray *)getFourRandomMembersOfGender:(MemberGender)gender {
     
     if ([DataManager sharedManager].members) {

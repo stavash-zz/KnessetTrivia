@@ -141,6 +141,15 @@
             
         }
             break;
+        case kRightWrongQuestionTypeRole:
+        {
+            if (gender == kGenderMale) {
+                return @"הוא";
+            } else if (gender == kGenderFemale) {
+                return @"היא";
+            }
+        }
+            break;
         default:
             break;
     }
@@ -166,6 +175,7 @@
     
     //generate question type and member
     currentQuestionType = arc4random() % questionOptionsCount;
+    currentQuestionType = kRightWrongQuestionTypeRole; //TEMP!!!
     currentMember = [[DataManager sharedManager] getRandomMember];
     
     //add image cell
@@ -219,7 +229,25 @@
             self.currentObject = questionPob;
         }
             break;
+        case kRightWrongQuestionTypeRole:
+        {
+            BOOL falseAnswer = arc4random() % 2;
+            if (!currentMember.currentRoleDescriptions) {
+                falseAnswer = YES;
+            }
+            NSString *questionRole = nil;
+            if (falseAnswer) {
+                NSArray *roles = [[DataManager sharedManager] getAllRoles];
+                int randomIndex = arc4random() % [roles count];
+                questionRole = [roles objectAtIndex:randomIndex];
+            } else {
+                questionRole = currentMember.currentRoleDescriptions;
+            }
             
+            question = [NSString stringWithFormat:@"%@ %@ %@",currentMember.name,questionReference,questionRole];
+            self.currentObject = questionRole;
+        }
+            break;
         default:
             break;
     }
@@ -254,6 +282,12 @@
         {
             NSString *currentObjectString = (NSString *)self.currentObject;
             correct = [currentObjectString isEqualToString:currentMember.placeOfBirth];
+        }
+        case kRightWrongQuestionTypeRole:
+        {
+            NSString *currentObjectString = (NSString *)self.currentObject;
+            correct = [currentObjectString isEqualToString:currentMember.currentRoleDescriptions];
+            
         }
             break;
         default:
