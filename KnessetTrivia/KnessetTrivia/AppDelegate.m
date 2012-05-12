@@ -18,8 +18,6 @@
 #import "GoogleAnalyticsLogger.h"
 #import "SoundEngine.h"
 
-#define kKnessetTriviaGoogleAnalyticsTrackingNumber @"UA-31452039-1"
-
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -46,8 +44,8 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
     self.window.rootViewController = self.tabBarController;
     
-    [[DataManager sharedManager] initializeMembers]; //TODO: transfer to game manager
-    [[DataManager sharedManager]  initializeBills];
+    [[DataManager sharedManager] initializeMembers];
+    [[DataManager sharedManager] initializeBills];
     [[DataManager sharedManager] performSelectorInBackground:@selector(saveAllImagesLocally) withObject:nil];
     [ScoreManager sharedManager];
     [SoundEngine sharedSoundEngine];

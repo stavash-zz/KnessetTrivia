@@ -39,7 +39,7 @@
     [l setMasksToBounds:YES];
     [l setCornerRadius:10.0];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHighScore) name:@"highScoreUpdatedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHighScore) name:kScoreManagerNotificationHighscoreUpdated object:nil];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

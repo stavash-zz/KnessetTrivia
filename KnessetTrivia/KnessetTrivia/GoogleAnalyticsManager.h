@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "GANTracker.h"
 
+#define kKnessetTriviaGoogleAnalyticsTrackingNumber @"UA-31452039-1"
+
 @interface GoogleAnalyticsManager : NSObject <GANTrackerDelegate>
 {
     BOOL trackingNumberSet;
@@ -16,6 +18,7 @@
 //General
 + (GoogleAnalyticsManager *)sharedGoogleAnalyticsManager;
 
+//Public
 - (void)setAnalyticsTrackingNumber:(NSString *)trackingNum;
 - (void)sendGoogleAnalyticsTrackPageForTab:(NSString *)tabName;
 - (void)sendGoogleAnalyticsTrackEventCategory:(NSString *)eventCategory withEventName:(NSString *)eventName;

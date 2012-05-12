@@ -7,6 +7,8 @@
 
 #import "GoogleAnalyticsManager.h"
 
+#define kGoogleAnalyticsDispatchPeriod 60
+
 @implementation GoogleAnalyticsManager
 
 #pragma initialization
@@ -27,8 +29,8 @@ static GoogleAnalyticsManager *sharedSingleton;
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		// initialize stuff here
-	}
+
+    }
     
 	return self;
 }
@@ -39,7 +41,7 @@ static GoogleAnalyticsManager *sharedSingleton;
     if (trackingNumberSet) {
         NSLog(@"*** Google Analytics Error ***\nAnalytics number already set");
     }
-    [[GANTracker sharedTracker] startTrackerWithAccountID:trackingNum dispatchPeriod:60 delegate:self];
+    [[GANTracker sharedTracker] startTrackerWithAccountID:trackingNum dispatchPeriod:kGoogleAnalyticsDispatchPeriod delegate:self];
     trackingNumberSet = YES;
 }
 
@@ -88,7 +90,7 @@ static GoogleAnalyticsManager *sharedSingleton;
 
 
 
-#pragma mark - Delegate
+#pragma mark - GANTrackerDelegate
 
 - (void)hitDispatched:(NSString *)hitString{
     NSLog(@"hitDispatched: %@",hitString);

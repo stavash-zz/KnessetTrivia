@@ -15,7 +15,12 @@
 #import "EndOfGameViewController.h"
 #import "SoundEngine.h"
 
+//General
 #define kGeneralTriviaSecondsToPlay 60.0
+#define kGeneralTriviaTitle @"טריוויה" 
+#define kGeneralTriviaHelpButtonImage @"help"
+#define kGeneralTriviaGoodScoreColor [UIColor colorWithRed:10.0/255.0 green:158.0/255.0 blue:23.0/255.0 alpha:1.0]
+#define kGeneralTriviaBadScoreColor [UIColor colorWithRed:171.0/255.0 green:0.0 blue:8.0/255.0 alpha:1.0]
 
 @interface GeneralTriviaViewController ()
 
@@ -30,7 +35,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"טריוויה";
+        self.title = kGeneralTriviaTitle;
         self.tabBarItem.image = [UIImage imageNamed:@"TriviaTab"];
     }
     return self;
@@ -61,12 +66,12 @@
     //Add help button
     UIButton *newHelpBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 364, 32, 32)];
     [newHelpBtn addTarget:self action:@selector(helpPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [newHelpBtn setImage:[UIImage imageNamed:@"help"] forState:UIControlStateNormal];
+    [newHelpBtn setImage:[UIImage imageNamed:kGeneralTriviaHelpButtonImage] forState:UIControlStateNormal];
     self.helpBtn = newHelpBtn;
     [self.view addSubview:self.helpBtn];
     [newHelpBtn release];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScoreLabel) name:@"scoreUpdatedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScoreLabel) name:kScoreManagerNotificationScoreUpdated object:nil];
         
     [self showNewGameScreen];
     
@@ -94,12 +99,11 @@
 - (void) updateScoreLabel {
     scoreLabel.text = [[ScoreManager sharedManager] getCurrentScoreStr];
     if ([[ScoreManager sharedManager] isCurrentScorePositive]) {
-        scoreLabel.textColor = [UIColor colorWithRed:10.0/255.0 green:158.0/255.0 blue:23.0/255.0 alpha:1.0];
+        scoreLabel.textColor = kGeneralTriviaGoodScoreColor;
     } else {
-        scoreLabel.textColor = [UIColor colorWithRed:171.0/255.0 green:0.0 blue:8.0/255.0 alpha:1.0];
+        scoreLabel.textColor = kGeneralTriviaBadScoreColor;
     }
 }
-
 
 #pragma mark - Screen Handling
 

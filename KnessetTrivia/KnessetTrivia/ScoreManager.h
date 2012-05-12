@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define kScoreManagerNotificationScoreUpdated @"scoreUpdatedNotification"
+#define kScoreManagerNotificationHighscoreUpdated @"highScoreUpdatedNotification"
+
 @interface ScoreManager : NSObject {
     int highScore;
     int score;

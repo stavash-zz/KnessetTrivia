@@ -75,11 +75,6 @@
 
 #pragma mark - IBActions
 
-//- (IBAction)playAgainPressed:(id)sender {
-//    [self.delegate newGameRequested];
-//    [self closeAnimated];
-//}
-
 - (IBAction)closePressed:(id)sender {
     [self.delegate reEnableGeneralScreenRequested];
     [self closeAnimated];

@@ -15,6 +15,7 @@
 
 #define kImageTriviaNextQuestionDelay 0.4
 #define kImageTriviaFemaleRatioCoeff 10
+#define kImageTriviaInstructionFormat @"זהה את %@"
 
 @interface ImageTriviaViewController ()
 
@@ -137,7 +138,7 @@
     
     correctIndex = arc4random() % 4;
     KTMember *correctMember = [self getCorrectMemberWithIndex:correctIndex];
-    questionLabel.text = [NSString stringWithFormat:@"זהה את %@",correctMember.name];
+    questionLabel.text = [NSString stringWithFormat:kImageTriviaInstructionFormat,correctMember.name];
     [self setCell:kCellPositionTopLeft withMember:[self.optionsArr objectAtIndex:0]];
     [self setCell:kCellPositionTopRight withMember:[self.optionsArr objectAtIndex:1]];
     [self setCell:kCellPositionBottomLeft withMember:[self.optionsArr objectAtIndex:2]];

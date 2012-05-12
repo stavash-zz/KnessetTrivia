@@ -10,7 +10,9 @@
 
 #define kScoreManagerScoreForCorrectImageAnswer 9
 #define kScoreManagerPenaltyForWrongImageAnswer 10
-#define kScoreManaferPenaltyForHelp 5
+#define kScoreManagerPenaltyForHelp 5
+
+#define kScoreManagerHighScoreDefaultsKey @"highScore"
 
 @implementation ScoreManager
 
@@ -39,7 +41,7 @@ static ScoreManager *manager = nil;
 - (id) init {
     self=[super init];
 	if(self) {
-        NSNumber *highScoreNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"highScore"];
+        NSNumber *highScoreNum = [[NSUserDefaults standardUserDefaults] objectForKey:kScoreManagerHighScoreDefaultsKey];
         if (!highScoreNum) {
             highScoreNum = [NSNumber numberWithInt:0];
             [self challengeHighScore];
@@ -47,7 +49,7 @@ static ScoreManager *manager = nil;
         highScore = [highScoreNum intValue];
         [self updateHighScoreChange];
         score = 0;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kScoreManagerNotificationScoreUpdated object:nil];
 	}
 	return self;
 }
@@ -60,11 +62,11 @@ static ScoreManager *manager = nil;
 
 - (void)resetScore {
     score = 0;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kScoreManagerNotificationScoreUpdated object:nil];
 }
 
 - (void)updateScoreChange {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scoreUpdatedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kScoreManagerNotificationScoreUpdated object:nil];
 }
 
 - (void)updateCorrectAnswer {
@@ -78,7 +80,7 @@ static ScoreManager *manager = nil;
 }
 
 - (void)updateHelpRequested {
-    score -= kScoreManaferPenaltyForHelp;
+    score -= kScoreManagerPenaltyForHelp;
     [self updateScoreChange];
 }
 
@@ -102,12 +104,12 @@ static ScoreManager *manager = nil;
 #pragma mark - High Score
 
 - (void) updateHighScoreChange {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"highScoreUpdatedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kScoreManagerNotificationHighscoreUpdated object:nil];
 }
 
 - (void) challengeHighScore {
     if (highScore < score) {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:@"highScore"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:score] forKey:kScoreManagerHighScoreDefaultsKey];
         highScore = score;
         [self updateHighScoreChange];
     }

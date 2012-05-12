@@ -15,6 +15,22 @@
 
 #define kRightWrongQuestionAgeOffset 4
 
+#define kRightWrongQuestionPlaceOfBirthMaleReference @"נולד ב"
+#define kRightWrongQuestionPlaceOfBirthFemaleReference @"נולדה ב"
+#define kRightWrongQuestionPlaceOfBirthQuestionFormat @"%@ %@%@"
+
+#define kRightWrongQuestionAgeMaleReference @"הוא בן"
+#define kRightWrongQuestionAgeFemaleReference @"היא בת"
+#define kRightWrongQuestionAgeQuestionFormat @"%@ %@ %d"
+
+#define kRightWrongQuestionPartyMaleReference @"הוא חבר"
+#define kRightWrongQuestionPartyFemaleReference @"היא חברה"
+#define kRightWrongQuestionPartyQuestionFormat @"%@ %@ במפלגת %@"
+
+#define kRightWrongQuestionRoleMaleReference @"הוא"
+#define kRightWrongQuestionRoleFemaleReference @"היא"
+#define kRightWrongQuestionRoleQuestionFormat @"%@ %@ %@"
+
 @interface RightWrongTriviaViewController ()
 
 @end
@@ -115,18 +131,18 @@
         case kRightWrongQuestionTypePlaceOfBirth:
         {
             if (gender == kGenderMale) {
-                return @"נולד ב";
+                return kRightWrongQuestionPlaceOfBirthMaleReference;
             } else if (gender == kGenderFemale) {
-                return @"נולדה ב";
+                return kRightWrongQuestionPlaceOfBirthFemaleReference;
             }
         }
             break;
         case kRightWrongQuestionTypeAge:
         {
             if (gender == kGenderMale) {
-                return @"הוא בן";
+                return kRightWrongQuestionAgeMaleReference;
             } else if (gender == kGenderFemale) {
-                return @"היא בת";
+                return kRightWrongQuestionAgeFemaleReference;
             }
             
         }
@@ -134,9 +150,9 @@
         case kRightWrongQuestionTypeParty:
         {
             if (gender == kGenderMale) {
-                return @"הוא חבר";
+                return kRightWrongQuestionPartyMaleReference;
             } else if (gender == kGenderFemale) {
-                return @"היא חברה";
+                return kRightWrongQuestionPartyFemaleReference;
             }
             
         }
@@ -144,9 +160,9 @@
         case kRightWrongQuestionTypeRole:
         {
             if (gender == kGenderMale) {
-                return @"הוא";
+                return kRightWrongQuestionRoleMaleReference;
             } else if (gender == kGenderFemale) {
-                return @"היא";
+                return kRightWrongQuestionRoleFemaleReference;
             }
         }
             break;
@@ -195,7 +211,7 @@
             int randomPartyIndex = arc4random() % [parties count];
             NSString *party = [parties objectAtIndex:randomPartyIndex];
 
-            question = [NSString stringWithFormat:@"%@ %@ במפלגת %@",currentMember.name,questionReference,party];
+            question = [NSString stringWithFormat:kRightWrongQuestionPartyQuestionFormat,currentMember.name,questionReference,party];
             self.currentObject = party;
         }
             break;
@@ -208,7 +224,7 @@
                 age += randomOffset;
             }
 
-            question = [NSString stringWithFormat:@"%@ %@ %d",currentMember.name,questionReference,age];
+            question = [NSString stringWithFormat:kRightWrongQuestionAgeQuestionFormat,currentMember.name,questionReference,age];
             self.currentObject = [NSNumber numberWithInt:age];
         }
             break;
@@ -224,7 +240,7 @@
                 questionPob = currentMember.placeOfBirth;
             }
                         
-            question = [NSString stringWithFormat:@"%@ %@%@",currentMember.name,questionReference,questionPob];
+            question = [NSString stringWithFormat:kRightWrongQuestionPlaceOfBirthQuestionFormat,currentMember.name,questionReference,questionPob];
             self.currentObject = questionPob;
         }
             break;
@@ -243,7 +259,7 @@
                 questionRole = currentMember.currentRoleDescriptions;
             }
             
-            question = [NSString stringWithFormat:@"%@ %@ %@",currentMember.name,questionReference,questionRole];
+            question = [NSString stringWithFormat:kRightWrongQuestionRoleQuestionFormat,currentMember.name,questionReference,questionRole];
             self.currentObject = questionRole;
         }
             break;

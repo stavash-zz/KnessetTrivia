@@ -14,6 +14,7 @@
 #define kNewGameStartPhrase3 @"חושבים שאתם מבינים בענייני כנסת?"
 #define kNewGameStartPhrase4 @"הפעם בלי טעויות..."
 #define kNewGameStartPhrase5 @"רוצים עוד קצת?"
+#define kNewGameFirstGameEverDefaultsKey @"firstGameEver"
 
 @interface NewGameViewController ()
 
@@ -34,11 +35,11 @@
 - (void)viewDidLoad
 {
     NSString *startPhrase;
-    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstGameEver"];
+    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:kNewGameFirstGameEverDefaultsKey];
     
     if (!num) {
         firstGameEver = YES;
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"firstGameEver"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:kNewGameFirstGameEverDefaultsKey];
     } else {
         firstGameEver = NO;
     }
