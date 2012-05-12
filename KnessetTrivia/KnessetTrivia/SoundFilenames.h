@@ -7,11 +7,3 @@
 #define WAV_EXTENSION @"wav"
 #define WAV_EXTENSION_ "wav"
 
-
-enum SoundType
-{
-	KMenuSound,
-	KOtherSound,
-
-};
-

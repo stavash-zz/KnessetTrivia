@@ -8,7 +8,7 @@
 #import "SoundEngine.h"
 #import "SoundFilenames.h"
 
-
+#define kSoundEngineSoundOnDefaultsKey @"soundOn"
 @implementation SoundEngine
 
 static SoundEngine *sharedSoundEngine = nil;
@@ -60,7 +60,7 @@ static SoundEngine *sharedSoundEngine = nil;
 - (void) setSoundON:(BOOL)newValue
 {
     NSNumber *numBool = [NSNumber numberWithBool:newValue];
-    [[NSUserDefaults standardUserDefaults] setObject:numBool forKey:@"soundOn"];
+    [[NSUserDefaults standardUserDefaults] setObject:numBool forKey:kSoundEngineSoundOnDefaultsKey];
 	soundON = newValue;
 }
 
@@ -77,7 +77,7 @@ static SoundEngine *sharedSoundEngine = nil;
     self = [super init];
 	if (self)
 	{
-        NSNumber *soundBool = [[NSUserDefaults standardUserDefaults] objectForKey:@"soundOn"];
+        NSNumber *soundBool = [[NSUserDefaults standardUserDefaults] objectForKey:kSoundEngineSoundOnDefaultsKey];
         if (soundBool) {
             soundON = [soundBool boolValue];
         } else {

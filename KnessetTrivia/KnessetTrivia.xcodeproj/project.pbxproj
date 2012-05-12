@@ -65,8 +65,6 @@
 		1F692174154B34F5001AD57F /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F692173154B34F5001AD57F /* DataManager.m */; };
 		1F69218C154B3917001AD57F /* MemberCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F69218A154B3917001AD57F /* MemberCellViewController.m */; };
 		1F69218D154B3917001AD57F /* MemberCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F69218B154B3917001AD57F /* MemberCellViewController.xib */; };
-		1F699C1C1550141A005DFCAA /* info_button_reg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F699C1A1550141A005DFCAA /* info_button_reg.png */; };
-		1F699C1D1550141A005DFCAA /* info_button_reg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F699C1B1550141A005DFCAA /* info_button_reg@2x.png */; };
 		1F699C2E155069D4005DFCAA /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F699C1E155069D4005DFCAA /* delete.png */; };
 		1F699C2F155069D4005DFCAA /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F699C1F155069D4005DFCAA /* delete@2x.png */; };
 		1F699C30155069D4005DFCAA /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F699C20155069D4005DFCAA /* globe.png */; };
@@ -142,7 +140,7 @@
 		1F5CF2951555AA95004AA873 /* general_button_bg_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "general_button_bg_sel@2x.png"; path = "Artwork/general_button_bg_sel@2x.png"; sourceTree = "<group>"; };
 		1F5FE22C154B486300633DF5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Artwork/Default.png; sourceTree = "<group>"; };
 		1F5FE22D154B486300633DF5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Artwork/Default@2x.png"; sourceTree = "<group>"; };
-		1F62FC211528A60600110F7E /* KnessetTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnessetTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F62FC211528A60600110F7E /* טריוויה כנסת.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "טריוויה כנסת.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F62FC251528A60600110F7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F62FC271528A60600110F7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1F62FC291528A60600110F7E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -196,8 +194,6 @@
 		1F692189154B3917001AD57F /* MemberCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCellViewController.h; sourceTree = "<group>"; };
 		1F69218A154B3917001AD57F /* MemberCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCellViewController.m; sourceTree = "<group>"; };
 		1F69218B154B3917001AD57F /* MemberCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCellViewController.xib; sourceTree = "<group>"; };
-		1F699C1A1550141A005DFCAA /* info_button_reg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = info_button_reg.png; path = Artwork/info_button_reg.png; sourceTree = "<group>"; };
-		1F699C1B1550141A005DFCAA /* info_button_reg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "info_button_reg@2x.png"; path = "Artwork/info_button_reg@2x.png"; sourceTree = "<group>"; };
 		1F699C1E155069D4005DFCAA /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete.png; path = Artwork/delete.png; sourceTree = "<group>"; };
 		1F699C1F155069D4005DFCAA /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete@2x.png"; path = "Artwork/delete@2x.png"; sourceTree = "<group>"; };
 		1F699C20155069D4005DFCAA /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = globe.png; path = Artwork/globe.png; sourceTree = "<group>"; };
@@ -366,12 +362,6 @@
 		1F62FC161528A60500110F7E = {
 			isa = PBXGroup;
 			children = (
-				1F933A2D15552D35004CC127 /* libsqlite3.0.dylib */,
-				1F933A2815552BE7004CC127 /* CFNetwork.framework */,
-				1F708529155008CD00D80EFF /* MessageUI.framework */,
-				1F18A20B154D55C300D94946 /* AudioToolbox.framework */,
-				1F18A209154D55BF00D94946 /* AVFoundation.framework */,
-				1F18A207154D559900D94946 /* CoreAudio.framework */,
 				1F692136154AD0E4001AD57F /* Resources */,
 				1F62FC2B1528A60600110F7E /* KnessetTrivia */,
 				1F62FC241528A60600110F7E /* Frameworks */,
@@ -382,7 +372,7 @@
 		1F62FC221528A60600110F7E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1F62FC211528A60600110F7E /* KnessetTrivia.app */,
+				1F62FC211528A60600110F7E /* טריוויה כנסת.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -390,6 +380,12 @@
 		1F62FC241528A60600110F7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F933A2D15552D35004CC127 /* libsqlite3.0.dylib */,
+				1F933A2815552BE7004CC127 /* CFNetwork.framework */,
+				1F708529155008CD00D80EFF /* MessageUI.framework */,
+				1F18A20B154D55C300D94946 /* AudioToolbox.framework */,
+				1F18A209154D55BF00D94946 /* AVFoundation.framework */,
+				1F18A207154D559900D94946 /* CoreAudio.framework */,
 				1F62FC251528A60600110F7E /* UIKit.framework */,
 				1F62FC271528A60600110F7E /* Foundation.framework */,
 				1F62FC291528A60600110F7E /* CoreGraphics.framework */,
@@ -530,8 +526,6 @@
 				1F699C2B155069D4005DFCAA /* tick@2x.png */,
 				1F699C2C155069D4005DFCAA /* user.png */,
 				1F699C2D155069D4005DFCAA /* user@2x.png */,
-				1F699C1A1550141A005DFCAA /* info_button_reg.png */,
-				1F699C1B1550141A005DFCAA /* info_button_reg@2x.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -623,7 +617,7 @@
 			);
 			name = KnessetTrivia;
 			productName = KnessetTrivia;
-			productReference = 1F62FC211528A60600110F7E /* KnessetTrivia.app */;
+			productReference = 1F62FC211528A60600110F7E /* טריוויה כנסת.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -674,8 +668,6 @@
 				1F18A20E154D56EC00D94946 /* correct.mp3 in Resources */,
 				1F18A213154EF0FE00D94946 /* bills.txt in Resources */,
 				1F708528154FD88700D80EFF /* MemberCellFlipSideViewController.xib in Resources */,
-				1F699C1C1550141A005DFCAA /* info_button_reg.png in Resources */,
-				1F699C1D1550141A005DFCAA /* info_button_reg@2x.png in Resources */,
 				1F699C2E155069D4005DFCAA /* delete.png in Resources */,
 				1F699C2F155069D4005DFCAA /* delete@2x.png in Resources */,
 				1F699C30155069D4005DFCAA /* globe.png in Resources */,
@@ -822,7 +814,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/KnessetTrivia/Google\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "טריוויה כנסת";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -838,7 +830,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/KnessetTrivia/Google\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "טריוויה כנסת";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E6AF7867-E00E-46AF-B3C7-1330419634E7";
 				WRAPPER_EXTENSION = app;
 			};
