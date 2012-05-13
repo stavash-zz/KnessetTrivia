@@ -15,5 +15,5 @@
 + (NSArray *)parseMemberLinksFromTree:(NSArray *)linksTree;
 + (NSArray *)parseMembersFromTree:(NSArray *)membersTree;
 + (NSArray *)parseBillsFromTree:(NSArray *)billsTree;
-
++ (NSArray *)parsePartiesFromTree:(NSArray *)partiesTree;
 @end

@@ -48,6 +48,12 @@
 #define kParserKeyVotesPerMonth @"votes_per_month"
 #define kParserKeyYearOfAliyah @"year_of_aliyah"
 
+//Party keys
+#define kParserKeyPartyId @"id"
+#define kParserKeyPartyName @"name"
+#define kParserKeyPartyEndDate @"end_date"
+#define kParserKeyPartyStartDate @"start_date"
+
 //Bill keys
 #define kParserKeyVotes @"votes"
 

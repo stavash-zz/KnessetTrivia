@@ -21,6 +21,8 @@
 		1F17FF35154C7AF6008F9575 /* AboutTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF33154C7AF6008F9575 /* AboutTab@2x.png */; };
 		1F17FF39154C7DA7008F9575 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17FF37154C7DA7008F9575 /* AboutViewController.m */; };
 		1F17FF3A154C7DA7008F9575 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F17FF38154C7DA7008F9575 /* AboutViewController.xib */; };
+		1F182C12155FC82A000C9BF5 /* party.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1F182C11155FC82A000C9BF5 /* party.txt */; };
+		1F182C18155FC8F2000C9BF5 /* KTParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F182C17155FC8F2000C9BF5 /* KTParty.m */; };
 		1F18A1F9154D49FD00D94946 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18A1F7154D49FD00D94946 /* SoundEngine.m */; };
 		1F18A1FC154D4C6200D94946 /* KTBill.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18A1FB154D4C6200D94946 /* KTBill.m */; };
 		1F18A1FF154D4F6700D94946 /* KTComitteeMeetings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F18A1FE154D4F6700D94946 /* KTComitteeMeetings.m */; };
@@ -120,6 +122,9 @@
 		1F17FF36154C7DA6008F9575 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		1F17FF37154C7DA7008F9575 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		1F17FF38154C7DA7008F9575 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		1F182C11155FC82A000C9BF5 /* party.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = party.txt; sourceTree = "<group>"; };
+		1F182C16155FC8F2000C9BF5 /* KTParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTParty.h; sourceTree = "<group>"; };
+		1F182C17155FC8F2000C9BF5 /* KTParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTParty.m; sourceTree = "<group>"; };
 		1F18A1F6154D49FD00D94946 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		1F18A1F7154D49FD00D94946 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		1F18A1F8154D49FD00D94946 /* SoundFilenames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundFilenames.h; sourceTree = "<group>"; };
@@ -291,17 +296,35 @@
 		1F17FF3B154C7F9F008F9575 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				1F182C15155FC8D4000C9BF5 /* Party */,
+				1F182C14155FC8C4000C9BF5 /* Member */,
 				1F18A203154D53C700D94946 /* Bill */,
-				1F69213A154AD213001AD57F /* KTMember.h */,
-				1F69213B154AD213001AD57F /* KTMember.m */,
 				1F692164154AEFD6001AD57F /* KTLink.h */,
 				1F692165154AEFD6001AD57F /* KTLink.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		1F182C14155FC8C4000C9BF5 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				1F69213A154AD213001AD57F /* KTMember.h */,
+				1F69213B154AD213001AD57F /* KTMember.m */,
 				1F692167154B2A3B001AD57F /* KTCommitteeLink.h */,
 				1F692168154B2A3B001AD57F /* KTCommitteeLink.m */,
 				1F69216A154B2C10001AD57F /* KTBillLink.h */,
 				1F69216B154B2C10001AD57F /* KTBillLink.m */,
 			);
-			name = Objects;
+			name = Member;
+			sourceTree = "<group>";
+		};
+		1F182C15155FC8D4000C9BF5 /* Party */ = {
+			isa = PBXGroup;
+			children = (
+				1F182C16155FC8F2000C9BF5 /* KTParty.h */,
+				1F182C17155FC8F2000C9BF5 /* KTParty.m */,
+			);
+			name = Party;
 			sourceTree = "<group>";
 		};
 		1F18A1F4154D49F100D94946 /* SoundEngine */ = {
@@ -423,6 +446,7 @@
 		1F692136154AD0E4001AD57F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1F182C11155FC82A000C9BF5 /* party.txt */,
 				1F692137154AD0E4001AD57F /* member.txt */,
 				1F18A212154EF0FE00D94946 /* bills.txt */,
 			);
@@ -699,6 +723,7 @@
 				1F07F3F81555CF6100556806 /* sound_icon@2x.png in Resources */,
 				1F9C9B371556709D00F0907D /* blop.wav in Resources */,
 				1F9C9B381556709D00F0907D /* shipbell.wav in Resources */,
+				1F182C12155FC82A000C9BF5 /* party.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +769,7 @@
 				1FCC68D615525F9C0099479A /* NewGameViewController.m in Sources */,
 				1F933A2C15552C43004CC127 /* GoogleAnalyticsManager.m in Sources */,
 				1F933A3115553454004CC127 /* GoogleAnalyticsLogger.m in Sources */,
+				1F182C18155FC8F2000C9BF5 /* KTParty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

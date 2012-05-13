@@ -12,16 +12,19 @@
 @interface DataManager : NSObject {
     NSArray *members;
     NSArray *bills;
+    NSArray *parties;
 }
 
-@property (nonatomic,retain) NSArray *members;
-@property (nonatomic,retain) NSArray *bills;
+@property (nonatomic, retain) NSArray *members;
+@property (nonatomic, retain) NSArray *bills;
+@property (nonatomic, retain) NSArray *parties;
 
 
 //General
 + (DataManager *) sharedManager;
 - (void) initializeMembers;
 - (void) initializeBills;
+- (void) initializeParties;
 
 //Queries
 - (KTMember *) getMemberWithId:(int)memberId;
@@ -33,6 +36,7 @@
 - (NSArray *) getFourRandomMembersOfGender:(MemberGender)gender;
 - (KTMember *) getRandomMember;
 - (int) getAgeForMember:(KTMember *)member;
+- (int) getPartyIdForName:(NSString *)partyName;
 
 //Caching
 - (UIImage *)getImageForMemberId:(int)memberId;

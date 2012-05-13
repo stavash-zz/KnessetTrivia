@@ -7,6 +7,7 @@
 //
 
 #import "GoogleAnalyticsLogger.h"
+#import "DataManager.h"
 
 #define kGAEventCateoryGeneral @"{general:''}"
 #define kGAEventCategorySession @"{general:'session'}"
@@ -56,7 +57,6 @@ static GoogleAnalyticsLogger *sharedSingleton;
 #pragma mark - Public
 
 - (void) logSecondsSpentInApplication:(int)seconds {
-    NSLog(@"GA LOGGING TIME SPENT IN APP %d",seconds);
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategorySession withEventName:[NSString stringWithFormat:@"%d",seconds]];
 }
 
@@ -135,11 +135,14 @@ static GoogleAnalyticsLogger *sharedSingleton;
         answerStr = [NSString stringWithFormat:@"%d",[(NSNumber *)answer intValue]];
     }
     
+    if (type == kRightWrongQuestionTypeParty) { //patch for translating party name to party id
+        answerStr = [NSString stringWithFormat:@"%d",[[DataManager sharedManager] getPartyIdForName:answerStr]];
+        NSLog(@"LOGGING PARTY %@",answerStr);
+    }
+    
     NSString *eventLabel = [NSString stringWithFormat:@"{q:'%@' a:'%@' g:'%@' t:'%d'}",answer,correctness,guessStr,seconds];
     
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:@"{mid:%d}",memberId] andLabel:eventLabel withValue:seconds];
-    
-    NSLog(@"LOGGING %@ QUESTION FOR MEMBER %d: %@",category,memberId,eventLabel);
 }
 
 - (void) logSiteLinkPressed:(SiteLinkType)type {

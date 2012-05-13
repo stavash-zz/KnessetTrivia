@@ -10,10 +10,12 @@
 #import "SBJsonParser.h"
 #import "KTParser.h"
 #import "KTBill.h"
+#import "KTParty.h"
 
 @implementation DataManager
 @synthesize members;
 @synthesize bills;
+@synthesize parties;
 
 static DataManager *manager = nil;
 
@@ -46,6 +48,9 @@ static DataManager *manager = nil;
 }
 
 - (void)dealloc {
+    self.members = nil;
+    self.bills = nil;
+    self.parties = nil;
     [super dealloc];
 }
 
@@ -91,6 +96,27 @@ static DataManager *manager = nil;
     [jsonParser release], jsonParser = nil;
     [jsonString release], jsonString = nil;
     
+}
+
+- (void) initializeParties {
+    NSData *partiesData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"party" ofType:@"txt"]];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:partiesData encoding:NSUTF8StringEncoding];
+    
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSError *error = nil;
+    NSArray *jsonObjects = (NSArray *)[jsonParser objectWithString:jsonString error:&error];
+    if ([error localizedDescription]) {
+        NSLog(@"Parties parsing failed with error: %@",[error localizedDescription]);
+    } else {
+        NSLog(@"Parties parsed successfuly");
+    }
+    
+    self.parties = [KTParser parsePartiesFromTree:jsonObjects];
+    
+    [jsonParser release], jsonParser = nil;
+    [jsonString release], jsonString = nil;
+
 }
 
 - (KTMember *)getMemberWithId:(int)memberId {
@@ -232,6 +258,15 @@ static DataManager *manager = nil;
                                        toDate:now
                                        options:0];
     return [ageComponents year];;
+}
+
+- (int) getPartyIdForName:(NSString *)partyName {
+    for (KTParty *party in self.parties) {
+        if ([party.name isEqualToString:partyName]) {
+            return party.partyId;
+        }
+    }
+    return -1;
 }
 
 #pragma mark - Image Caching

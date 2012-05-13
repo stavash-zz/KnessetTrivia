@@ -17,6 +17,7 @@
 #import "KTBill.h"
 #import "KTComitteeMeetings.h"
 #import "KTCommitteeMeeting.h"
+#import "KTParty.h"
 
 @implementation KTParser
 
@@ -302,5 +303,34 @@
     return [NSArray arrayWithArray:billsArr];
 }
 
++ (NSArray *)parsePartiesFromTree:(NSArray *)partiesTree {
+    NSDateFormatter *generalDateFormatter = [[NSDateFormatter alloc] init];
+    generalDateFormatter.dateFormat = kParserGeneralDateFormat; 
+    generalDateFormatter.timeZone = [NSTimeZone timeZoneWithName:kParserGeneralDateTimezoneName];
+
+    NSMutableArray *partiesArr = [[[NSMutableArray alloc] init] autorelease];
+    for (NSDictionary *partyDict in partiesTree) {
+        KTParty *party = [[KTParty alloc] init];
+        
+        [party setPartyId:[[partyDict objectForKey:kParserKeyPartyId] intValue]];
+        [party setName:[partyDict objectForKey:kParserKeyPartyName]];
+        
+        id startDateStr = [partyDict objectForKey:kParserKeyPartyStartDate];
+        if (startDateStr != [NSNull null]) {
+            [party setStartDate:[generalDateFormatter dateFromString:(NSString *)startDateStr]];
+        }
+        
+        id endDateStr = [partyDict objectForKey:kParserKeyPartyEndDate];
+        if (endDateStr != [NSNull null]) {
+            [party setStartDate:[generalDateFormatter dateFromString:(NSString *)endDateStr]];
+        }
+        
+        [partiesArr addObject:party];
+        [party release];
+    }
+    
+    [generalDateFormatter release];
+    return [NSArray arrayWithArray:partiesArr];
+}
 
 @end
