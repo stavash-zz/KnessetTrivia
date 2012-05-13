@@ -171,6 +171,11 @@
             [rwCont helpPressed:sender];
         }
     }
+    
+    [UIView beginAnimations:@"" context:nil];
+    [self.helpBtn setAlpha:0];
+    [self.scoreLabel setFrame:CGRectMake(14, 330, 30, 30)];
+    [UIView commitAnimations];
 }
 
 #pragma mark - GeneralTriviaDelegate
@@ -204,6 +209,12 @@
         default:
             break;
     }
+    
+    [UIView beginAnimations:@"" context:nil];
+    [self.helpBtn setAlpha:1];
+    [self.scoreLabel setFrame:CGRectMake(14, 290, 30, 30)];
+    [UIView commitAnimations];
+
 }
 
 #pragma mark - GameFlowDelegate
