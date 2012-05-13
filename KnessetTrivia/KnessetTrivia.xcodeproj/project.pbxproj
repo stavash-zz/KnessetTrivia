@@ -822,7 +822,7 @@
 		1F62FC4F1528A60600110F7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Benjamin Weingarten";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KnessetTrivia/KnessetTrivia-Prefix.pch";
 				INFOPLIST_FILE = "KnessetTrivia/KnessetTrivia-Info.plist";
@@ -831,7 +831,7 @@
 					"\"$(SRCROOT)/KnessetTrivia/Google\"",
 				);
 				PRODUCT_NAME = "טריוויה כנסת";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E6AF7867-E00E-46AF-B3C7-1330419634E7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
