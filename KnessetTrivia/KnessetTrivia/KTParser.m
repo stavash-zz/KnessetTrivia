@@ -169,7 +169,9 @@
             [member setYearOfAliyah:[(NSString *)yearOfAliyahStr intValue]];
         }
         
-        [membersArr addObject:member];
+        if (member.isCurrent) {
+            [membersArr addObject:member];
+        }
         [member release];
     }
     [generalDateFormatter release];
