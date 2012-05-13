@@ -137,7 +137,6 @@ static GoogleAnalyticsLogger *sharedSingleton;
     
     if (type == kRightWrongQuestionTypeParty) { //patch for translating party name to party id
         answerStr = [NSString stringWithFormat:@"%d",[[DataManager sharedManager] getPartyIdForName:answerStr]];
-        NSLog(@"LOGGING PARTY %@",answerStr);
     }
     
     NSString *eventLabel = [NSString stringWithFormat:@"{q:'%@' a:'%@' g:'%@' t:'%d'}",answer,correctness,guessStr,seconds];

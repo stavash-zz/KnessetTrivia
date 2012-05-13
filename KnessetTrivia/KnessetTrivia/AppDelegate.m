@@ -46,6 +46,7 @@
     
     [[DataManager sharedManager] initializeMembers];
     [[DataManager sharedManager] initializeBills];
+    [[DataManager sharedManager] initializeParties];
     [[DataManager sharedManager] performSelectorInBackground:@selector(saveAllImagesLocally) withObject:nil];
     [ScoreManager sharedManager];
     [SoundEngine sharedSoundEngine];
