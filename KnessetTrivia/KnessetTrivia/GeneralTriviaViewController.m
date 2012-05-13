@@ -53,6 +53,13 @@
     [newLabel setAdjustsFontSizeToFitWidth:YES];
     [newLabel setFont:[UIFont boldSystemFontOfSize:19.0]];
     [newLabel setTextAlignment:UITextAlignmentRight];
+    
+    newLabel.layer.shadowColor = [UIColor yellowColor].CGColor;
+    newLabel.layer.shadowOffset = CGSizeMake(0, 0);
+    newLabel.layer.shadowOpacity = 1.0;
+    newLabel.layer.shadowRadius = 5.0;
+    newLabel.clipsToBounds = NO;
+    
     self.scoreLabel = newLabel;
     [self.view addSubview:self.scoreLabel];
     [newLabel release];
