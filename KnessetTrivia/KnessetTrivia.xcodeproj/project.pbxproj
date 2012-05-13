@@ -91,6 +91,9 @@
 		1F708527154FD88700D80EFF /* MemberCellFlipSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F708525154FD88700D80EFF /* MemberCellFlipSideViewController.m */; };
 		1F708528154FD88700D80EFF /* MemberCellFlipSideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F708526154FD88700D80EFF /* MemberCellFlipSideViewController.xib */; };
 		1F70852A155008CD00D80EFF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F708529155008CD00D80EFF /* MessageUI.framework */; };
+		1F7BAA911560432A00F2B4E5 /* YLBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BAA8E1560432900F2B4E5 /* YLBackgroundView.m */; };
+		1F7BAA921560432A00F2B4E5 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7BAA901560432900F2B4E5 /* YLProgressBar.m */; };
+		1F7BAA96156043B600F2B4E5 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7BAA95156043B600F2B4E5 /* noise.png */; };
 		1F933A2715552BC0004CC127 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F933A2615552BC0004CC127 /* libGoogleAnalytics.a */; };
 		1F933A2915552BE7004CC127 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F933A2815552BE7004CC127 /* CFNetwork.framework */; };
 		1F933A2C15552C43004CC127 /* GoogleAnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F933A2B15552C43004CC127 /* GoogleAnalyticsManager.m */; };
@@ -226,6 +229,11 @@
 		1F708525154FD88700D80EFF /* MemberCellFlipSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCellFlipSideViewController.m; sourceTree = "<group>"; };
 		1F708526154FD88700D80EFF /* MemberCellFlipSideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCellFlipSideViewController.xib; sourceTree = "<group>"; };
 		1F708529155008CD00D80EFF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		1F7BAA8D1560432900F2B4E5 /* YLBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YLBackgroundView.h; path = YLProgressBar/YLBackgroundView.h; sourceTree = "<group>"; };
+		1F7BAA8E1560432900F2B4E5 /* YLBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YLBackgroundView.m; path = YLProgressBar/YLBackgroundView.m; sourceTree = "<group>"; };
+		1F7BAA8F1560432900F2B4E5 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YLProgressBar.h; path = YLProgressBar/YLProgressBar.h; sourceTree = "<group>"; };
+		1F7BAA901560432900F2B4E5 /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YLProgressBar.m; path = YLProgressBar/YLProgressBar.m; sourceTree = "<group>"; };
+		1F7BAA95156043B600F2B4E5 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noise.png; path = YLProgressBar/noise.png; sourceTree = "<group>"; };
 		1F933A2515552BC0004CC127 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = Google/GANTracker.h; sourceTree = "<group>"; };
 		1F933A2615552BC0004CC127 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Google/libGoogleAnalytics.a; sourceTree = "<group>"; };
 		1F933A2815552BE7004CC127 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -467,6 +475,7 @@
 		1F69213D154AD7CC001AD57F /* External */ = {
 			isa = PBXGroup;
 			children = (
+				1F7BAA8B1560431B00F2B4E5 /* YLProgressBar */,
 				1F933A2315552BB6004CC127 /* Google Analytics */,
 				1F69213E154AD7D2001AD57F /* SBJson */,
 			);
@@ -615,6 +624,18 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		1F7BAA8B1560431B00F2B4E5 /* YLProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				1F7BAA95156043B600F2B4E5 /* noise.png */,
+				1F7BAA8D1560432900F2B4E5 /* YLBackgroundView.h */,
+				1F7BAA8E1560432900F2B4E5 /* YLBackgroundView.m */,
+				1F7BAA8F1560432900F2B4E5 /* YLProgressBar.h */,
+				1F7BAA901560432900F2B4E5 /* YLProgressBar.m */,
+			);
+			name = YLProgressBar;
+			sourceTree = "<group>";
+		};
 		1F933A2315552BB6004CC127 /* Google Analytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +745,7 @@
 				1F9C9B371556709D00F0907D /* blop.wav in Resources */,
 				1F9C9B381556709D00F0907D /* shipbell.wav in Resources */,
 				1F182C12155FC82A000C9BF5 /* party.txt in Resources */,
+				1F7BAA96156043B600F2B4E5 /* noise.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +792,8 @@
 				1F933A2C15552C43004CC127 /* GoogleAnalyticsManager.m in Sources */,
 				1F933A3115553454004CC127 /* GoogleAnalyticsLogger.m in Sources */,
 				1F182C18155FC8F2000C9BF5 /* KTParty.m in Sources */,
+				1F7BAA911560432A00F2B4E5 /* YLBackgroundView.m in Sources */,
+				1F7BAA921560432A00F2B4E5 /* YLProgressBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

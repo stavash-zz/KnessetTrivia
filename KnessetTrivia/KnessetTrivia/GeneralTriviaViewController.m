@@ -14,6 +14,8 @@
 #import "NewGameViewController.h"
 #import "EndOfGameViewController.h"
 #import "SoundEngine.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 //General
 #define kGeneralTriviaSecondsToPlay 60.0
@@ -42,9 +44,10 @@
 }
 
 - (void)viewDidLoad
-{
+{    
+
     //Add score label
-    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 330, 30, 30)];
+    UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 290, 30, 30)];
     [newLabel setBackgroundColor:[UIColor clearColor]];
     [newLabel setMinimumFontSize:10.0];
     [newLabel setAdjustsFontSizeToFitWidth:YES];
@@ -55,26 +58,25 @@
     [newLabel release];
     
     //Add time progress
-    UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    progressView.trackTintColor = [UIColor whiteColor];
+    YLProgressBar *progressView = [[YLProgressBar alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     progressView.progress = 1.0;
-    progressView.frame = CGRectMake(80, 380, 220, 21);
+    progressView.frame = CGRectMake(20, 375, 280, 21);
     [self.view addSubview:progressView];
     self.timeProgressView = progressView;
     [progressView release];
     
     //Add help button
-    UIButton *newHelpBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 364, 32, 32)];
+    UIButton *newHelpBtn = [[UIButton alloc] initWithFrame:CGRectMake(14, 324, 32, 32)];
     [newHelpBtn addTarget:self action:@selector(helpPressed:) forControlEvents:UIControlEventTouchUpInside];
     [newHelpBtn setImage:[UIImage imageNamed:kGeneralTriviaHelpButtonImage] forState:UIControlStateNormal];
     self.helpBtn = newHelpBtn;
     [self.view addSubview:self.helpBtn];
     [newHelpBtn release];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScoreLabel) name:kScoreManagerNotificationScoreUpdated object:nil];
-        
-    [self showNewGameScreen];
     
+    [self showNewGameScreenAnimated:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScoreLabel) name:kScoreManagerNotificationScoreUpdated object:nil];
+            
     [super viewDidLoad];
 }
 
@@ -107,7 +109,7 @@
 
 #pragma mark - Screen Handling
 
-- (void)showNewGameScreen {
+- (void)showNewGameScreenAnimated:(BOOL)animated {
     NewGameViewController *newGameViewCont = [[NewGameViewController alloc] initWithNibName:@"NewGameViewController" bundle:nil];
     newGameViewCont.view.alpha = 0;
     newGameViewCont.delegate = self;
@@ -115,9 +117,13 @@
     self.myNewGameVC = newGameViewCont;
     [newGameViewCont release];
     
-    [UIView beginAnimations:@"" context:nil];
-    self.myNewGameVC.view.alpha = 1.0;
-    [UIView commitAnimations];
+    if (animated) {
+        [UIView beginAnimations:@"" context:nil];
+        self.myNewGameVC.view.alpha = 1.0;
+        [UIView commitAnimations];
+    } else {
+        self.myNewGameVC.view.alpha = 1.0;        
+    }
 
 }
 
@@ -146,7 +152,7 @@
         self.view.userInteractionEnabled = NO;
         [self.timer invalidate];
         [[ScoreManager sharedManager] challengeHighScore];
-        [self showNewGameScreen];
+        [self showNewGameScreenAnimated:YES];
         [self showEndOfGamePopup];
     } else {
         timeProgressView.progress = remainingSeconds/kGeneralTriviaSecondsToPlay;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GeneralTriviaDelegateProtocol.h"
 #import "GameFlowDelegateProtocol.h"
+#import "YLProgressBar.h"
 
 @class NewGameViewController, EndOfGameViewController;
 
@@ -21,7 +22,7 @@ typedef enum{
 @interface GeneralTriviaViewController : UIViewController <GameFlowDelegate,GeneralTriviaDelegate>{
     //UI elements
     UILabel *scoreLabel;
-    UIProgressView *timeProgressView;
+    YLProgressBar *timeProgressView;
     UIButton *helpBtn;
     
     //game timer
@@ -36,7 +37,7 @@ typedef enum{
 }
 
 @property (nonatomic, retain) UILabel *scoreLabel;
-@property (nonatomic, retain) UIProgressView *timeProgressView;
+@property (nonatomic, retain) YLProgressBar *timeProgressView;
 @property (nonatomic, retain) UIButton *helpBtn;
 
 @property (nonatomic, retain) NSTimer *timer;
