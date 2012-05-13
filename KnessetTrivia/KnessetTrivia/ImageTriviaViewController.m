@@ -25,7 +25,7 @@
 @synthesize delegate;
 @synthesize topLeftMemberCell,topRightMemberCell,bottomLeftMemberCell,bottomRightMemberCell;
 @synthesize optionsArr, gameTimer;
-@synthesize choicesArr, otherChoicesArr;
+@synthesize choicesArr, displayedMemberIdsArr;
 
 #pragma mark - Cell setters
 
@@ -87,8 +87,8 @@
 
 - (void) loadNextQuestion {
     //Log to analytics
-    int correctId = [self getCorrectMemberWithIndex:correctIndex].memberId;    
-    [[GoogleAnalyticsLogger sharedLogger] logImageTriviaChoices:self.choicesArr forMember:correctId otherMembersDisplayed:self.otherChoicesArr andTime:secondsElapsed];
+    int correctId = [self getCorrectMemberWithIndex:correctIndex].memberId;   
+    [[GoogleAnalyticsLogger sharedLogger] logImageTriviaMembers:self.displayedMemberIdsArr withAttempts:self.choicesArr forMember:correctId andTime:secondsElapsed];
 
     //Advance
     [self.delegate advanceToNextQuestion];
@@ -119,7 +119,7 @@
     self.bottomRightMemberCell = nil;
     
     [self.choicesArr removeAllObjects];
-    [self.otherChoicesArr removeAllObjects];
+    [self.displayedMemberIdsArr removeAllObjects];
     
     //Populate question
     int randGender = arc4random() % kImageTriviaFemaleRatioCoeff;
@@ -133,7 +133,7 @@
     }
     
     for (KTMember *member in self.optionsArr) {
-        [self.otherChoicesArr addObject:[NSNumber numberWithInt:member.memberId]];
+        [self.displayedMemberIdsArr addObject:[NSNumber numberWithInt:member.memberId]];
     }
     
     correctIndex = arc4random() % 4;
@@ -194,10 +194,10 @@
     self.choicesArr = arrForChoices;
     [arrForChoices release];
     
-    NSMutableArray *arrForOtherChoices = [[NSMutableArray alloc] init];
-    self.otherChoicesArr = arrForOtherChoices;
-    [arrForOtherChoices release];
-    
+    NSMutableArray *arrForMembers = [[NSMutableArray alloc] init];
+    self.displayedMemberIdsArr = arrForMembers;
+    [arrForMembers release];
+        
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -211,7 +211,7 @@
     self.optionsArr = nil;
     self.gameTimer = nil;
     self.choicesArr = nil;
-    self.otherChoicesArr = nil;
+    self.displayedMemberIdsArr = nil;
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -323,7 +323,6 @@
         [selectedMemberCell showWrongIndication];
         NSNumber *wrongMemberId = [NSNumber numberWithInt:selectedMemberCell.member.memberId];
         [self.choicesArr addObject:wrongMemberId];
-        [self.otherChoicesArr removeObject:wrongMemberId];
     }
 }
 

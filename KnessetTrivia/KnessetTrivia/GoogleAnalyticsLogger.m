@@ -10,7 +10,7 @@
 
 #define kGAEventCateoryGeneral @"General"
 #define kGAEventCategorySession @"Gameplay-Session"
-#define kGAEventCategoryMultipleChoice @"Gameplay-MultipleChoice"
+#define kGAEventCategoryMultipleChoice @"{gameplay:'idByName'}"
 #define kGAEventCategoryParty @"Gameplay-Party"
 #define kGAEventCategoryAge @"Gameplay-Age"
 #define kGAEventCategoryRole @"Gameplay-Role"
@@ -60,24 +60,31 @@ static GoogleAnalyticsLogger *sharedSingleton;
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategorySession withEventName:[NSString stringWithFormat:@"%d",seconds]];
 }
 
-- (void)logImageTriviaChoices:(NSArray *)wrongChoicesArray forMember:(int)memberId otherMembersDisplayed:(NSArray *)membersArray andTime:(int)seconds{
-    NSMutableString *eventStr = [NSMutableString string];
-    if (wrongChoicesArray) {
-        for (NSNumber *memberId in wrongChoicesArray) {
-            [eventStr appendFormat:@"%d-",[memberId intValue]];
+- (void)logImageTriviaMembers:(NSArray *)memberIdsArr withAttempts:(NSArray *)attemptsArr forMember:(int)memberId andTime:(int)seconds {
+    NSMutableString *attemptsJsonStr = [NSMutableString string];
+    [attemptsJsonStr appendString:@"["];
+    for (NSNumber *memberId in attemptsArr) {
+        [attemptsJsonStr appendFormat:@"%d",[memberIdsArr indexOfObject:memberId]];
+        if ([attemptsArr indexOfObject:memberId] != [attemptsArr count]-1) {
+            [attemptsJsonStr appendString:@","];
         }
     }
-    [eventStr appendFormat:@"#"];
-    if (membersArray) {
-        for (NSNumber *memberIdNum in membersArray) {
-            if ([memberIdNum intValue]!=memberId) {
-                [eventStr appendFormat:@"-%d",[memberIdNum intValue]];
-            }
-        }
-    }
-//    NSLog(@"GA LOGGING IMAGE QUESTION FOR MEMBER %d: %@",memberId,eventStr);
+    [attemptsJsonStr appendFormat:@"]"];
     
-    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryMultipleChoice withEventName:[NSString stringWithFormat:@"%d",memberId] andLabel:eventStr withValue:seconds];
+    NSMutableString *memberIdsJsonStr = [NSMutableString string];
+    [memberIdsJsonStr appendString:@"["];
+    for (NSNumber *memberId in memberIdsArr) {
+        [memberIdsJsonStr appendFormat:@"'%d'",[memberId intValue]];
+        if ([memberIdsArr indexOfObject:memberId] != [memberIdsArr count]-1) {
+            [memberIdsJsonStr appendString:@","];
+        }
+    }
+    [memberIdsJsonStr appendString:@"]"];
+    
+    NSString *eventLabel = [NSString stringWithFormat:@"{o:%@, g:%@, t:'%d'}",memberIdsJsonStr,attemptsJsonStr,seconds];
+    NSString *eventName = [NSString stringWithFormat:@"{mid:%d}",memberId];
+    
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryMultipleChoice withEventName:eventName andLabel:eventLabel withValue:0];
 }
 
 - (void)logRightWrongAnswerForMember:(int)memberId ofQuestionType:(RightWrongQuestionType)type isCorrect:(BOOL)correct answerDisplayed:(NSObject *)answer timeToAnswer:(int)seconds{

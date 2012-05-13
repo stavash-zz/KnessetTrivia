@@ -44,7 +44,7 @@ typedef enum {
     int tries;
     NSTimer *gameTimer;
     NSMutableArray *choicesArr;
-    NSMutableArray *otherChoicesArr;
+    NSMutableArray *displayedMemberIdsArr;
 }
 
 @property (assign) id <GeneralTriviaDelegate> delegate;
@@ -56,8 +56,7 @@ typedef enum {
 @property (nonatomic, retain) NSArray *optionsArr;
 @property (nonatomic, retain) NSTimer *gameTimer;
 @property (nonatomic, retain) NSMutableArray *choicesArr;
-@property (nonatomic, retain) NSMutableArray *otherChoicesArr;
-
+@property (nonatomic, retain) NSMutableArray *displayedMemberIdsArr;
 
 - (IBAction)helpPressed:(id)sender;
 

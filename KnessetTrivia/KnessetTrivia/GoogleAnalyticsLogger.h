@@ -20,7 +20,7 @@ typedef enum {
 + (GoogleAnalyticsLogger *)sharedLogger;
 
 - (void) logSecondsSpentInApplication:(int)seconds;
-- (void)logImageTriviaChoices:(NSArray *)wrongChoicesArray forMember:(int)memberId otherMembersDisplayed:(NSArray *)membersArray andTime:(int)seconds;
+- (void)logImageTriviaMembers:(NSArray *)memberIdsArr withAttempts:(NSArray *)attemptsArr forMember:(int)memberId andTime:(int)seconds ;
 - (void)logRightWrongAnswerForMember:(int)memberId ofQuestionType:(RightWrongQuestionType)type isCorrect:(BOOL)correct answerDisplayed:(NSObject *)answer timeToAnswer:(int)seconds;
 - (void) logSiteLinkPressed:(SiteLinkType)type;
 
