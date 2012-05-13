@@ -16,8 +16,18 @@
 #define kGAEventCategoryAge @"{gameplay:'yesNoAge'}"
 #define kGAEventCategoryRole @"{gameplay:'yesNoRole'}"
 #define kGAEventCategoryPlaceOfBirth @"{gameplay:'yesNoBirthPlace'}"
-#define kGALabelSiteOpenKnesset @"LinkToOpenKnesset"
-#define kGALabelSitePublicKnowledge @"LinkToPublicKnowledge"
+
+#define kGAEventLabelSiteOpenKnesset @"LinkToOpenKnesset"
+#define kGAEventLabelSitePublicKnowledge @"LinkToPublicKnowledge"
+#define kGAEventLabelMultipleChoiceFormat @"{o:%@, g:%@, t:'%d'}"
+#define kGAEventLabelRightWrongFormat @"{q:'%@' a:'%@' g:'%@' t:'%d'}"
+
+#define kGAEventNameMultipleChoiceFormat @"{mid:%d}"
+#define kGAEventNameRightWrongFormat @"{mid:%d}"
+
+#define kGATrue @"yes"
+#define kGAFalse @"no"
+
 
 @implementation GoogleAnalyticsLogger
 
@@ -60,7 +70,7 @@ static GoogleAnalyticsLogger *sharedSingleton;
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategorySession withEventName:[NSString stringWithFormat:@"%d",seconds]];
 }
 
-- (void)logImageTriviaMembers:(NSArray *)memberIdsArr withAttempts:(NSArray *)attemptsArr forMember:(int)memberId andTime:(int)seconds {
+- (void)logImageTriviaMembers:(NSArray *)memberIdsArr withAttempts:(NSArray *)attemptsArr forMember:(int)memberId andTime:(int)seconds { //assumption: memberIdsArr includes all members of attemptsArr
     NSMutableString *attemptsJsonStr = [NSMutableString string];
     [attemptsJsonStr appendString:@"["];
     for (NSNumber *memberId in attemptsArr) {
@@ -81,8 +91,8 @@ static GoogleAnalyticsLogger *sharedSingleton;
     }
     [memberIdsJsonStr appendString:@"]"];
     
-    NSString *eventLabel = [NSString stringWithFormat:@"{o:%@, g:%@, t:'%d'}",memberIdsJsonStr,attemptsJsonStr,seconds];
-    NSString *eventName = [NSString stringWithFormat:@"{mid:%d}",memberId];
+    NSString *eventLabel = [NSString stringWithFormat:kGAEventLabelMultipleChoiceFormat,memberIdsJsonStr,attemptsJsonStr,seconds];
+    NSString *eventName = [NSString stringWithFormat:kGAEventNameMultipleChoiceFormat,memberId];
     
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryMultipleChoice withEventName:eventName andLabel:eventLabel withValue:0];
 }
@@ -116,16 +126,16 @@ static GoogleAnalyticsLogger *sharedSingleton;
     
     NSString *correctness = nil;
     if (correct) {
-        correctness = @"yes";
+        correctness = kGATrue;
     } else {
-        correctness = @"no";
+        correctness = kGAFalse;
     }
     
     NSString *guessStr = nil;
     if (guess) {
-        guessStr = @"yes";
+        guessStr = kGATrue;
     } else {
-        guessStr = @"no";
+        guessStr = kGAFalse;
     }
 
     NSString *answerStr = nil;
@@ -135,27 +145,31 @@ static GoogleAnalyticsLogger *sharedSingleton;
         answerStr = [NSString stringWithFormat:@"%d",[(NSNumber *)answer intValue]];
     }
     
-    if (type == kRightWrongQuestionTypeParty) { //patch for translating party name to party id
-        answerStr = [NSString stringWithFormat:@"%d",[[DataManager sharedManager] getPartyIdForName:answerStr]];
+    if (type == kRightWrongQuestionTypeParty) {
+        int partyId = [[DataManager sharedManager] getPartyIdForName:answerStr];
+        if (partyId != -1) {
+            answerStr = [NSString stringWithFormat:@"%d",[[DataManager sharedManager] getPartyIdForName:answerStr]];
+        }
     }
     
-    NSString *eventLabel = [NSString stringWithFormat:@"{q:'%@' a:'%@' g:'%@' t:'%d'}",answer,correctness,guessStr,seconds];
+    NSString *eventLabel = [NSString stringWithFormat:kGAEventLabelRightWrongFormat,answer,correctness,guessStr,seconds];
     
-    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:@"{mid:%d}",memberId] andLabel:eventLabel withValue:seconds];
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:kGAEventNameRightWrongFormat,memberId] andLabel:eventLabel withValue:seconds];
 }
 
 - (void) logSiteLinkPressed:(SiteLinkType)type {
     NSString *eventName;
     switch (type) {
         case kSiteLinkOpenKnesset:
-            eventName = kGALabelSiteOpenKnesset;
+            eventName = kGAEventLabelSiteOpenKnesset;
             break;
         case kSiteLinkPublicKnowledge:
-            eventName = kGALabelSitePublicKnowledge;
+            eventName = kGAEventLabelSitePublicKnowledge;
             break;
         default:
             break;
     }
+    
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCateoryGeneral withEventName:eventName];
 }
 
