@@ -8,13 +8,13 @@
 
 #import "GoogleAnalyticsLogger.h"
 
-#define kGAEventCateoryGeneral @"General"
-#define kGAEventCategorySession @"Gameplay-Session"
+#define kGAEventCateoryGeneral @"{general:''}"
+#define kGAEventCategorySession @"{general:'session'}"
 #define kGAEventCategoryMultipleChoice @"{gameplay:'idByName'}"
-#define kGAEventCategoryParty @"Gameplay-Party"
-#define kGAEventCategoryAge @"Gameplay-Age"
-#define kGAEventCategoryRole @"Gameplay-Role"
-#define kGAEventCategoryPlaceOfBirth @"Gameplay-PlaceOfBirth"
+#define kGAEventCategoryParty @"{gameplay:'yesNoParty'}"
+#define kGAEventCategoryAge @"{gameplay:'yesNoAge'}"
+#define kGAEventCategoryRole @"{gameplay:'yesNoRole'}"
+#define kGAEventCategoryPlaceOfBirth @"{gameplay:'yesNoBirthPlace'}"
 #define kGALabelSiteOpenKnesset @"LinkToOpenKnesset"
 #define kGALabelSitePublicKnowledge @"LinkToPublicKnowledge"
 
@@ -87,7 +87,7 @@ static GoogleAnalyticsLogger *sharedSingleton;
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryMultipleChoice withEventName:eventName andLabel:eventLabel withValue:0];
 }
 
-- (void)logRightWrongAnswerForMember:(int)memberId ofQuestionType:(RightWrongQuestionType)type isCorrect:(BOOL)correct answerDisplayed:(NSObject *)answer timeToAnswer:(int)seconds{
+- (void)logRightWrongAnswerForMember:(int)memberId ofQuestionType:(RightWrongQuestionType)type userGuess:(BOOL)guess isCorrect:(BOOL)correct answerDisplayed:(NSObject *)answer timeToAnswer:(int)seconds {
     NSString *category = nil;
     switch (type) {
         case kRightWrongQuestionTypeAge:
@@ -114,11 +114,18 @@ static GoogleAnalyticsLogger *sharedSingleton;
             break;
     }
     
-    NSString *correctness;
+    NSString *correctness = nil;
     if (correct) {
-        correctness = @"Correct";
+        correctness = @"yes";
     } else {
-        correctness = @"Wrong";
+        correctness = @"no";
+    }
+    
+    NSString *guessStr = nil;
+    if (guess) {
+        guessStr = @"yes";
+    } else {
+        guessStr = @"no";
     }
 
     NSString *answerStr = nil;
@@ -128,11 +135,11 @@ static GoogleAnalyticsLogger *sharedSingleton;
         answerStr = [NSString stringWithFormat:@"%d",[(NSNumber *)answer intValue]];
     }
     
-    NSString *eventStr = [NSString stringWithFormat:@"%@-%@",answerStr,correctness];
+    NSString *eventLabel = [NSString stringWithFormat:@"{q:'%@' a:'%@' g:'%@' t:'%d'}",answer,correctness,guessStr,seconds];
     
-    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:@"%d",memberId] andLabel:eventStr withValue:seconds];
+    [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:@"{mid:%d}",memberId] andLabel:eventLabel withValue:seconds];
     
-    NSLog(@"LOGGING %@ QUESTION FOR MEMBER %d: %@",category,memberId,eventStr);
+    NSLog(@"LOGGING %@ QUESTION FOR MEMBER %d: %@",category,memberId,eventLabel);
 }
 
 - (void) logSiteLinkPressed:(SiteLinkType)type {

@@ -73,7 +73,7 @@
 
 #pragma mark - Animations
 
-- (void) updateResult:(BOOL)isCorrect {
+- (void) updateResult:(BOOL)isCorrect withGuess:(BOOL)guess{
     //Show result indication
     self.view.userInteractionEnabled = NO;
     if (isCorrect) {
@@ -83,7 +83,7 @@
     }
 
     //Log answer to analytics
-    [[GoogleAnalyticsLogger sharedLogger] logRightWrongAnswerForMember:currentMember.memberId ofQuestionType:currentQuestionType isCorrect:isCorrect answerDisplayed:currentObject timeToAnswer:secondsElapsed];
+    [[GoogleAnalyticsLogger sharedLogger] logRightWrongAnswerForMember:currentMember.memberId ofQuestionType:currentQuestionType userGuess:guess isCorrect:isCorrect answerDisplayed:currentObject timeToAnswer:secondsElapsed];
 
     //Advance
     [self performSelector:@selector(loadNextQuestion) withObject:nil afterDelay:0.5];
@@ -96,10 +96,10 @@
     BOOL result = [self validateAnswer:YES];
     if (result) {
         [[ScoreManager sharedManager] updateCorrectAnswer];
-        [self updateResult:YES];
+        [self updateResult:YES withGuess:YES];
     } else {
         [[ScoreManager sharedManager] updateWrongAnswer];
-        [self updateResult:NO];
+        [self updateResult:NO withGuess:YES];
     }
 }
 
@@ -107,10 +107,10 @@
     BOOL result = [self validateAnswer:NO];
     if (result) {
         [[ScoreManager sharedManager] updateCorrectAnswer];
-        [self updateResult:YES];
+        [self updateResult:YES withGuess:NO];
     } else {
         [[ScoreManager sharedManager] updateWrongAnswer];
-        [self updateResult:NO];
+        [self updateResult:NO withGuess:NO];
     }
 }
 
