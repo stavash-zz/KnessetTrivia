@@ -187,11 +187,11 @@ static DataManager *manager = nil;
     return nil;
 }
 
-- (NSArray *)getAllRoles {
+- (NSArray *) getAllRolesForGender:(MemberGender)gender; {
     if (self.members) {
         NSMutableSet *rolesSet = [[[NSMutableSet alloc] init] autorelease];
         for (KTMember *member in self.members) {
-            if (member.currentRoleDescriptions) {
+            if (member.currentRoleDescriptions && (member.gender == gender)) {
                 [rolesSet addObject:member.currentRoleDescriptions];
             }
         }

@@ -252,7 +252,7 @@
             }
             NSString *questionRole = nil;
             if (falseAnswer) {
-                NSArray *roles = [[DataManager sharedManager] getAllRoles];
+                NSArray *roles = [[DataManager sharedManager] getAllRolesForGender:currentMember.gender];
                 int randomIndex = arc4random() % [roles count];
                 questionRole = [roles objectAtIndex:randomIndex];
             } else {
