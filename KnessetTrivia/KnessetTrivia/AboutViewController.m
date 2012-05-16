@@ -39,6 +39,12 @@
     [l setMasksToBounds:YES];
     [l setCornerRadius:10.0];
     
+    highScoreLabel.layer.shadowColor = [UIColor yellowColor].CGColor;
+    highScoreLabel.layer.shadowOffset = CGSizeMake(0, 0);
+    highScoreLabel.layer.shadowOpacity = 1.0;
+    highScoreLabel.layer.shadowRadius = 5.0;
+    highScoreLabel.clipsToBounds = NO;
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHighScore) name:kScoreManagerNotificationHighscoreUpdated object:nil];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
