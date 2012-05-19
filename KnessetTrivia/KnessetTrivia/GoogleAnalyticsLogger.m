@@ -152,7 +152,7 @@ static GoogleAnalyticsLogger *sharedSingleton;
         }
     }
     
-    NSString *eventLabel = [NSString stringWithFormat:kGAEventLabelRightWrongFormat,answer,correctness,guessStr,seconds];
+    NSString *eventLabel = [NSString stringWithFormat:kGAEventLabelRightWrongFormat,answerStr,correctness,guessStr,seconds];
     
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:kGAEventNameRightWrongFormat,memberId] andLabel:eventLabel withValue:seconds];
 }
