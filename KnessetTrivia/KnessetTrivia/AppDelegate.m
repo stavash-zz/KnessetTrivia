@@ -26,6 +26,7 @@
 
 - (void)dealloc
 {
+    self.gameTimer = nil;
     [_window release];
     [_tabBarController release];
     [super dealloc];
