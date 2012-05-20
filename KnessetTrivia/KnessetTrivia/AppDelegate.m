@@ -45,7 +45,7 @@
     self.window.rootViewController = self.tabBarController;
     
     [[DataManager sharedManager] initializeMembers];
-    [[DataManager sharedManager] initializeBills];
+//    [[DataManager sharedManager] initializeBills]; THIS DATA IS READY FOR USE BUT IS NOT NEEDED FOR NOW
     [[DataManager sharedManager] initializeParties];
     [[DataManager sharedManager] performSelectorInBackground:@selector(saveAllImagesLocally) withObject:nil];
     [ScoreManager sharedManager];

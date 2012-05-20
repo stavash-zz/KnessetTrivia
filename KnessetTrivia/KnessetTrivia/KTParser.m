@@ -303,7 +303,6 @@
         [billsArr addObject:bill];
         [bill release];
     }
-    [generalDateFormatter release];
     return [NSArray arrayWithArray:billsArr];
 }
 
