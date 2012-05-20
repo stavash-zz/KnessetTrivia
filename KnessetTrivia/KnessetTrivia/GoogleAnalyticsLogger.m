@@ -8,6 +8,8 @@
 #import "GoogleAnalyticsLogger.h"
 #import "DataManager.h"
 
+#define LOG_TO_CONSOLE YES
+
 #define kGAEventCateoryGeneral @"{general:\'\'}"
 #define kGAEventCategorySession @"{general:\'session\'}"
 #define kGAEventCategoryMultipleChoice @"{gameplay:\'idByName\'}"
@@ -67,6 +69,10 @@ static GoogleAnalyticsLogger *sharedSingleton;
 
 - (void) logSecondsSpentInApplication:(int)seconds {
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategorySession withEventName:[NSString stringWithFormat:@"%d",seconds]];
+    
+    if (LOG_TO_CONSOLE) {
+        NSLog(@"\nLogging category %@\nEvent name: %@",kGAEventCategorySession,[NSString stringWithFormat:@"%d",seconds]);
+    }
 }
 
 - (void)logImageTriviaMembers:(NSArray *)memberIdsArr withAttempts:(NSArray *)attemptsArr forMember:(int)memberId andTime:(int)seconds { //assumption: memberIdsArr includes all members of attemptsArr
@@ -94,6 +100,10 @@ static GoogleAnalyticsLogger *sharedSingleton;
     NSString *eventName = [NSString stringWithFormat:kGAEventNameMultipleChoiceFormat,memberId];
     
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCategoryMultipleChoice withEventName:eventName andLabel:eventLabel withValue:0];
+    
+    if (LOG_TO_CONSOLE) {
+        NSLog(@"\nLogging category %@\nEvent name: %@\nEvent label: %@",kGAEventCategoryMultipleChoice,eventName,eventLabel);
+    }
 }
 
 - (void)logRightWrongAnswerForMember:(int)memberId ofQuestionType:(RightWrongQuestionType)type userGuess:(BOOL)guess isCorrect:(BOOL)correct answerDisplayed:(NSObject *)answer timeToAnswer:(int)seconds {
@@ -154,6 +164,9 @@ static GoogleAnalyticsLogger *sharedSingleton;
     NSString *eventLabel = [NSString stringWithFormat:kGAEventLabelRightWrongFormat,answerStr,correctness,guessStr,seconds];
     
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:category withEventName:[NSString stringWithFormat:kGAEventNameRightWrongFormat,memberId] andLabel:eventLabel withValue:seconds];
+    if (LOG_TO_CONSOLE) {
+        NSLog(@"\nLogging category %@\nEvent name: %@\nEvent label: %@",category,[NSString stringWithFormat:kGAEventNameRightWrongFormat,memberId],eventLabel);
+    }
 }
 
 - (void) logSiteLinkPressed:(SiteLinkType)type {
@@ -170,6 +183,11 @@ static GoogleAnalyticsLogger *sharedSingleton;
     }
     
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] sendGoogleAnalyticsTrackEventCategory:kGAEventCateoryGeneral withEventName:eventName];
+
+    if (LOG_TO_CONSOLE) {
+        NSLog(@"\nLogging category %@\nEvent name: %@",kGAEventCategorySession,eventName);
+    }
+
 }
 
 @end
