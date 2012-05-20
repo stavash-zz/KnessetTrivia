@@ -7,7 +7,7 @@
 //
 
 #import "NewGameViewController.h"
-
+ 
 #define kNewGameStartPhraseFirst @"לחץ כדי להתחיל במשחק"
 #define kNewGameStartPhrase1 @"מוכנים לעוד אחד?"
 #define kNewGameStartPhrase2 @"הגיע הזמן לשבור את השיא..."
