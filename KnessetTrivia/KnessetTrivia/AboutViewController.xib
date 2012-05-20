@@ -89,7 +89,7 @@
 					<object class="IBUIButton" id="619193485">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{75, 96}, {170, 42}}</string>
+						<string key="NSFrame">{{75, 104}, {170, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="907969689"/>
@@ -133,7 +133,7 @@
 					<object class="IBUIButton" id="907969689">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{75, 153}, {170, 42}}</string>
+						<string key="NSFrame">{{75, 161}, {170, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="777123130"/>
@@ -256,7 +256,7 @@
 					<object class="IBUILabel" id="153462032">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 45}, {280, 21}}</string>
+						<string key="NSFrame">{{20, 45}, {280, 43}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="619193485"/>
@@ -266,11 +266,12 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">חלק מפרוייקט "כנסת פתוחה"</string>
+						<string key="IBUIText">חלק מפרוייקט "כנסת פתוחה" בשיתוף אוניברסיטת תל אביב</string>
 						<reference key="IBUITextColor" ref="200232138"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUINumberOfLines">2</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -354,6 +355,14 @@
 						<reference key="destination" ref="905997610"/>
 					</object>
 					<int key="connectionID">21</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">descriptionLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="153462032"/>
+					</object>
+					<int key="connectionID">22</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -501,7 +510,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">21</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -509,11 +518,16 @@
 					<string key="className">AboutViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="descriptionLabel">UILabel</string>
 						<string key="highScoreBg">UIView</string>
 						<string key="highScoreLabel">UILabel</string>
 						<string key="soundSwitch">UISwitch</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="descriptionLabel">
+							<string key="name">descriptionLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="highScoreBg">
 							<string key="name">highScoreBg</string>
 							<string key="candidateClassName">UIView</string>

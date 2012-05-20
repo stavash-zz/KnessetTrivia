@@ -12,6 +12,7 @@
     IBOutlet UILabel *highScoreLabel;
     IBOutlet UIView *highScoreBg;
     IBOutlet UISwitch *soundSwitch;
+    IBOutlet UILabel *descriptionLabel;
 }
 
 @end

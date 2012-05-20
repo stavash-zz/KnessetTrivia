@@ -35,6 +35,7 @@
 
 - (void)viewDidLoad
 {
+    descriptionLabel.text = @"חלק מפרוייקט \"כנסת פתוחה\"\nבשיתוף אוניברסיטת תל אביב";
     CALayer *l = [highScoreBg layer];
     [l setMasksToBounds:YES];
     [l setCornerRadius:10.0];
