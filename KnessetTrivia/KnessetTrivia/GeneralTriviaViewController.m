@@ -3,7 +3,6 @@
 //  KnessetTrivia
 //
 //  Created by Stav Ashuri on 5/2/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "GeneralTriviaViewController.h"
@@ -15,7 +14,6 @@
 #import "EndOfGameViewController.h"
 #import "SoundEngine.h"
 #import <QuartzCore/QuartzCore.h>
-
 
 //General
 #define kGeneralTriviaSecondsToPlay 60.0
@@ -193,6 +191,13 @@
         self.currentTriviaController = nil;
     }
     int triviaType = arc4random() % triviaTypeCount;
+    
+    if (DEBUG_ALWAYS_RIGHTWRONG) {
+        triviaType = kTriviaTypeRightWrong;
+    } else if (DEBUG_ALWAYS_RIGHTWRONG) {
+        triviaType = kTriviaTypeImage;
+    }
+    
     switch (triviaType) {
         case kTriviaTypeImage:
         {

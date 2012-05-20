@@ -244,6 +244,7 @@
 		1F933A3015553454004CC127 /* GoogleAnalyticsLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsLogger.m; sourceTree = "<group>"; };
 		1F9C9B351556709D00F0907D /* blop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = blop.wav; path = Audio/blop.wav; sourceTree = "<group>"; };
 		1F9C9B361556709D00F0907D /* shipbell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = shipbell.wav; path = Audio/shipbell.wav; sourceTree = "<group>"; };
+		1FBBCBC3156901B200E5E7D3 /* DebugFlags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugFlags.h; sourceTree = "<group>"; };
 		1FCC68D315525F9B0099479A /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		1FCC68D415525F9B0099479A /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		1FCC68D515525F9C0099479A /* NewGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGameViewController.xib; sourceTree = "<group>"; };
@@ -427,6 +428,7 @@
 		1F62FC2B1528A60600110F7E /* KnessetTrivia */ = {
 			isa = PBXGroup;
 			children = (
+				1FBBCBC3156901B200E5E7D3 /* DebugFlags.h */,
 				1F18A204154D551200D94946 /* Audio */,
 				1F18A1F4154D49F100D94946 /* SoundEngine */,
 				1F5FE228154B484200633DF5 /* Artwork */,

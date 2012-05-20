@@ -191,6 +191,16 @@
     
     //generate question type and member
     currentQuestionType = arc4random() % questionOptionsCount;
+    if (DEBUG_ALWAYS_AGE) {
+        currentQuestionType = kRightWrongQuestionTypeAge;
+    } else if (DEBUG_ALWAYS_PARTY) {
+        currentQuestionType = kRightWrongQuestionTypeParty;
+    } else if (DEBUG_ALWAYS_POB) {
+        currentQuestionType = kRightWrongQuestionTypePlaceOfBirth;
+    } else if (DEBUG_ALWAYS_ROLE) {
+        currentQuestionType = kRightWrongQuestionTypeRole;
+    }
+    
     currentMember = [[DataManager sharedManager] getRandomMember];
     
     //add image cell
