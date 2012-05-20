@@ -6,6 +6,9 @@
 //   
 //
 
+//General
+#define kParserKeyGeneralId @"id"
+
 //Member keys
 #define kParserKeyAreaOfResidence @"area_of_residence"
 #define kParserKeyAverageWeeklyPresence @"average_weekly_presence"
@@ -56,6 +59,13 @@
 
 //Bill keys
 #define kParserKeyVotes @"votes"
+#define kParserKeyBillBillTitle @"bill_title"
+#define kParserKeyBillCommitteeMeetings @"committee_meetings"
+#define kParserKeyBillPopularName @"popular_name"
+#define kParserKeyBillProposingMKs @"proposing_mks"
+#define kParserKeyBillStageDate @"stage_date"
+#define kParserKeyBillStageText @"stage_text"
+#define kParserKeyBillStageUrl @"url"
 
 //Gender keys
 #define kParserKeyGenderMale @"זכר"
@@ -68,4 +78,17 @@
 //Date
 #define kParserGeneralDateFormat @"YYYY-LL-dd"
 #define kParserGeneralDateTimezoneName @"UTC"
+
+//Committee Meetings Keys
+#define kParserCMKeyAll @"all"
+#define kParserCMKeyFirst @"first"
+#define kParserCMKeySecond @"second"
+#define kParserCMKeyId @"id"
+#define kParserCMKeyDate @"date"
+#define kParserCMKeyDescription @"description"
+
+//Votes Keys
+#define kParserVotesKeyPre @"pre"
+#define kParserVotesKeyFirst @"first"
+#define kParserVotesKeyApproval @"approval"
 
