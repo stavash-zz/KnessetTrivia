@@ -12,10 +12,10 @@
 
 typedef enum {
     kRightWrongQuestionTypeParty,
-    kRightWrongQuestionTypeAge,
     kRightWrongQuestionTypePlaceOfBirth,
     kRightWrongQuestionTypeRole,
-    questionOptionsCount
+    questionOptionsCount,
+    kRightWrongQuestionTypeAge
 }RightWrongQuestionType;
 
 @class KTMember, MemberCellViewController;
