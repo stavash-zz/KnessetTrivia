@@ -48,7 +48,7 @@
     [[DataManager sharedManager] initializeMembers];
 //    [[DataManager sharedManager] initializeBills]; THIS DATA IS READY FOR USE BUT IS NOT NEEDED FOR NOW
     [[DataManager sharedManager] initializeParties];
-    [[DataManager sharedManager] performSelectorInBackground:@selector(saveAllImagesLocally) withObject:nil];
+//    [[DataManager sharedManager] performSelectorInBackground:@selector(saveAllImagesLocally) withObject:nil]; NO NEED FOR THIS AS THE IMAGES ARE BUNDLED
     [ScoreManager sharedManager];
     [SoundEngine sharedSoundEngine];
     [self.window makeKeyAndVisible];
@@ -58,7 +58,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
-{
+{    
     [self logSecondsElapsed];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -84,6 +84,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [self logSecondsElapsed];
+    [self cleanTempDirectory];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
@@ -100,6 +101,15 @@
 {
 }
 */
+
+#pragma mark - Cache dump
+
+- (void) cleanTempDirectory {
+    NSArray *filesToDelete = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:NSTemporaryDirectory() error:nil];
+    for (NSString *filePath in filesToDelete) {
+        [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/%@",NSTemporaryDirectory(),filePath] error:nil];
+    }
+}
 
 #pragma mark - Game Timer
 - (void)initGameTimer {

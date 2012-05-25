@@ -272,7 +272,13 @@ static DataManager *manager = nil;
 #pragma mark - Image Caching
 
 - (UIImage *)getImageForMemberId:(int)memberId {
-    UIImage *memberImg = [[DataManager sharedManager] savedImageForId:memberId];
+    UIImage *memberImg = [UIImage imageNamed:[NSString stringWithFormat:@"%d",memberId]];
+    if (memberImg) {
+        return memberImg;
+    } else {
+        memberImg = [[DataManager sharedManager] savedImageForId:memberId];
+    }
+    
     if (memberImg) {
         return memberImg;
     } else {
@@ -280,7 +286,7 @@ static DataManager *manager = nil;
         if (member) {
             NSLog(@"caching member %d locally",member.memberId);
             memberImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:member.imageUrl]]];
-            [[DataManager sharedManager] saveImageToDocuments:memberImg withId:memberId];
+            [[DataManager sharedManager] saveImageToTempDirectory:memberImg withId:memberId];
             return memberImg;
         } else {
             return nil;
@@ -289,17 +295,19 @@ static DataManager *manager = nil;
 }
 
 - (UIImage *)savedImageForId:(int)imageId {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *tempDir = NSTemporaryDirectory();
+    NSString *filePath = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
     UIImage *img = [UIImage imageWithContentsOfFile:filePath];
     return img;
 }
 
-- (void) saveImageToDocuments:(UIImage *)image withId:(int)imageId {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
+- (void) saveImageToTempDirectory:(UIImage *)image withId:(int)imageId {
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *tempDir = NSTemporaryDirectory();
+        NSString *filePath = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
         [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
 }
 

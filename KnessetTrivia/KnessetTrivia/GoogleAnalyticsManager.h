@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "GANTracker.h"
 
-#define kKnessetTriviaGoogleAnalyticsTrackingNumber @"UA-31452039-1"
+#define kKnessetTriviaGoogleAnalyticsTrackingNumber @"UA-31452039-1" //@"UA-32125016-1"
 
 @interface GoogleAnalyticsManager : NSObject <GANTrackerDelegate>
 {

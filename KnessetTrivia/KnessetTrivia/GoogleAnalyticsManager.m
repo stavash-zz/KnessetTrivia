@@ -78,7 +78,7 @@ static GoogleAnalyticsManager *sharedSingleton;
         NSLog(@"*** Google Analytics Error ***\nNo tracking number set for GoogleAnalyticsManager");
         return;
     }
-    
+
     NSError *err;
     if (![[GANTracker sharedTracker] trackEvent:eventCategory
                                          action:eventName

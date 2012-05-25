@@ -53048,7 +53048,7 @@
         "area_of_residence": null, 
         "date_of_death": null, 
         "phone": "026408458", 
-        "is_current": true, 
+        "is_current": false, 
         "bills": [
             {
                 "url": "/bill/6231/", 
