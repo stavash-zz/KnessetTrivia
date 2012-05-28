@@ -16,7 +16,6 @@
 @synthesize members;
 @synthesize bills;
 @synthesize parties;
-
 static DataManager *manager = nil;
 
 #pragma mark - Default
@@ -25,6 +24,7 @@ static DataManager *manager = nil;
 	@synchronized(self) {
 		if (!manager) {
 			[[DataManager alloc] init];
+
 		}
 		return manager;
 	}
@@ -52,6 +52,18 @@ static DataManager *manager = nil;
     self.bills = nil;
     self.parties = nil;
     [super dealloc];
+}
+
+#pragma mark - Private
+
+- (NSArray *)getMembersWithRole {
+    NSMutableArray *membersArr = [[[NSMutableArray alloc] init] autorelease];
+    for (KTMember *member in self.members) {
+        if (member.currentRoleDescriptions) {
+            [membersArr addObject:member];
+        }
+    }
+    return [NSArray arrayWithArray:membersArr];
 }
 
 #pragma mark - Public
@@ -248,6 +260,13 @@ static DataManager *manager = nil;
     int memberCount = [[DataManager sharedManager].members count];
     int randIndex = arc4random() % memberCount;
     return [[DataManager sharedManager].members objectAtIndex:randIndex];
+}
+
+- (KTMember *) getRandomMemberWithRole {
+    NSArray *membersWithRole = [[DataManager sharedManager] getMembersWithRole];
+    int memberCount = membersWithRole.count;
+    int randIndex = arc4random() % memberCount;
+    return [membersWithRole objectAtIndex:randIndex];
 }
 
 - (int)getAgeForMember:(KTMember *)member {

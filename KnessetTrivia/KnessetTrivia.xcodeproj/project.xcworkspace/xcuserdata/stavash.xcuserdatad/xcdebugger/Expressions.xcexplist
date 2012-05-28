@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[RightWrongTriviaViewController validateAnswer:]:RightWrongTriviaViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentObjectString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "+[KTParser parseMembersFromTree:]:KTParser.m">
          <PersistentStrings>
             <PersistentString

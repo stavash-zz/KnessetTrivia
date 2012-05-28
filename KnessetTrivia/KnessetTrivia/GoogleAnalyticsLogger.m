@@ -8,7 +8,7 @@
 #import "GoogleAnalyticsLogger.h"
 #import "DataManager.h"
 
-#define LOG_TO_CONSOLE YES
+#define LOG_TO_CONSOLE NO
 
 #define kGAEventCateoryGeneral @"{general:\'\'}"
 #define kGAEventCategorySession @"{general:\'session\'}"

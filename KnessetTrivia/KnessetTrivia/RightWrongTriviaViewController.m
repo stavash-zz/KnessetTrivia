@@ -71,6 +71,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Randomization
++ (BOOL) generateRandomBoolean {
+    int randInt = arc4random() % 2;
+    if (randInt == 1) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 #pragma mark - Animations
 
 - (void) updateResult:(BOOL)isCorrect withGuess:(BOOL)guess{
@@ -93,6 +103,9 @@
 #pragma mark - IBActions
 
 - (IBAction)rightPressed:(id)sender {
+    if (!self.currentMember) {
+        return;
+    }
     BOOL result = [self validateAnswer:YES];
     if (result) {
         [[ScoreManager sharedManager] updateCorrectAnswer];
@@ -104,6 +117,9 @@
 }
 
 - (IBAction)wrongPressed:(id)sender {
+    if (!self.currentMember) {
+        return;
+    }
     BOOL result = [self validateAnswer:NO];
     if (result) {
         [[ScoreManager sharedManager] updateCorrectAnswer];
@@ -201,7 +217,11 @@
         currentQuestionType = kRightWrongQuestionTypeRole;
     }
     
-    currentMember = [[DataManager sharedManager] getRandomMember];
+    if (currentQuestionType != kRightWrongQuestionTypeRole) {
+        currentMember = [[DataManager sharedManager] getRandomMember];
+    } else {
+        currentMember = [[DataManager sharedManager] getRandomMemberWithRole];
+    }
     
     //add image cell
     MemberCellViewController *newCellVC = [[MemberCellViewController alloc] initWithNibName:@"MemberCellViewController" bundle:nil];
@@ -217,9 +237,15 @@
     switch (currentQuestionType) {
         case kRightWrongQuestionTypeParty:
         {
-            NSArray *parties = [[DataManager sharedManager] getAllParties];
-            int randomPartyIndex = arc4random() % [parties count];
-            NSString *party = [parties objectAtIndex:randomPartyIndex];
+            BOOL falseAnswer = [RightWrongTriviaViewController generateRandomBoolean];
+            NSString *party = nil;
+            if (falseAnswer) {
+                NSArray *parties = [[DataManager sharedManager] getAllParties];
+                int randomPartyIndex = arc4random() % [parties count];
+                party = [parties objectAtIndex:randomPartyIndex];
+            } else {
+                party = currentMember.party;
+            }
 
             question = [NSString stringWithFormat:kRightWrongQuestionPartyQuestionFormat,currentMember.name,questionReference,party];
             self.currentObject = party;
@@ -227,7 +253,7 @@
             break;
         case kRightWrongQuestionTypeAge:
         {
-            BOOL falseAnswer = arc4random() % 2;
+            BOOL falseAnswer = [RightWrongTriviaViewController generateRandomBoolean];
             int age = [[DataManager sharedManager] getAgeForMember:currentMember];
             if (falseAnswer) {
                 int randomOffset = (arc4random() % kRightWrongQuestionAgeOffset*2)-kRightWrongQuestionAgeOffset;
@@ -240,7 +266,7 @@
             break;
         case kRightWrongQuestionTypePlaceOfBirth:
         {
-            BOOL falseAnswer = arc4random() % 2;
+            BOOL falseAnswer = [RightWrongTriviaViewController generateRandomBoolean];
             NSString *questionPob = nil;
             if (falseAnswer) {
                 NSArray *places = [[DataManager sharedManager] getAllPlacesOfBirth];
@@ -256,10 +282,7 @@
             break;
         case kRightWrongQuestionTypeRole:
         {
-            BOOL falseAnswer = arc4random() % 2;
-            if (!currentMember.currentRoleDescriptions) {
-                falseAnswer = YES;
-            }
+            BOOL falseAnswer = [RightWrongTriviaViewController generateRandomBoolean];
             NSString *questionRole = nil;
             if (falseAnswer) {
                 NSArray *roles = [[DataManager sharedManager] getAllRolesForGender:currentMember.gender];
@@ -308,6 +331,7 @@
             NSString *currentObjectString = (NSString *)self.currentObject;
             correct = [currentObjectString isEqualToString:currentMember.placeOfBirth];
         }
+            break;
         case kRightWrongQuestionTypeRole:
         {
             NSString *currentObjectString = (NSString *)self.currentObject;

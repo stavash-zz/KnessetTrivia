@@ -15,10 +15,10 @@
     NSArray *parties;
 }
 
+
 @property (nonatomic, retain) NSArray *members;
 @property (nonatomic, retain) NSArray *bills;
 @property (nonatomic, retain) NSArray *parties;
-
 
 //General
 + (DataManager *) sharedManager;
@@ -35,6 +35,7 @@
 - (NSArray *) getAllRolesForGender:(MemberGender)gender;
 - (NSArray *) getFourRandomMembersOfGender:(MemberGender)gender;
 - (KTMember *) getRandomMember;
+- (KTMember *) getRandomMemberWithRole;
 - (int) getAgeForMember:(KTMember *)member;
 - (int) getPartyIdForName:(NSString *)partyName;
 
