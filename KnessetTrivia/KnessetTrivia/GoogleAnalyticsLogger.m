@@ -12,16 +12,16 @@
 
 #define kGAEventCateoryGeneral @"{general:\'\'}"
 #define kGAEventCategorySession @"{general:\'session\'}"
-#define kGAEventCategoryMultipleChoice @"{gameplay:\'idByName\'}"
-#define kGAEventCategoryParty @"{gameplay:\'yesNoParty\'}"
-#define kGAEventCategoryAge @"{gameplay:\'yesNoAge\'}"
-#define kGAEventCategoryRole @"{gameplay:\'yesNoRole\'}"
-#define kGAEventCategoryPlaceOfBirth @"{gameplay:\'yesNoBirthPlace\'}"
+#define kGAEventCategoryMultipleChoice @"{gameplay:\'idByName\', v:1}"
+#define kGAEventCategoryParty @"{gameplay:\'yesNoParty\', v:1}"
+#define kGAEventCategoryAge @"{gameplay:\'yesNoAge\', v:1}"
+#define kGAEventCategoryRole @"{gameplay:\'yesNoRole\', v:1}"
+#define kGAEventCategoryPlaceOfBirth @"{gameplay:\'yesNoBirthPlace\', v:1}"
 
 #define kGAEventLabelSiteOpenKnesset @"LinkToOpenKnesset"
 #define kGAEventLabelSitePublicKnowledge @"LinkToPublicKnowledge"
-#define kGAEventLabelMultipleChoiceFormat @"{o:%@, g:%@, t:\'%d\'}"
-#define kGAEventLabelRightWrongFormat @"{q:\'%@\' a:\'%@\' g:\'%@\' t:\'%d\'}"
+#define kGAEventLabelMultipleChoiceFormat @"{o: %@, g:%@, t:%d}"
+#define kGAEventLabelRightWrongFormat @"{q:\"%@\", a:\"%@\", g:\"%@\", t:%d}"
 
 #define kGAEventNameMultipleChoiceFormat @"{mid:%d}"
 #define kGAEventNameRightWrongFormat @"{mid:%d}"
@@ -89,7 +89,7 @@ static GoogleAnalyticsLogger *sharedSingleton;
     NSMutableString *memberIdsJsonStr = [NSMutableString string];
     [memberIdsJsonStr appendString:@"["];
     for (NSNumber *memberId in memberIdsArr) {
-        [memberIdsJsonStr appendFormat:@"\'%d\'",[memberId intValue]];
+        [memberIdsJsonStr appendFormat:@"%d",[memberId intValue]];
         if ([memberIdsArr indexOfObject:memberId] != [memberIdsArr count]-1) {
             [memberIdsJsonStr appendString:@","];
         }
