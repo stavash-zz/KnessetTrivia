@@ -85,6 +85,10 @@
     return self;
 }
 
+- (KTMember *)getCorrectMemberWithIndex:(int)index {
+    return [self.optionsArr objectAtIndex:index];
+}
+
 - (void) loadNextQuestion {
     //Log to analytics
     int correctId = [self getCorrectMemberWithIndex:correctIndex].memberId;   
@@ -94,9 +98,6 @@
     [self.delegate advanceToNextQuestion];
 }
 
-- (KTMember *)getCorrectMemberWithIndex:(int)index {
-    return [self.optionsArr objectAtIndex:index];
-}
 
 - (void) loadNewQuestion {
         
