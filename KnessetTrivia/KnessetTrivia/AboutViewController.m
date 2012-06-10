@@ -78,7 +78,7 @@
 
 - (IBAction)goToYedaPressed:(id)sender {
     [[GoogleAnalyticsLogger sharedLogger] logSiteLinkPressed:kSiteLinkPublicKnowledge];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://yeda.us/"]]; 
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://hasadna.org.il/"]]; 
 }
 
 - (IBAction)soundSwitchChanged:(id)sender {
