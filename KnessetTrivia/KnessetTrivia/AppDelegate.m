@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 #import "AboutViewController.h"
 #import "ImageTriviaViewController.h"
@@ -36,7 +37,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     [[GoogleAnalyticsManager sharedGoogleAnalyticsManager] setAnalyticsTrackingNumber:kKnessetTriviaGoogleAnalyticsTrackingNumber];
-
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UIViewController *viewController1 = [[[GeneralTriviaViewController alloc] init] autorelease];
@@ -78,11 +79,13 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    [FBSession.activeSession handleDidBecomeActive];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [FBSession.activeSession close];
     [self logSecondsElapsed];
     [self cleanTempDirectory];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -129,6 +132,20 @@
         secondsElapsed = 0;
     }
     [self.gameTimer invalidate];
+}
+
+#pragma mark - URL scheme handling
+
+/*
+ * If we have a valid session at the time of openURL call, we handle
+ * Facebook transitions by passing the url argument to handleOpenURL
+ */
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [FBSession.activeSession handleOpenURL:url];
 }
 
 @end
