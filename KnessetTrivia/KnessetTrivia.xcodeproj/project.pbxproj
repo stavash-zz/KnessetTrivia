@@ -229,6 +229,15 @@
 		1F933A3115553454004CC127 /* GoogleAnalyticsLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F933A3015553454004CC127 /* GoogleAnalyticsLogger.m */; };
 		1F9C9B371556709D00F0907D /* blop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1F9C9B351556709D00F0907D /* blop.wav */; };
 		1F9C9B381556709D00F0907D /* shipbell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1F9C9B361556709D00F0907D /* shipbell.wav */; };
+		1FADE9BA16722E480070F653 /* FacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADE9B716722E480070F653 /* FacebookFriend.m */; };
+		1FADE9BB16722E480070F653 /* SocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADE9B916722E480070F653 /* SocialManager.m */; };
+		1FADE9BD16722E5D0070F653 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9BC16722E5D0070F653 /* FacebookSDK.framework */; };
+		1FADE9BF167231290070F653 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9BE167231290070F653 /* AdSupport.framework */; };
+		1FADE9C1167231350070F653 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C0167231350070F653 /* Accounts.framework */; };
+		1FADE9C31672313A0070F653 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C21672313A0070F653 /* Social.framework */; };
+		1FADE9C5167236C70070F653 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C4167236C70070F653 /* Default-568h@2x.png */; };
+		1FADE9C81672389A0070F653 /* FB.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C61672389A0070F653 /* FB.png */; };
+		1FADE9C91672389A0070F653 /* FB@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C71672389A0070F653 /* FB@2X.png */; };
 		1FCC68D615525F9C0099479A /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC68D415525F9B0099479A /* NewGameViewController.m */; };
 		1FCC68D715525F9C0099479A /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FCC68D515525F9C0099479A /* NewGameViewController.xib */; };
 		1FF2CC9B1551CA2300A93B3D /* ScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF2CC9A1551CA2300A93B3D /* ScoreManager.m */; };
@@ -500,6 +509,17 @@
 		1F933A3015553454004CC127 /* GoogleAnalyticsLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsLogger.m; sourceTree = "<group>"; };
 		1F9C9B351556709D00F0907D /* blop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = blop.wav; path = Audio/blop.wav; sourceTree = "<group>"; };
 		1F9C9B361556709D00F0907D /* shipbell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = shipbell.wav; path = Audio/shipbell.wav; sourceTree = "<group>"; };
+		1FADE9B616722E480070F653 /* FacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookFriend.h; sourceTree = "<group>"; };
+		1FADE9B716722E480070F653 /* FacebookFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookFriend.m; sourceTree = "<group>"; };
+		1FADE9B816722E480070F653 /* SocialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialManager.h; path = Social/SocialManager/SocialManager.h; sourceTree = "<group>"; };
+		1FADE9B916722E480070F653 /* SocialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocialManager.m; path = Social/SocialManager/SocialManager.m; sourceTree = "<group>"; };
+		1FADE9BC16722E5D0070F653 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		1FADE9BE167231290070F653 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1FADE9C0167231350070F653 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		1FADE9C21672313A0070F653 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		1FADE9C4167236C70070F653 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1FADE9C61672389A0070F653 /* FB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FB.png; path = Artwork/FB.png; sourceTree = "<group>"; };
+		1FADE9C71672389A0070F653 /* FB@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FB@2X.png"; path = "Artwork/FB@2X.png"; sourceTree = "<group>"; };
 		1FBBCBC3156901B200E5E7D3 /* DebugFlags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugFlags.h; sourceTree = "<group>"; };
 		1FCC68D315525F9B0099479A /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		1FCC68D415525F9B0099479A /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
@@ -518,6 +538,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FADE9C31672313A0070F653 /* Social.framework in Frameworks */,
+				1FADE9C1167231350070F653 /* Accounts.framework in Frameworks */,
+				1FADE9BF167231290070F653 /* AdSupport.framework in Frameworks */,
 				1F933A2E15552D35004CC127 /* libsqlite3.0.dylib in Frameworks */,
 				1F933A2915552BE7004CC127 /* CFNetwork.framework in Frameworks */,
 				1F70852A155008CD00D80EFF /* MessageUI.framework in Frameworks */,
@@ -528,6 +551,7 @@
 				1F62FC281528A60600110F7E /* Foundation.framework in Frameworks */,
 				1F62FC2A1528A60600110F7E /* CoreGraphics.framework in Frameworks */,
 				1F933A2715552BC0004CC127 /* libGoogleAnalytics.a in Frameworks */,
+				1FADE9BD16722E5D0070F653 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +674,10 @@
 		1F62FC161528A60500110F7E = {
 			isa = PBXGroup;
 			children = (
+				1FADE9C4167236C70070F653 /* Default-568h@2x.png */,
+				1FADE9C21672313A0070F653 /* Social.framework */,
+				1FADE9C0167231350070F653 /* Accounts.framework */,
+				1FADE9BE167231290070F653 /* AdSupport.framework */,
 				1F692136154AD0E4001AD57F /* Resources */,
 				1F62FC2B1528A60600110F7E /* KnessetTrivia */,
 				1F62FC241528A60600110F7E /* Frameworks */,
@@ -668,6 +696,7 @@
 		1F62FC241528A60600110F7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FADE9BC16722E5D0070F653 /* FacebookSDK.framework */,
 				1F933A2D15552D35004CC127 /* libsqlite3.0.dylib */,
 				1F933A2815552BE7004CC127 /* CFNetwork.framework */,
 				1F708529155008CD00D80EFF /* MessageUI.framework */,
@@ -685,6 +714,7 @@
 			isa = PBXGroup;
 			children = (
 				1FBBCBC3156901B200E5E7D3 /* DebugFlags.h */,
+				1FADE9B216722C9E0070F653 /* Social */,
 				1F18A204154D551200D94946 /* Audio */,
 				1F18A1F4154D49F100D94946 /* SoundEngine */,
 				1F5FE228154B484200633DF5 /* Artwork */,
@@ -796,6 +826,8 @@
 		1F699C181550140B005DFCAA /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				1FADE9C61672389A0070F653 /* FB.png */,
+				1FADE9C71672389A0070F653 /* FB@2X.png */,
 				1F5CF2941555AA95004AA873 /* general_button_bg_sel.png */,
 				1F5CF2951555AA95004AA873 /* general_button_bg_sel@2x.png */,
 				1F5CF28F1555A9C1004AA873 /* general_button_bg_reg.png */,
@@ -1039,6 +1071,34 @@
 			name = "Google Analytics";
 			sourceTree = "<group>";
 		};
+		1FADE9B216722C9E0070F653 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				1FADE9B416722DF00070F653 /* SocialManager */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
+		1FADE9B416722DF00070F653 /* SocialManager */ = {
+			isa = PBXGroup;
+			children = (
+				1FADE9B516722E480070F653 /* FacebookFriend */,
+				1FADE9B816722E480070F653 /* SocialManager.h */,
+				1FADE9B916722E480070F653 /* SocialManager.m */,
+			);
+			name = SocialManager;
+			sourceTree = "<group>";
+		};
+		1FADE9B516722E480070F653 /* FacebookFriend */ = {
+			isa = PBXGroup;
+			children = (
+				1FADE9B616722E480070F653 /* FacebookFriend.h */,
+				1FADE9B716722E480070F653 /* FacebookFriend.m */,
+			);
+			name = FacebookFriend;
+			path = Social/SocialManager/FacebookFriend;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1268,6 +1328,9 @@
 				1F6CC8831570090600E591F9 /* 850.png in Resources */,
 				1F6CC8841570090600E591F9 /* 851.png in Resources */,
 				1F6CC8851570090600E591F9 /* 852.png in Resources */,
+				1FADE9C5167236C70070F653 /* Default-568h@2x.png in Resources */,
+				1FADE9C81672389A0070F653 /* FB.png in Resources */,
+				1FADE9C91672389A0070F653 /* FB@2X.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,6 +1379,8 @@
 				1F182C18155FC8F2000C9BF5 /* KTParty.m in Sources */,
 				1F7BAA911560432A00F2B4E5 /* YLBackgroundView.m in Sources */,
 				1F7BAA921560432A00F2B4E5 /* YLProgressBar.m in Sources */,
+				1FADE9BA16722E480070F653 /* FacebookFriend.m in Sources */,
+				1FADE9BB16722E480070F653 /* SocialManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1379,6 +1444,11 @@
 		1F62FC4E1528A60600110F7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KnessetTrivia/KnessetTrivia-Prefix.pch";
 				INFOPLIST_FILE = "KnessetTrivia/KnessetTrivia-Info.plist";
@@ -1387,6 +1457,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/KnessetTrivia/Google\"",
 				);
+				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "טריוויה כנסת";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1395,7 +1466,12 @@
 		1F62FC4F1528A60600110F7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KnessetTrivia/KnessetTrivia-Prefix.pch";
 				INFOPLIST_FILE = "KnessetTrivia/KnessetTrivia-Info.plist";
@@ -1404,6 +1480,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/KnessetTrivia/Google\"",
 				);
+				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "טריוויה כנסת";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
