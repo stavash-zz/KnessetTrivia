@@ -7,7 +7,8 @@
 //
 
 #import "NewGameViewController.h"
- 
+#import "SocialManager.h"
+
 #define kNewGameStartPhraseFirst @"לחץ כדי להתחיל במשחק"
 #define kNewGameStartPhrase1 @"מוכנים לעוד אחד?"
 #define kNewGameStartPhrase2 @"הגיע הזמן לשבור את השיא..."
@@ -16,7 +17,9 @@
 #define kNewGameStartPhrase5 @"רוצים עוד קצת?"
 #define kNewGameFirstGameEverDefaultsKey @"firstGameEver"
 
-@interface NewGameViewController ()
+@interface NewGameViewController () {
+    dispatch_queue_t backgroundQueue;
+}
 
 @end
 
@@ -34,6 +37,14 @@
 
 - (void)viewDidLoad
 {
+    backgroundQueue = dispatch_queue_create("org.oknesset.trivia", NULL);
+    
+    if ([[SocialManager sharedManager] getFacebookTokenFromActiveSession]) {
+        facebookButton.alpha = 0.0;
+    } else {
+        facebookButton.alpha = 1.0;
+    }
+        
     NSString *startPhrase;
     NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:kNewGameFirstGameEverDefaultsKey];
     
@@ -70,7 +81,8 @@
     }
     startPhraseLabel.text = startPhrase;
     
-    
+    [self displayFacebookNameIfAvailable];
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -85,6 +97,27 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Private
+
+- (void)displayFacebookNameIfAvailable {
+    [[SocialManager sharedManager] getFullNameFromActiveSessionWithCompletion:^(NSString *fullName) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.4 animations:^{
+                facebookButton.alpha = 0.0;
+                welcomeLabel.text = [NSString stringWithFormat:@"ברוכים הבאים, %@",fullName];
+                welcomeLabel.alpha = 1.0;
+            }];
+        });
+    } onFailure:^(NSString *errorDescription) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.4 animations:^{
+                facebookButton.alpha = 1.0;
+                welcomeLabel.alpha = 0.0;
+            }];
+        });
+    }];
 }
 
 #pragma mark - Animations
@@ -107,6 +140,21 @@
 - (IBAction)startGamePressed:(id)sender {
     [self.delegate newGameRequested];
     [self closeAnimated];
+}
+
+- (IBAction)signInWithFacebookPressed:(id)sender {
+    [[SocialManager sharedManager] facebookLoginWithCompletion:^(NSString *token, NSString *firstName, NSString *lastName, NSString *username) {
+        NSLog(@"Log in success!");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.4 animations:^{
+                welcomeLabel.alpha = 1.0;
+                facebookButton.alpha = 0.0;
+            }];
+            welcomeLabel.text = [NSString stringWithFormat:@"ברוכים הבאים, %@ %@",firstName, lastName];
+        });
+    } onFailure:^(NSString *errorDescription) {
+        NSLog(@"Couldn't log in to Facebook: %@",errorDescription);
+    }];
 }
 
 @end

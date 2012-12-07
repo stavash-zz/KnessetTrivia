@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EndOfGameViewController.h"
 #import "ScoreManager.h"
+#import "SocialManager.h"
 
 @interface EndOfGameViewController ()
 
@@ -78,6 +79,14 @@
 - (IBAction)closePressed:(id)sender {
     [self.delegate reEnableGeneralScreenRequested];
     [self closeAnimated];
+}
+
+- (IBAction)sharePressed:(id)sender {
+    [[SocialManager sharedManager] postToFacebookWithLink:@"https://itunes.apple.com/il/app/trywwyh-knst/id528980460?mt=8" andPictureURL:nil andName:@"אפליקציית טריוויה כנסת" andCaption:nil andDescription:nil andMessage:[NSString stringWithFormat:@"הצלחתי לצבור %d נקודות באפליקציית טריוויה כנסת!",[[ScoreManager sharedManager] getCurrentScoreAboveZero]] onCompletion:^{
+        NSLog(@"Success!");
+    } onFailure:^(NSString *errorDescription) {
+        NSLog(@"Error - couldn't post to facebook: %@",errorDescription);
+    }];
 }
 
 @end

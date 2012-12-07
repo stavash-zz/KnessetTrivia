@@ -21,6 +21,8 @@ typedef enum {
 @interface NewGameViewController : UIViewController {
     id <GameFlowDelegate> delegate;
     IBOutlet UILabel *startPhraseLabel;
+    IBOutlet UILabel *welcomeLabel;
+    IBOutlet UIButton *facebookButton;
     BOOL firstGameEver;
 }
 

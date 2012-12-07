@@ -7,10 +7,10 @@
 //
 
 #import "AboutViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "ScoreManager.h"
 #import "GoogleAnalyticsLogger.h"
 #import "SoundEngine.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface AboutViewController ()
 
@@ -85,6 +85,5 @@
     UISwitch *sSwitch = (UISwitch *)sender;
     [[SoundEngine sharedSoundEngine] setSoundON:sSwitch.on];
 }
-
 
 @end
