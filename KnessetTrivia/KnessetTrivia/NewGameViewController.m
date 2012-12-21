@@ -39,12 +39,20 @@
 {
     backgroundQueue = dispatch_queue_create("org.oknesset.trivia", NULL);
     
-    if ([[SocialManager sharedManager] getFacebookTokenFromActiveSession]) {
-        facebookButton.alpha = 0.0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookPreferenceChanged) name:kFacebookPreferenceChangedNotification object:nil];
+    
+    BOOL isFacebookConnected = [[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsIsFacebookConnectedKey] boolValue];
+    if (isFacebookConnected) {
+        [[SocialManager sharedManager] facebookLoginWithCompletion:^(NSString *token, NSString *firstName, NSString *lastName, NSString *username) {
+            facebookButton.alpha = 0.0;
+            [self displayFacebookNameIfAvailable];
+        } onFailure:^(NSString *errorDescription) {
+            facebookButton.alpha = 1.0;
+        }];
     } else {
         facebookButton.alpha = 1.0;
     }
-        
+    
     NSString *startPhrase;
     NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:kNewGameFirstGameEverDefaultsKey];
     
@@ -81,8 +89,6 @@
     }
     startPhraseLabel.text = startPhrase;
     
-    [self displayFacebookNameIfAvailable];
-
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -90,6 +96,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -100,6 +108,17 @@
 }
 
 #pragma mark - Private
+
+- (void)facebookPreferenceChanged {
+    BOOL isFacebookConnected = [[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsIsFacebookConnectedKey] boolValue];
+    if (!isFacebookConnected) {
+        facebookButton.alpha = 1.0;
+        welcomeLabel.alpha = 0.0;
+    } else {
+        facebookButton.alpha = 1.0;
+        welcomeLabel.alpha = 0.0;
+    }
+}
 
 - (void)displayFacebookNameIfAvailable {
     [[SocialManager sharedManager] getFullNameFromActiveSessionWithCompletion:^(NSString *fullName) {
@@ -151,6 +170,7 @@
                 facebookButton.alpha = 0.0;
             }];
             welcomeLabel.text = [NSString stringWithFormat:@"ברוכים הבאים, %@ %@",firstName, lastName];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kUserDefaultsIsFacebookConnectedKey];
         });
     } onFailure:^(NSString *errorDescription) {
         NSLog(@"Couldn't log in to Facebook: %@",errorDescription);

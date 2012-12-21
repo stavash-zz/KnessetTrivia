@@ -11,6 +11,7 @@
 #import "ScoreManager.h"
 #import "GoogleAnalyticsLogger.h"
 #import "SoundEngine.h"
+#import "SocialManager.h"
 
 @interface AboutViewController ()
 
@@ -85,5 +86,11 @@
     UISwitch *sSwitch = (UISwitch *)sender;
     [[SoundEngine sharedSoundEngine] setSoundON:sSwitch.on];
 }
+
+- (IBAction)logOut:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:kUserDefaultsIsFacebookConnectedKey];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kFacebookPreferenceChangedNotification object:nil];
+}
+
 
 @end

@@ -22,6 +22,19 @@
 #define kFacebookPostParamDescription   @"description"
 #define kFacebookPostParamMessage       @"message"
 
+#define kFacebookSDKJsonResponseKey @"com.facebook.sdk:ParsedJSONResponseKey"
+
+#define kFacebookSDKErrorCodeOAuthError 190
+#define kFacebookSDKErrorSubcodeAppNotInstalled 458
+#define kFacebookSDKErrorSubcodeUserCheckpointed 459
+#define kFacebookSDKErrorSubcodePasswordChanged 460
+#define kFacebookSDKErrorSubcodeExpired 463
+#define kFacebookSDKErrorSubcodeUnconfirmedUser 464
+#define kFacebookErrorUserInfoKeyBody    @"body"
+#define kFacebookErrorUserInfoKeyError   @"error"
+#define kFacebookErrorUserInfoKeyCode    @"code"
+#define kFacebookErrorUserInfoKeySubCode @"error_subcode"
+
 NSString *const FBSessionStateChangedNotification = @"org.oknesset.trivia:FBSessionStateChangedNotification";
 
 @interface SocialManager()
@@ -198,34 +211,47 @@ NSString *const FBSessionStateChangedNotification = @"org.oknesset.trivia:FBSess
 }
 
 - (void)facebookLoginWithCompletion:(FacebookLoginSuccessBlock)successBlock onFailure:(FacebookFailBlock)failBlock{
-    if (FBSession.activeSession.isOpen) {
-        [self closeSession];
-    }
-    
-    FBSessionStateHandler handler = ^(FBSession *session,
-                                      FBSessionState state,
-                                      NSError *error) {
-        if (error) {
-            NSLog(@"Can't obtain access token");
-            failBlock([error localizedDescription]);
-        } else {
-            [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id <FBGraphUser> result, NSError *error) {
-                if (error) {
-                    if (!error.code == 5) {
-                        NSLog(@"Error - Can't query user information");
-                        failBlock([[error userInfo] description]);                        
-                    }
-                } else {
-                    NSString *firstName = [result first_name];
-                    NSString *lastName = [result last_name];
-                    NSString *username = [result username];
-                    successBlock(session.accessToken, firstName, lastName, username);
-                }
-            }];
+
+        if (FBSession.activeSession.isOpen) {
+            [self closeSession];
         }
-    };
-    
-    [self openSessionWithAllowLoginUI:YES completionHandler:handler];
+        
+        FBSessionStateHandler handler = ^(FBSession *session,
+                                          FBSessionState state,
+                                          NSError *error) {
+            if (error) {
+                NSLog(@"Can't obtain access token");
+                failBlock([[error userInfo] description]);
+            } else {
+                NSLog(@"Obtaining facebook user information...");
+                [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id <FBGraphUser> result, NSError *error) {
+                    if (error) {
+                        if (!error.code == 5) {
+                            NSLog(@"Can't query user information");
+                            failBlock([[error userInfo] description]);
+                        } else {
+                            NSDictionary *userInfo = [error userInfo];
+                            NSDictionary *parsedJSON = [userInfo objectForKey:kFacebookSDKJsonResponseKey];
+                            NSDictionary *body = [parsedJSON objectForKey:kFacebookErrorUserInfoKeyBody];
+                            NSDictionary *bodyError = [body objectForKey:kFacebookErrorUserInfoKeyError];
+                            int code = [[bodyError objectForKey:kFacebookErrorUserInfoKeyCode] intValue];
+                            int subcode = [[bodyError objectForKey:kFacebookErrorUserInfoKeySubCode] intValue];
+                            if (code == kFacebookSDKErrorCodeOAuthError && subcode == kFacebookSDKErrorSubcodeAppNotInstalled) {
+                                failBlock(@"Please authorize the application on Facebook");
+                            }
+                        }
+                    } else {
+                        NSString *firstName = [result first_name];
+                        NSString *lastName = [result last_name];
+                        NSString *username = [result username];
+                        successBlock(session.accessToken, firstName, lastName, username);
+                    }
+                }];
+            }
+        };
+        
+        [self openSessionWithAllowLoginUI:YES completionHandler:handler];
+
 }
 
 - (void)postToFacebookWithLink:(NSString *)link andPictureURL:(NSString *)picUrl andName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andMessage:(NSString *)message onCompletion:(FacebookPostCompletionBlock)completionBlock onFailure:(FacebookFailBlock)failBlock {

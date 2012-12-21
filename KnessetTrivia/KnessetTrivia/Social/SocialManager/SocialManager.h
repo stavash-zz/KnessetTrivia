@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "FacebookFriend.h"
 
+#define kUserDefaultsIsFacebookConnectedKey @"isFacebookConnected"
+#define kFacebookPreferenceChangedNotification @"FacebookPreferenceChanged"
 typedef void (^FacebookLoginSuccessBlock)(NSString *token, NSString *firstName, NSString *lastName, NSString *username);
 typedef void (^FacebookFriendsSuccessBlock)(NSArray *arrayOfFriends);
 typedef void (^FacebookPostCompletionBlock)(void);
