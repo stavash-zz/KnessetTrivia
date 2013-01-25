@@ -12,6 +12,21 @@
 #import "KTBill.h"
 #import "KTParty.h"
 
+#define kUpdatedMembersFilename @"updatedMembers.txt"
+#define kUpdatedPartiesFilename @"updatedParties.txt"
+#define kUpdatedBillsFilename @"updatedBills.txt"
+
+#define kUpdateTimeUserDefaultsKey @"updateTime"
+
+#define kDaysToUpdate 14
+#define kTimeIntervalToUpdate kDaysToUpdate * 24.0 * 60.0 * 60.0
+
+typedef enum {
+    kResourceTypeMember,
+    kResourceTypeParty,
+    kResourceTypeBills
+}ResourceType;
+
 @implementation DataManager
 @synthesize members;
 @synthesize bills;
@@ -66,10 +81,62 @@ static DataManager *manager = nil;
     return [NSArray arrayWithArray:membersArr];
 }
 
+#pragma mark - Private (File paths)
+
++ (NSString *)pathForStoringUpdateDataForResourceType:(ResourceType)type {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = nil;
+    switch (type) {
+        case kResourceTypeMember:
+            path = [documentsDirectory stringByAppendingPathComponent:kUpdatedMembersFilename];
+            break;
+        case kResourceTypeParty:
+            path = [documentsDirectory stringByAppendingPathComponent:kUpdatedPartiesFilename];
+            break;
+        case kResourceTypeBills:
+            path = [documentsDirectory stringByAppendingPathComponent:kUpdatedBillsFilename];
+            break;
+        default:
+            break;
+    }
+    return path;
+}
+
++ (NSString *) filePathForResourceType:(ResourceType)type {
+    NSString *potentialUpdatedDataPath = [DataManager pathForStoringUpdateDataForResourceType:type];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:potentialUpdatedDataPath]) {
+        return potentialUpdatedDataPath;
+    }
+    
+    switch (type) {
+        case kResourceTypeMember:
+        {
+            return [[NSBundle mainBundle] pathForResource:@"member" ofType:@"txt"];
+        }
+            break;
+        case kResourceTypeParty:
+        {
+            return [[NSBundle mainBundle] pathForResource:@"bills" ofType:@"txt"];
+        }
+            break;
+        case kResourceTypeBills:
+        {
+            return [[NSBundle mainBundle] pathForResource:@"party" ofType:@"txt"];
+        }
+            break;
+        default:
+            break;
+    }
+
+    return nil;
+}
+
 #pragma mark - Public
 
 - (void) initializeMembers {
-    NSData *memberData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"member" ofType:@"txt"]];
+    NSString *filePath = [DataManager filePathForResourceType:kResourceTypeMember];
+    NSData *memberData = [NSData dataWithContentsOfFile:filePath];
     
     NSString *jsonString = [[NSString alloc] initWithData:memberData encoding:NSUTF8StringEncoding];
     
@@ -86,11 +153,11 @@ static DataManager *manager = nil;
     
     [jsonParser release], jsonParser = nil;
     [jsonString release], jsonString = nil;
-
 }
 
 - (void) initializeBills {
-    NSData *billsData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"bills" ofType:@"txt"]];
+    NSString *filePath = [DataManager filePathForResourceType:kResourceTypeBills];
+    NSData *billsData = [NSData dataWithContentsOfFile:filePath];
     
     NSString *jsonString = [[NSString alloc] initWithData:billsData encoding:NSUTF8StringEncoding];
     
@@ -111,7 +178,8 @@ static DataManager *manager = nil;
 }
 
 - (void) initializeParties {
-    NSData *partiesData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"party" ofType:@"txt"]];
+    NSString *filePath = [DataManager filePathForResourceType:kResourceTypeParty];
+    NSData *partiesData = [NSData dataWithContentsOfFile:filePath];
     
     NSString *jsonString = [[NSString alloc] initWithData:partiesData encoding:NSUTF8StringEncoding];
     
@@ -314,8 +382,6 @@ static DataManager *manager = nil;
 }
 
 - (UIImage *)savedImageForId:(int)imageId {
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *tempDir = NSTemporaryDirectory();
     NSString *filePath = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
     UIImage *img = [UIImage imageWithContentsOfFile:filePath];
@@ -323,8 +389,6 @@ static DataManager *manager = nil;
 }
 
 - (void) saveImageToTempDirectory:(UIImage *)image withId:(int)imageId {
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *tempDir = NSTemporaryDirectory();
         NSString *filePath = [tempDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png",imageId]];
         [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
@@ -337,4 +401,48 @@ static DataManager *manager = nil;
     }
     [pool release];
 }
+
+#pragma mark - Public (Updates)
+- (void)updateMemberData:(NSData *)newMemberData andPartyData:(NSData *)newPartyData andBillsData:(NSData *)newBillsData {
+    [newMemberData retain];
+    [newPartyData retain];
+    [newBillsData retain];
+    
+    //Write member data
+    NSString *pathForMemberFile = [DataManager pathForStoringUpdateDataForResourceType:kResourceTypeMember];
+    [newMemberData writeToFile:pathForMemberFile atomically:YES];
+    
+    //Write party data
+    NSString *pathForPartyFile = [DataManager pathForStoringUpdateDataForResourceType:kResourceTypeParty];
+    [newPartyData writeToFile:pathForPartyFile atomically:YES];
+    
+    //Write bills data
+    NSString *pathForBillsFile = [DataManager pathForStoringUpdateDataForResourceType:kResourceTypeBills];
+    [newBillsData writeToFile:pathForBillsFile atomically:YES];
+    
+    [self initializeMembers];
+    [self initializeParties];
+    
+    [newMemberData release];
+    [newPartyData release];
+    [newBillsData release];
+    
+    NSDate *lastUpdateTime = [NSDate date];
+    [[NSUserDefaults standardUserDefaults] setObject:lastUpdateTime forKey:kUpdateTimeUserDefaultsKey];
+}
+
+- (BOOL)isTimeForUpdate {
+    NSDate *lastUpdateTime = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdateTimeUserDefaultsKey];
+    if (!lastUpdateTime) {
+        return YES;
+    }
+    
+    NSDate *now = [NSDate date];
+    NSTimeInterval timeDiff = [now timeIntervalSinceDate:lastUpdateTime];
+    if (timeDiff > kTimeIntervalToUpdate) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

@@ -45,5 +45,8 @@
 - (void) saveImageToTempDirectory:(UIImage *)image withId:(int)imageId;
 - (void) saveAllImagesLocally;
 
+//Updates
+- (void)updateMemberData:(NSData *)newMemberData andPartyData:(NSData *)newPartyData andBillsData:(NSData *)newBillsData;
+- (BOOL)isTimeForUpdate;
 @end
 

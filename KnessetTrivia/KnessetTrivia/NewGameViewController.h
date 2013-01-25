@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GameFlowDelegateProtocol.h"
+#import "UpdateDelegateProtocol.h"
 
 typedef enum {
     kStartPhrase1,
@@ -18,7 +19,7 @@ typedef enum {
     startPhraseCount
 }StartPhrase;
 
-@interface NewGameViewController : UIViewController {
+@interface NewGameViewController : UIViewController <UpdateDelegate> {
     id <GameFlowDelegate> delegate;
     IBOutlet UILabel *startPhraseLabel;
     IBOutlet UILabel *welcomeLabel;

@@ -5,9 +5,10 @@
 //  Created by Stav Ashuri on 5/3/12.
 //   
 //
-
 #import "NewGameViewController.h"
 #import "SocialManager.h"
+#import "UpdateViewController.h"
+#import "DataManager.h"
 
 #define kNewGameStartPhraseFirst @"לחץ כדי להתחיל במשחק"
 #define kNewGameStartPhrase1 @"מוכנים לעוד אחד?"
@@ -20,6 +21,8 @@
 @interface NewGameViewController () {
     dispatch_queue_t backgroundQueue;
 }
+
+@property (retain, nonatomic) UpdateViewController *updateController;
 
 @end
 
@@ -88,6 +91,14 @@
         }
     }
     startPhraseLabel.text = startPhrase;
+    
+    if ([[DataManager sharedManager] isTimeForUpdate]) {
+        UpdateViewController *updateVC = [[UpdateViewController alloc] initWithNibName:@"UpdateViewController" bundle:nil];
+        updateVC.delegate = self;
+        [self.view addSubview:updateVC.view];
+        self.updateController = updateVC;
+        [updateVC release];
+    }
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -175,6 +186,21 @@
     } onFailure:^(NSString *errorDescription) {
         NSLog(@"Couldn't log in to Facebook: %@",errorDescription);
     }];
+}
+
+#pragma mark - UpdateDelegate
+
+- (void)updateDownloadCompleteWithMemberData:(NSData *)memberData andPartyData:(NSData *)partyData andBillsData:(NSData *)billsData {
+    [[DataManager sharedManager] updateMemberData:memberData andPartyData:partyData andBillsData:billsData];
+    [self.updateController.view removeFromSuperview];
+}
+
+- (void)updateDownloadFailed {
+   [self.updateController.view removeFromSuperview];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"עדכון נתונים" message:@"עדכון הנתונים נכשל" delegate:self cancelButtonTitle:@"אישור" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+    NSLog(@"update failed");
 }
 
 @end
