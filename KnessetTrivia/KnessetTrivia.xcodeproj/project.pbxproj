@@ -216,6 +216,10 @@
 		1F6CC8831570090600E591F9 /* 850.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F6CC8031570090600E591F9 /* 850.png */; };
 		1F6CC8841570090600E591F9 /* 851.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F6CC8041570090600E591F9 /* 851.png */; };
 		1F6CC8851570090600E591F9 /* 852.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F6CC8051570090600E591F9 /* 852.png */; };
+		1F6D777516B28287008D941E /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6D777316B28287008D941E /* DACircularProgressView.m */; };
+		1F6D778316B2847E008D941E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F6D778216B2847D008D941E /* QuartzCore.framework */; };
+		1F6D778716B28644008D941E /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6D778516B28644008D941E /* UpdateViewController.m */; };
+		1F6D778816B28644008D941E /* UpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F6D778616B28644008D941E /* UpdateViewController.xib */; };
 		1F708527154FD88700D80EFF /* MemberCellFlipSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F708525154FD88700D80EFF /* MemberCellFlipSideViewController.m */; };
 		1F708528154FD88700D80EFF /* MemberCellFlipSideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F708526154FD88700D80EFF /* MemberCellFlipSideViewController.xib */; };
 		1F70852A155008CD00D80EFF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F708529155008CD00D80EFF /* MessageUI.framework */; };
@@ -490,6 +494,13 @@
 		1F6CC8031570090600E591F9 /* 850.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 850.png; path = "Member Images/850.png"; sourceTree = "<group>"; };
 		1F6CC8041570090600E591F9 /* 851.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 851.png; path = "Member Images/851.png"; sourceTree = "<group>"; };
 		1F6CC8051570090600E591F9 /* 852.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 852.png; path = "Member Images/852.png"; sourceTree = "<group>"; };
+		1F6D777116B2800D008D941E /* UpdateDelegateProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateDelegateProtocol.h; sourceTree = "<group>"; };
+		1F6D777316B28287008D941E /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DACircularProgressView.m; path = DACircularProgress/DACircularProgressView.m; sourceTree = "<group>"; };
+		1F6D777416B28287008D941E /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DACircularProgressView.h; path = DACircularProgress/DACircularProgressView.h; sourceTree = "<group>"; };
+		1F6D778216B2847D008D941E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1F6D778416B28644008D941E /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
+		1F6D778516B28644008D941E /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
+		1F6D778616B28644008D941E /* UpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateViewController.xib; sourceTree = "<group>"; };
 		1F708524154FD88700D80EFF /* MemberCellFlipSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCellFlipSideViewController.h; sourceTree = "<group>"; };
 		1F708525154FD88700D80EFF /* MemberCellFlipSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCellFlipSideViewController.m; sourceTree = "<group>"; };
 		1F708526154FD88700D80EFF /* MemberCellFlipSideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCellFlipSideViewController.xib; sourceTree = "<group>"; };
@@ -538,6 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F6D778316B2847E008D941E /* QuartzCore.framework in Frameworks */,
 				1FADE9C31672313A0070F653 /* Social.framework in Frameworks */,
 				1FADE9C1167231350070F653 /* Accounts.framework in Frameworks */,
 				1FADE9BF167231290070F653 /* AdSupport.framework in Frameworks */,
@@ -642,6 +654,7 @@
 		1F18A204154D551200D94946 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				1F18A1F4154D49F100D94946 /* SoundEngine */,
 				1F9C9B351556709D00F0907D /* blop.wav */,
 				1F9C9B361556709D00F0907D /* shipbell.wav */,
 				1F18A20D154D56EC00D94946 /* correct.mp3 */,
@@ -693,6 +706,7 @@
 		1F62FC241528A60600110F7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F6D778216B2847D008D941E /* QuartzCore.framework */,
 				1FADE9C21672313A0070F653 /* Social.framework */,
 				1FADE9C0167231350070F653 /* Accounts.framework */,
 				1FADE9BE167231290070F653 /* AdSupport.framework */,
@@ -716,7 +730,6 @@
 				1FBBCBC3156901B200E5E7D3 /* DebugFlags.h */,
 				1FADE9B216722C9E0070F653 /* Social */,
 				1F18A204154D551200D94946 /* Audio */,
-				1F18A1F4154D49F100D94946 /* SoundEngine */,
 				1F5FE228154B484200633DF5 /* Artwork */,
 				1F69213D154AD7CC001AD57F /* External */,
 				1F692188154B3896001AD57F /* Controller */,
@@ -764,6 +777,7 @@
 		1F69213D154AD7CC001AD57F /* External */ = {
 			isa = PBXGroup;
 			children = (
+				1F6D777216B28276008D941E /* DACircularProgressView */,
 				1F7BAA8B1560431B00F2B4E5 /* YLProgressBar */,
 				1F933A2315552BB6004CC127 /* Google Analytics */,
 				1F69213E154AD7D2001AD57F /* SBJson */,
@@ -816,6 +830,7 @@
 		1F692188154B3896001AD57F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1F6D776916B27B62008D941E /* Update */,
 				1F699C4C15509756005DFCAA /* About */,
 				1F699C4B15509744005DFCAA /* Image Cell Controller */,
 				1F699C4A15509732005DFCAA /* Trivia */,
@@ -1048,6 +1063,26 @@
 				1F6CC8051570090600E591F9 /* 852.png */,
 			);
 			name = "Member Images";
+			sourceTree = "<group>";
+		};
+		1F6D776916B27B62008D941E /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				1F6D777116B2800D008D941E /* UpdateDelegateProtocol.h */,
+				1F6D778416B28644008D941E /* UpdateViewController.h */,
+				1F6D778516B28644008D941E /* UpdateViewController.m */,
+				1F6D778616B28644008D941E /* UpdateViewController.xib */,
+			);
+			name = Update;
+			sourceTree = "<group>";
+		};
+		1F6D777216B28276008D941E /* DACircularProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				1F6D777316B28287008D941E /* DACircularProgressView.m */,
+				1F6D777416B28287008D941E /* DACircularProgressView.h */,
+			);
+			name = DACircularProgressView;
 			sourceTree = "<group>";
 		};
 		1F7BAA8B1560431B00F2B4E5 /* YLProgressBar */ = {
@@ -1331,6 +1366,7 @@
 				1FADE9C5167236C70070F653 /* Default-568h@2x.png in Resources */,
 				1FADE9C81672389A0070F653 /* FB.png in Resources */,
 				1FADE9C91672389A0070F653 /* FB@2X.png in Resources */,
+				1F6D778816B28644008D941E /* UpdateViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1417,8 @@
 				1F7BAA921560432A00F2B4E5 /* YLProgressBar.m in Sources */,
 				1FADE9BA16722E480070F653 /* FacebookFriend.m in Sources */,
 				1FADE9BB16722E480070F653 /* SocialManager.m in Sources */,
+				1F6D777516B28287008D941E /* DACircularProgressView.m in Sources */,
+				1F6D778716B28644008D941E /* UpdateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
