@@ -12,10 +12,10 @@
 
 typedef enum {
     kRightWrongQuestionTypeParty,
-    kRightWrongQuestionTypePlaceOfBirth,
     kRightWrongQuestionTypeRole,
-    questionOptionsCount,
-    kRightWrongQuestionTypeAge
+    questionOptionsCount, //All question types after this enum will be discluded
+    kRightWrongQuestionTypeAge,
+    kRightWrongQuestionTypePlaceOfBirth
 }RightWrongQuestionType;
 
 @class KTMember, MemberCellViewController;
