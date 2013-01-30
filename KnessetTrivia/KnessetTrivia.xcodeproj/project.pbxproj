@@ -236,9 +236,9 @@
 		1FADE9BA16722E480070F653 /* FacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADE9B716722E480070F653 /* FacebookFriend.m */; };
 		1FADE9BB16722E480070F653 /* SocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FADE9B916722E480070F653 /* SocialManager.m */; };
 		1FADE9BD16722E5D0070F653 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9BC16722E5D0070F653 /* FacebookSDK.framework */; };
-		1FADE9BF167231290070F653 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9BE167231290070F653 /* AdSupport.framework */; };
-		1FADE9C1167231350070F653 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C0167231350070F653 /* Accounts.framework */; };
-		1FADE9C31672313A0070F653 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C21672313A0070F653 /* Social.framework */; };
+		1FADE9BF167231290070F653 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9BE167231290070F653 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1FADE9C1167231350070F653 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C0167231350070F653 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1FADE9C31672313A0070F653 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C21672313A0070F653 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1FADE9C5167236C70070F653 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C4167236C70070F653 /* Default-568h@2x.png */; };
 		1FADE9C81672389A0070F653 /* FB.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C61672389A0070F653 /* FB.png */; };
 		1FADE9C91672389A0070F653 /* FB@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C71672389A0070F653 /* FB@2X.png */; };
@@ -1486,11 +1486,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../FacebookSDK\"",
+					"~/Documents/FacebookSDK/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KnessetTrivia/KnessetTrivia-Prefix.pch";
+				HEADER_SEARCH_PATHS = "~/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/DeprecatedHeaders/**";
 				INFOPLIST_FILE = "KnessetTrivia/KnessetTrivia-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/KnessetTrivia/Google\"",
@@ -1509,11 +1511,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../FacebookSDK\"",
+					"~/Documents/FacebookSDK/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KnessetTrivia/KnessetTrivia-Prefix.pch";
+				HEADER_SEARCH_PATHS = "~/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/DeprecatedHeaders/**";
 				INFOPLIST_FILE = "KnessetTrivia/KnessetTrivia-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/KnessetTrivia/Google\"",
