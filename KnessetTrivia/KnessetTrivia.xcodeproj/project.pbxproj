@@ -671,6 +671,7 @@
 				1F5FE22B154B485700633DF5 /* Peripherals */,
 			);
 			name = Artwork;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		1F5FE22B154B485700633DF5 /* Peripherals */ = {
@@ -688,8 +689,8 @@
 		1F62FC161528A60500110F7E = {
 			isa = PBXGroup;
 			children = (
-				1F692136154AD0E4001AD57F /* Resources */,
 				1F62FC2B1528A60600110F7E /* KnessetTrivia */,
+				1F692136154AD0E4001AD57F /* Resources */,
 				1F62FC241528A60600110F7E /* Frameworks */,
 				1F62FC221528A60600110F7E /* Products */,
 			);
@@ -728,14 +729,13 @@
 			isa = PBXGroup;
 			children = (
 				1FBBCBC3156901B200E5E7D3 /* DebugFlags.h */,
+				1F62FC341528A60600110F7E /* AppDelegate.h */,
+				1F62FC351528A60600110F7E /* AppDelegate.m */,
 				1FADE9B216722C9E0070F653 /* Social */,
 				1F18A204154D551200D94946 /* Audio */,
-				1F5FE228154B484200633DF5 /* Artwork */,
 				1F69213D154AD7CC001AD57F /* External */,
 				1F692188154B3896001AD57F /* Controller */,
 				1F692139154AD1F5001AD57F /* Model */,
-				1F62FC341528A60600110F7E /* AppDelegate.h */,
-				1F62FC351528A60600110F7E /* AppDelegate.m */,
 				1F62FC2C1528A60600110F7E /* Supporting Files */,
 			);
 			path = KnessetTrivia;
@@ -755,10 +755,9 @@
 		1F692136154AD0E4001AD57F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FC721C016C23F0F007B00D4 /* Raw */,
+				1F5FE228154B484200633DF5 /* Artwork */,
 				1F6CC785157008FB00E591F9 /* Member Images */,
-				1F182C11155FC82A000C9BF5 /* party.txt */,
-				1F692137154AD0E4001AD57F /* member.txt */,
-				1F18A212154EF0FE00D94946 /* bills.txt */,
 			);
 			name = Resources;
 			path = KnessetTrivia/Resources;
@@ -1132,6 +1131,16 @@
 			);
 			name = FacebookFriend;
 			path = Social/SocialManager/FacebookFriend;
+			sourceTree = "<group>";
+		};
+		1FC721C016C23F0F007B00D4 /* Raw */ = {
+			isa = PBXGroup;
+			children = (
+				1F182C11155FC82A000C9BF5 /* party.txt */,
+				1F692137154AD0E4001AD57F /* member.txt */,
+				1F18A212154EF0FE00D94946 /* bills.txt */,
+			);
+			name = Raw;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

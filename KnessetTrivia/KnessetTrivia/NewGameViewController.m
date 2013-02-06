@@ -44,17 +44,20 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookPreferenceChanged) name:kFacebookPreferenceChangedNotification object:nil];
     
-    BOOL isFacebookConnected = [[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsIsFacebookConnectedKey] boolValue];
-    if (isFacebookConnected) {
-        [[SocialManager sharedManager] facebookLoginWithCompletion:^(NSString *token, NSString *firstName, NSString *lastName, NSString *username) {
-            facebookButton.alpha = 0.0;
-            [self displayFacebookNameIfAvailable];
-        } onFailure:^(NSString *errorDescription) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        BOOL isFacebookConnected = [[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsIsFacebookConnectedKey] boolValue];
+        if (isFacebookConnected) {
+            [[SocialManager sharedManager] facebookLoginWithCompletion:^(NSString *token, NSString *firstName, NSString *lastName, NSString *username) {
+                facebookButton.alpha = 0.0;
+                [self displayFacebookNameIfAvailable];
+            } onFailure:^(NSString *errorDescription) {
+                facebookButton.alpha = 1.0;
+            }];
+        } else {
             facebookButton.alpha = 1.0;
-        }];
-    } else {
-        facebookButton.alpha = 1.0;
-    }
+        }
+    });
     
     NSString *startPhrase;
     NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:kNewGameFirstGameEverDefaultsKey];
