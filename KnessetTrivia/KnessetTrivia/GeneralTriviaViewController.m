@@ -16,7 +16,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 //General
-#define kGeneralTriviaSecondsToPlay 10.0
+#define kGeneralTriviaSecondsToPlay 60.0
 #define kGeneralTriviaTitle @"טריוויה" 
 #define kGeneralTriviaHelpButtonImage @"help"
 #define kGeneralTriviaGoodScoreColor [UIColor colorWithRed:10.0/255.0 green:158.0/255.0 blue:23.0/255.0 alpha:1.0]
