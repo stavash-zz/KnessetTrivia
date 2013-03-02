@@ -35,7 +35,7 @@
 #define kParserKeyLinks @"links"
 #define kParserKeyName @"name"
 #define kParserKeyNumberOfChildren @"number_of_children"
-#define kParserKeyParty @"party"
+#define kParserKeyParty @"party_name"
 #define kParserKeyPhone @"phone"
 #define kParserKeyPlaceOfBirth @"place_of_birth"
 #define kParserKeyPlaceOfResidence @"place_of_residence"
