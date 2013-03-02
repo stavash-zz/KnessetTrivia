@@ -53,6 +53,7 @@
     [self.window makeKeyAndVisible];
     
     [self initGameTimer];
+    
     return YES;
 }
 

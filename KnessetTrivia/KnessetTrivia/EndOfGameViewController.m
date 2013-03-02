@@ -84,13 +84,13 @@
 - (IBAction)sharePressed:(id)sender {
     BOOL isFacebookConnected = [[[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsIsFacebookConnectedKey] boolValue];
     if (isFacebookConnected) {
-        [[SocialManager sharedManager] postToFacebookWithLink:@"https://itunes.apple.com/il/app/trywwyh-knst/id528980460?mt=8" andPictureURL:nil andName:@"אפליקציית טריוויה כנסת" andCaption:nil andDescription:nil andMessage:[NSString stringWithFormat:@"הצלחתי לצבור %d נקודות באפליקציית טריוויה כנסת!",[[ScoreManager sharedManager] getCurrentScoreAboveZero]] onCompletion:^{
-            NSLog(@"Success!");
+        [[SocialManager sharedManager] postToFacebookWithFeedDialogWithPostName:@"אפליקציית טריוויה כנסת" andCaption:[NSString stringWithFormat:@"הצלחתי לצבור %d נקודות באפליקציית טריוויה כנסת!",[[ScoreManager sharedManager] getCurrentScoreAboveZero]] andDescription:nil andLink:@"https://itunes.apple.com/il/app/trywwyh-knst/id528980460?mt=8" andPictureUrl:nil onCompletion:^{
+            NSLog(@"Score posted to user's timeline");
         } onFailure:^(NSString *errorDescription) {
             NSLog(@"Error - couldn't post to facebook: %@",errorDescription);
         }];
     } else {
-
+        
     }
 }
 

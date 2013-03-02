@@ -28,6 +28,7 @@ extern NSString *const FBSessionStateChangedNotification;
 - (void)getFullNameFromActiveSessionWithCompletion:(FacebookFullNameCompletionBlock)successBlock onFailure:(FacebookFailBlock)failBlock;
 - (void)facebookLoginWithCompletion:(FacebookLoginSuccessBlock)successBlock onFailure:(FacebookFailBlock)failBlock;
 - (void)postToFacebookWithLink:(NSString *)link andPictureURL:(NSString *)picUrl andName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andMessage:(NSString *)message onCompletion:(FacebookPostCompletionBlock)completionBlock onFailure:(FacebookFailBlock)failBlock;
+- (void)postToFacebookWithFeedDialogWithPostName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andLink:(NSString *)link andPictureUrl:(NSString *)pictureUrl onCompletion:(FacebookPostCompletionBlock)completionBlock onFailure:(FacebookFailBlock)failBlock;
 - (void)postToFacebookWithNativeShareDialogFromViewController:(UIViewController *)sender withInitialText:(NSString *)initialText withImageName:(NSString *)imageName andUrl:(NSString *)url onCompletion:(FacebookNativePostCompletionBlock)completionBlock onFailure:(FacebookFailBlock)failBlock;
 
 @end

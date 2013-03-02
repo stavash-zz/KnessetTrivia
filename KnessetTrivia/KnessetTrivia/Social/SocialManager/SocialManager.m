@@ -7,8 +7,10 @@
 //
 
 #import "SocialManager.h"
-#import <FacebookSDK/FacebookSDK.h>
-#import <FacebookSDK/FBGraphUser.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+#import "Facebook.h"
+
 
 #define kFacebookPermissionsEmail @"email"
 #define kFacebookPermissionsUserAboutMe @"user_about_me"
@@ -21,6 +23,14 @@
 #define kFacebookPostParamCaption       @"caption"
 #define kFacebookPostParamDescription   @"description"
 #define kFacebookPostParamMessage       @"message"
+#define kFacebookFeedDialogParamName @"name"
+#define kFacebookFeedDialogParamCaption @"caption"
+#define kFacebookFeedDialogParamDescription @"description"
+#define kFacebookFeedDialogParamLink @"link"
+#define kFacebookFeedDialogParamPicture @"picture"
+#define kFacebookFeedDialogParamTo @"to"
+#define kFacebookFeedDialogName @"feed"
+#define kFacebookFeedDialogAppId @"app_id"
 
 #define kFacebookSDKJsonResponseKey @"com.facebook.sdk:ParsedJSONResponseKey"
 
@@ -37,7 +47,11 @@
 
 NSString *const FBSessionStateChangedNotification = @"org.oknesset.trivia:FBSessionStateChangedNotification";
 
-@interface SocialManager()
+@interface SocialManager() <FBDialogDelegate>
+
+@property (strong, nonatomic) Facebook *facebook;
+@property (copy, nonatomic) FacebookFailBlock pendingFacebookPostFailBlock;
+@property (copy, nonatomic) FacebookPostCompletionBlock pendingFacebookPostCompletionBlock;
 
 @end
 
@@ -300,6 +314,44 @@ NSString *const FBSessionStateChangedNotification = @"org.oknesset.trivia:FBSess
     }
 }
 
+- (void)postToFacebookWithFeedDialogWithPostName:(NSString *)name andCaption:(NSString *)caption andDescription:(NSString *)description andLink:(NSString *)link andPictureUrl:(NSString *)pictureUrl onCompletion:(FacebookPostCompletionBlock)completionBlock onFailure:(FacebookFailBlock)failBlock{
+        
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    if (name.length) {
+        [params setObject:name forKey:kFacebookFeedDialogParamName];
+    }
+    
+    if (caption.length) {
+        [params setObject:caption forKey:kFacebookFeedDialogParamCaption];
+    }
+    
+    if (description.length) {
+        [params setObject:description forKey:kFacebookFeedDialogParamDescription];
+    }
+    
+    if (link.length) {
+        [params setObject:link forKey:kFacebookFeedDialogParamLink];
+    }
+    
+    if (pictureUrl.length) {
+        [params setObject:pictureUrl forKey:kFacebookFeedDialogParamPicture];
+    }
+        
+    self.pendingFacebookPostCompletionBlock = completionBlock;
+    self.pendingFacebookPostFailBlock = failBlock;
+
+    if (!self.facebook) {
+        self.facebook = [[Facebook alloc]
+                         initWithAppId:FBSession.activeSession.appID
+                         andDelegate:nil];
+        self.facebook.accessToken = FBSession.activeSession.accessToken;
+        self.facebook.expirationDate = FBSession.activeSession.expirationDate;
+    }
+    
+    [self.facebook dialog:kFacebookFeedDialogName andParams:params andDelegate:self];
+}
+
 - (void)postToFacebookWithNativeShareDialogFromViewController:(UIViewController *)sender withInitialText:(NSString *)initialText withImageName:(NSString *)imageName andUrl:(NSString *)url onCompletion:(FacebookNativePostCompletionBlock)completionBlock onFailure:(FacebookFailBlock)failBlock{
     BOOL displayedNativeDialog =
         [FBNativeDialogs
@@ -322,5 +374,25 @@ NSString *const FBSessionStateChangedNotification = @"org.oknesset.trivia:FBSess
         failBlock(@"Native dialog is not supported");
     }
 }
+
+-(void) dialogCompleteWithUrl:(NSURL *)url {
+    NSString *urlString    = url.absoluteString;
+    static NSString *postIdString = @"?post_id=";
+    
+    if ([urlString rangeOfString:postIdString].location == NSNotFound) {
+        if (self.pendingFacebookPostFailBlock) {
+            self.pendingFacebookPostFailBlock(@"Operation cancelled by user");
+            self.pendingFacebookPostFailBlock = nil;
+        }
+    } else {
+        if (self.pendingFacebookPostCompletionBlock) {
+            self.pendingFacebookPostCompletionBlock();
+            self.pendingFacebookPostCompletionBlock = nil;
+        }
+    }
+    
+    self.facebook = nil;
+}
+
 
 @end
