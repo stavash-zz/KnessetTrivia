@@ -18,8 +18,8 @@
 
 #define kUpdateTimeUserDefaultsKey @"updateTime"
 
-#define kDaysToUpdate 14
-#define kTimeIntervalToUpdate kDaysToUpdate * 24.0 * 60.0 * 60.0
+#define kDaysToUpdate 1
+#define kTimeIntervalToUpdate kDaysToUpdate * 24 * 60 * 60
 
 typedef enum {
     kResourceTypeMember,
@@ -117,12 +117,12 @@ static DataManager *manager = nil;
             break;
         case kResourceTypeParty:
         {
-            return [[NSBundle mainBundle] pathForResource:@"bills" ofType:@"txt"];
+            return [[NSBundle mainBundle] pathForResource:@"party" ofType:@"txt"];
         }
             break;
         case kResourceTypeBills:
         {
-            return [[NSBundle mainBundle] pathForResource:@"party" ofType:@"txt"];
+            return [[NSBundle mainBundle] pathForResource:@"bills" ofType:@"txt"];
         }
             break;
         default:
