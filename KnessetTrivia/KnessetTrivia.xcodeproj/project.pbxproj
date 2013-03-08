@@ -239,7 +239,6 @@
 		1FADE9BF167231290070F653 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9BE167231290070F653 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1FADE9C1167231350070F653 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C0167231350070F653 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1FADE9C31672313A0070F653 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FADE9C21672313A0070F653 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		1FADE9C5167236C70070F653 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C4167236C70070F653 /* Default-568h@2x.png */; };
 		1FADE9C81672389A0070F653 /* FB.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C61672389A0070F653 /* FB.png */; };
 		1FADE9C91672389A0070F653 /* FB@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FADE9C71672389A0070F653 /* FB@2X.png */; };
 		1FCC68D615525F9C0099479A /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC68D415525F9B0099479A /* NewGameViewController.m */; };
@@ -528,7 +527,6 @@
 		1FADE9BE167231290070F653 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		1FADE9C0167231350070F653 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		1FADE9C21672313A0070F653 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		1FADE9C4167236C70070F653 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		1FADE9C61672389A0070F653 /* FB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FB.png; path = Artwork/FB.png; sourceTree = "<group>"; };
 		1FADE9C71672389A0070F653 /* FB@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FB@2X.png"; path = "Artwork/FB@2X.png"; sourceTree = "<group>"; };
 		1FBBCBC3156901B200E5E7D3 /* DebugFlags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugFlags.h; sourceTree = "<group>"; };
@@ -681,7 +679,6 @@
 				1F684AC3154BE39B00AD64FD /* Icon@2x.png */,
 				1F5FE22C154B486300633DF5 /* Default.png */,
 				1F5FE22D154B486300633DF5 /* Default@2x.png */,
-				1FADE9C4167236C70070F653 /* Default-568h@2x.png */,
 			);
 			name = Peripherals;
 			sourceTree = "<group>";
@@ -1372,7 +1369,6 @@
 				1F6CC8831570090600E591F9 /* 850.png in Resources */,
 				1F6CC8841570090600E591F9 /* 851.png in Resources */,
 				1F6CC8851570090600E591F9 /* 852.png in Resources */,
-				1FADE9C5167236C70070F653 /* Default-568h@2x.png in Resources */,
 				1FADE9C81672389A0070F653 /* FB.png in Resources */,
 				1FADE9C91672389A0070F653 /* FB@2X.png in Resources */,
 				1F6D778816B28644008D941E /* UpdateViewController.xib in Resources */,
